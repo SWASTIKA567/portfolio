@@ -1,15 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, useEffect } from "react";        // ← STEP 1: add useState, useEffect
-import type { ReactNode } from "react";
+import { useState, useEffect, useRef } from "react";
 import vinyl from "@/assets/pink-vinyl.png";
-
-// ── STEP 2: import your screenshots like this ──────────────────────────────
-// import postlyScreen1 from "@/assets/postly/screen1.png";
-// import postlyScreen2 from "@/assets/postly/screen2.png";
-// import graphScreen1  from "@/assets/graphguard/screen1.png";
-// import graphScreen2  from "@/assets/graphguard/screen2.png";
-// (uncomment and add your real paths when you have the images)
-// ───────────────────────────────────────────────────────────────────────────
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -49,40 +40,48 @@ const ABOUT = {
   tools: ["Flutter", "Firebase", "Figma", "VS Code"],
 };
 
-// ── STEP 3: add screenshots array to each project ─────────────────────────
+// ── STEP: import your screenshots like this ────────────────────────────────
+// import postlyScreen1 from "@/assets/postly/screen1.png";
+// import postlyScreen2 from "@/assets/postly/screen2.png";
+// import graphScreen1  from "@/assets/graphguard/screen1.png";
+// (uncomment and add your real paths when you have the images)
+// ───────────────────────────────────────────────────────────────────────────
+
 const PROJECTS = [
   {
     name: "Postly",
-    desc: "Poster e-commerce app with real-time cart and Firebase backend.",
-    tech: "Flutter · Firebase · GetX",
+    tagline: "Poster printing & ordering",
+    desc: "Poster e-commerce app with real-time cart, wishlist, dynamic pricing, and Firebase backend.",
+    tech: ["Flutter", "Firebase", "GetX"],
     highlight: "Built during internship",
-    color: "#111",
+    color: "#1a0a15",
+    accent: "#e91e8c",
     screenshots: [
-      // postlyScreen1,   ← uncomment when you have images
+      // postlyScreen1,
       // postlyScreen2,
     ] as string[],
   },
   {
     name: "GraphGuard",
-    desc: "GitHub repo vulnerability scanner with FCM push notifications.",
-    tech: "Flutter · TigerGraph · GetX",
+    tagline: "GitHub vulnerability scanner",
+    desc: "Scans GitHub repos for security vulnerabilities using TigerGraph with FCM push notifications.",
+    tech: ["Flutter", "TigerGraph", "GetX"],
     highlight: "Top 5 — Devcation Delhi 2026",
-    color: "#1a1a2e",
-    screenshots: [
-      // graphScreen1,
-      // graphScreen2,
-    ] as string[],
+    color: "#060d1a",
+    accent: "#4f7cff",
+    screenshots: [] as string[],
   },
   {
     name: "GameZone",
-    desc: "A fun gaming companion app.",
-    tech: "Flutter · Firebase",
+    tagline: "Gaming companion app",
+    desc: "A fun gaming companion with leaderboards, real-time scores, and social features.",
+    tech: ["Flutter", "Firebase"],
     highlight: "Coming soon",
-    color: "#00796B",
+    color: "#001a15",
+    accent: "#00e5a0",
     screenshots: [] as string[],
   },
 ];
-// ───────────────────────────────────────────────────────────────────────────
 
 const SKILLS = {
   Languages: ["Dart", "Java", "Kotlin", "JavaScript"],
@@ -109,97 +108,154 @@ const CONTACT = {
     "Passionate about creating intuitive and impactful mobile applications that solve real-world problems.",
 };
 
-// ── STEP 4: PhoneCarousel component (swipeable + auto-slide) ──────────────
+// ── PhoneCarousel ──────────────────────────────────────────────────────────
 function PhoneCarousel({
   screenshots,
   fallbackColor,
+  fallbackAccent,
   fallbackName,
   fallbackTech,
 }: {
   screenshots: string[];
   fallbackColor: string;
+  fallbackAccent: string;
   fallbackName: string;
-  fallbackTech: string;
+  fallbackTech: string[];
 }) {
   const [current, setCurrent] = useState(0);
   const [touchStart, setTouchStart] = useState<number | null>(null);
-
   const total = screenshots.length;
 
-  // auto-slide every 2.5 s (only if there are images)
   useEffect(() => {
     if (total < 2) return;
-    const timer = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % total);
-    }, 2500);
+    const timer = setInterval(() => setCurrent((p) => (p + 1) % total), 2500);
     return () => clearInterval(timer);
   }, [total]);
 
-  const handleTouchStart = (e: React.TouchEvent) => {
-    setTouchStart(e.touches[0].clientX);
-  };
-
-  const handleTouchEnd = (e: React.TouchEvent) => {
+  const onTouchStart = (e: React.TouchEvent) => setTouchStart(e.touches[0].clientX);
+  const onTouchEnd = (e: React.TouchEvent) => {
     if (touchStart === null || total < 2) return;
     const diff = touchStart - e.changedTouches[0].clientX;
-    if (diff > 30) setCurrent((prev) => (prev + 1) % total);
-    if (diff < -30) setCurrent((prev) => (prev - 1 + total) % total);
+    if (diff > 30) setCurrent((p) => (p + 1) % total);
+    if (diff < -30) setCurrent((p) => (p - 1 + total) % total);
     setTouchStart(null);
   };
 
-  // ── no screenshots yet → show color placeholder ──
   if (total === 0) {
     return (
       <div
-        className="w-full h-full flex flex-col items-center justify-center gap-3 pt-6"
-        style={{ background: fallbackColor }}
+        style={{
+          width: "100%",
+          height: "100%",
+          background: fallbackColor,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: "10px",
+          padding: "10px",
+        }}
       >
-        <span className="text-white text-sm font-bold tracking-wide">{fallbackName}</span>
-        <span className="text-white/60 text-[10px] text-center px-3">{fallbackTech}</span>
+        <div style={{ color: "rgba(255,255,255,0.25)", fontSize: "10px", letterSpacing: "0.12em", marginBottom: "4px" }}>
+          swipe ←→
+        </div>
+        <div
+          style={{
+            width: "38px",
+            height: "38px",
+            borderRadius: "50%",
+            background: fallbackAccent + "22",
+            border: `1.5px solid ${fallbackAccent}55`,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            fontSize: "17px",
+          }}
+        >
+          📱
+        </div>
+        <span style={{ color: "white", fontSize: "13px", fontWeight: 700, letterSpacing: "0.04em" }}>
+          {fallbackName}
+        </span>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "4px", justifyContent: "center" }}>
+          {fallbackTech.map((t) => (
+            <span
+              key={t}
+              style={{
+                fontSize: "9px",
+                background: fallbackAccent + "33",
+                color: fallbackAccent,
+                borderRadius: "20px",
+                padding: "2px 8px",
+                fontWeight: 600,
+                letterSpacing: "0.04em",
+              }}
+            >
+              {t}
+            </span>
+          ))}
+        </div>
       </div>
     );
   }
 
-  // ── has screenshots → sliding carousel ──
   return (
     <div
-      className="w-full h-full relative overflow-hidden"
-      onTouchStart={handleTouchStart}
-      onTouchEnd={handleTouchEnd}
+      style={{ width: "100%", height: "100%", overflow: "hidden", position: "relative" }}
+      onTouchStart={onTouchStart}
+      onTouchEnd={onTouchEnd}
     >
-      {/* sliding strip */}
       <div
-        className="flex h-full transition-transform duration-500 ease-in-out"
         style={{
+          position: "absolute",
+          top: "8px",
+          left: 0,
+          right: 0,
+          zIndex: 5,
+          display: "flex",
+          justifyContent: "center",
+          pointerEvents: "none",
+        }}
+      >
+        <span style={{ fontSize: "9px", color: "rgba(255,255,255,0.4)", letterSpacing: "0.1em" }}>swipe ←→</span>
+      </div>
+      <div
+        style={{
+          display: "flex",
+          height: "100%",
+          transition: "transform 0.45s cubic-bezier(0.25,0.46,0.45,0.94)",
           transform: `translateX(-${current * 100}%)`,
           width: `${total * 100}%`,
         }}
       >
         {screenshots.map((src, idx) => (
-          <div
-            key={idx}
-            style={{ width: `${100 / total}%`, flexShrink: 0, height: "100%" }}
-          >
-            <img src={src} alt="" className="w-full h-full object-cover" />
+          <div key={idx} style={{ width: `${100 / total}%`, flexShrink: 0, height: "100%" }}>
+            <img src={src} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
           </div>
         ))}
       </div>
-
-      {/* dot indicators */}
       {total > 1 && (
-        <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-1">
+        <div
+          style={{
+            position: "absolute",
+            bottom: "10px",
+            left: 0,
+            right: 0,
+            display: "flex",
+            justifyContent: "center",
+            gap: "4px",
+            zIndex: 5,
+          }}
+        >
           {screenshots.map((_, idx) => (
             <button
               key={idx}
               onClick={() => setCurrent(idx)}
               style={{
-                width: current === idx ? "14px" : "5px",
+                width: current === idx ? "16px" : "5px",
                 height: "5px",
                 borderRadius: "3px",
-                background:
-                  current === idx
-                    ? "rgba(255,255,255,0.95)"
-                    : "rgba(255,255,255,0.35)",
+                background: current === idx ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.3)",
                 border: "none",
                 padding: 0,
                 cursor: "pointer",
@@ -213,60 +269,331 @@ function PhoneCarousel({
   );
 }
 
-// ── STEP 5: PhoneFrame component ──────────────────────────────────────────
-function PhoneFrame({ bg = "#111", children }: { bg?: string; children: ReactNode }) {
+// ── PhoneMockup ────────────────────────────────────────────────────────────
+function PhoneMockup({
+  project,
+  scale = 1,
+}: {
+  project: (typeof PROJECTS)[number];
+  scale?: number;
+}) {
+  const baseW = 200;
   return (
     <div
       style={{
         position: "relative",
-        width: "140px",
+        width: `${baseW * scale}px`,
         aspectRatio: "9/19.5",
-        background: "#e8e5e0",
-        borderRadius: "36px",
-        padding: "6px",
-        boxShadow:
-          "inset 0 0 0 1px #c8c4be, 0 24px 48px rgba(0,0,0,0.18), 0 8px 16px rgba(0,0,0,0.12)",
-        margin: "0 auto",
+        background: "linear-gradient(145deg, #f0ede8, #d0ccc6)",
+        borderRadius: `${44 * scale}px`,
+        padding: `${7 * scale}px`,
+        boxShadow: `inset 0 0 0 1px rgba(255,255,255,0.6), inset 0 -2px 4px rgba(0,0,0,0.12), 0 ${30 * scale}px ${60 * scale}px rgba(0,0,0,0.3)`,
+        flexShrink: 0,
       }}
     >
-      {/* left side buttons */}
-      <div style={{ position: "absolute", left: "-3px", top: "80px", width: "3px", height: "28px", background: "#ccc", borderRadius: "2px 0 0 2px" }} />
-      <div style={{ position: "absolute", left: "-3px", top: "118px", width: "3px", height: "28px", background: "#ccc", borderRadius: "2px 0 0 2px" }} />
-      {/* right side button */}
-      <div style={{ position: "absolute", right: "-3px", top: "100px", width: "3px", height: "40px", background: "#ccc", borderRadius: "0 2px 2px 0" }} />
-
-      {/* screen */}
+      <div style={{ position: "absolute", left: `${-4 * scale}px`, top: "18%", width: `${4 * scale}px`, height: "7%", background: "#bbb", borderRadius: "3px 0 0 3px" }} />
+      <div style={{ position: "absolute", left: `${-4 * scale}px`, top: "27%", width: `${4 * scale}px`, height: "10%", background: "#bbb", borderRadius: "3px 0 0 3px" }} />
+      <div style={{ position: "absolute", left: `${-4 * scale}px`, top: "39%", width: `${4 * scale}px`, height: "10%", background: "#bbb", borderRadius: "3px 0 0 3px" }} />
+      <div style={{ position: "absolute", right: `${-4 * scale}px`, top: "26%", width: `${4 * scale}px`, height: "14%", background: "#bbb", borderRadius: "0 3px 3px 0" }} />
       <div
         style={{
           width: "100%",
           height: "100%",
-          borderRadius: "30px",
-          background: bg,
+          borderRadius: `${38 * scale}px`,
           overflow: "hidden",
-          position: "relative",
+          background: project.color,
           display: "flex",
           flexDirection: "column",
         }}
       >
-        {/* status bar */}
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "8px 14px 4px", fontSize: "8px", color: "rgba(255,255,255,0.8)", flexShrink: 0, position: "relative" }}>
-          <span>1:38</span>
-          {/* notch pill */}
-          <div style={{ position: "absolute", top: "6px", left: "50%", transform: "translateX(-50%)", width: "52px", height: "9px", background: "#000", borderRadius: "10px" }} />
-          <span>●●●</span>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            padding: `${8 * scale}px ${14 * scale}px ${3 * scale}px`,
+            fontSize: `${8 * scale}px`,
+            color: "rgba(255,255,255,0.85)",
+            flexShrink: 0,
+            position: "relative",
+          }}
+        >
+          <span style={{ fontWeight: 600 }}>9:41</span>
+          <div
+            style={{
+              position: "absolute",
+              top: `${6 * scale}px`,
+              left: "50%",
+              transform: "translateX(-50%)",
+              width: `${48 * scale}px`,
+              height: `${9 * scale}px`,
+              background: "#000",
+              borderRadius: "20px",
+            }}
+          />
+          <span style={{ fontSize: `${7 * scale}px` }}>▲▲▲</span>
         </div>
-
-        {/* content area */}
         <div style={{ flex: 1, overflow: "hidden" }}>
-          {children}
+          <PhoneCarousel
+            screenshots={project.screenshots}
+            fallbackColor={project.color}
+            fallbackAccent={project.accent}
+            fallbackName={project.name}
+            fallbackTech={project.tech}
+          />
         </div>
-
-        {/* home bar */}
-        <div style={{ display: "flex", justifyContent: "center", paddingBottom: "8px", flexShrink: 0 }}>
-          <div style={{ width: "40px", height: "3px", background: "rgba(255,255,255,0.4)", borderRadius: "2px" }} />
+        <div style={{ display: "flex", justifyContent: "center", padding: `${6 * scale}px 0`, flexShrink: 0 }}>
+          <div style={{ width: "35%", height: `${3 * scale}px`, background: "rgba(255,255,255,0.4)", borderRadius: "2px" }} />
         </div>
       </div>
     </div>
+  );
+}
+
+// ── Slide3 ─────────────────────────────────────────────────────────────────
+function Slide3() {
+  const [active, setActive] = useState<number | null>(null);
+  const [phase, setPhase] = useState<"idle" | "ringing" | "open">("idle");
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const handlePhoneClick = (i: number) => {
+    if (active === i && phase === "open") {
+      setPhase("idle");
+      setActive(null);
+      return;
+    }
+    setActive(i);
+    setPhase("ringing");
+    if (timerRef.current) clearTimeout(timerRef.current);
+    timerRef.current = setTimeout(() => setPhase("open"), 680);
+  };
+
+  useEffect(() => () => { if (timerRef.current) clearTimeout(timerRef.current); }, []);
+
+  const isOpen = phase === "open";
+  const isRinging = phase === "ringing";
+  const proj = active !== null ? PROJECTS[active] : null;
+
+  return (
+    <section
+      className="slide pink-bg"
+      style={{ position: "relative", overflow: "hidden" }}
+    >
+      {/* Blurred backdrop */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          backdropFilter: isOpen ? "blur(18px) brightness(0.82)" : "none",
+          WebkitBackdropFilter: isOpen ? "blur(18px) brightness(0.82)" : "none",
+          transition: "backdrop-filter 0.5s ease, -webkit-backdrop-filter 0.5s ease",
+          pointerEvents: "none",
+          zIndex: 5,
+        }}
+      />
+
+      {/* Close tap zone */}
+      {isOpen && (
+        <div
+          style={{ position: "absolute", inset: 0, zIndex: 6, cursor: "pointer" }}
+          onClick={() => { setPhase("idle"); setActive(null); }}
+        />
+      )}
+
+      {/* Header + phones grid */}
+      <div
+        className="w-full max-w-[1100px]"
+        style={{
+          position: "relative",
+          zIndex: isOpen ? 0 : 10,
+          transition: "opacity 0.35s",
+          opacity: isOpen ? 0 : 1,
+          pointerEvents: isOpen ? "none" : "auto",
+        }}
+      >
+        <div className="flex items-end justify-between mb-12">
+          <h2 className="script text-5xl md:text-7xl leading-none">Projects</h2>
+          <p className="text-sm md:text-base">tap a phone to explore</p>
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "flex-end",
+            gap: "clamp(20px, 5vw, 60px)",
+            flexWrap: "wrap",
+          }}
+        >
+          {PROJECTS.map((p, i) => {
+            const isMe = active === i;
+            const isOther = active !== null && active !== i;
+
+            let transform = "scale(1) translateY(0px)";
+            if (isMe && isRinging) transform = "scale(1.04) translateY(-8px)";
+            else if (isMe && isOpen) transform = "scale(1.12) translateY(-20px)";
+            else if (isOther) transform = "scale(0.88) translateY(16px)";
+
+            return (
+              <div
+                key={p.name}
+                onClick={() => handlePhoneClick(i)}
+                style={{
+                  position: "relative",
+                  zIndex: isMe ? 15 : 1,
+                  transform,
+                  transition: isMe && isRinging
+                    ? "transform 0.12s ease, filter 0.3s, opacity 0.3s"
+                    : "transform 0.5s cubic-bezier(0.34,1.56,0.64,1), filter 0.4s ease, opacity 0.4s ease",
+                  filter: isOther
+                    ? "brightness(0.55)"
+                    : isMe && isOpen
+                    ? `drop-shadow(0 40px 60px ${p.accent}66)`
+                    : "drop-shadow(0 18px 32px rgba(0,0,0,0.22))",
+                  opacity: isOther ? 0.45 : 1,
+                  cursor: "pointer",
+                  animation: isMe && isRinging ? "dial-ring 0.12s ease-in-out 3 alternate" : "none",
+                }}
+              >
+                <PhoneMockup project={p} scale={0.95} />
+                <div
+                  style={{
+                    marginTop: "16px",
+                    textAlign: "center",
+                    opacity: isOther ? 0.3 : 1,
+                    transition: "opacity 0.35s",
+                  }}
+                >
+                  <p style={{ fontWeight: 700, fontSize: "13px", margin: 0 }}>{p.name}</p>
+                  <p style={{ fontSize: "11px", color: "#777", margin: "2px 0 0" }}>{p.highlight}</p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Active phone floating above peek box */}
+      {proj && (
+        <div
+          style={{
+            position: "absolute",
+            left: "50%",
+            transform: isOpen ? "translate(-50%, 0)" : "translate(-50%, -80px)",
+            bottom: "clamp(220px, 42vh, 380px)",
+            zIndex: 22,
+            opacity: isOpen ? 1 : 0,
+            transition: "transform 0.55s cubic-bezier(0.34,1.3,0.64,1), opacity 0.45s ease",
+            pointerEvents: "none",
+          }}
+        >
+          <PhoneMockup project={proj} scale={1.05} />
+        </div>
+      )}
+
+      {/* Peek detail box */}
+      {proj && (
+        <div
+          style={{
+            position: "absolute",
+            left: "50%",
+            transform: isOpen ? "translate(-50%, 0)" : "translate(-50%, 120px)",
+            bottom: "clamp(20px, 5vh, 60px)",
+            zIndex: 20,
+            opacity: isOpen ? 1 : 0,
+            transition: "transform 0.55s cubic-bezier(0.34,1.3,0.64,1), opacity 0.4s ease",
+            pointerEvents: isOpen ? "auto" : "none",
+            width: "clamp(300px, 80vw, 560px)",
+          }}
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div
+            style={{
+              background: "rgba(255, 245, 250, 0.82)",
+              backdropFilter: "blur(20px) saturate(1.4)",
+              WebkitBackdropFilter: "blur(20px) saturate(1.4)",
+              borderRadius: "28px",
+              border: "1px solid rgba(255,200,220,0.5)",
+              padding: "24px 28px",
+              boxShadow: "0 32px 64px rgba(0,0,0,0.18), 0 0 0 1px rgba(255,255,255,0.6) inset",
+            }}
+          >
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "14px" }}>
+              <div>
+                <h3 style={{ fontFamily: "Allura, cursive", fontSize: "clamp(32px,5vw,48px)", lineHeight: 1, margin: 0 }}>
+                  {proj.name}
+                </h3>
+                <p style={{ fontSize: "13px", color: "#888", margin: "4px 0 0", fontStyle: "italic" }}>
+                  {proj.tagline}
+                </p>
+              </div>
+              <button
+                onClick={() => { setPhase("idle"); setActive(null); }}
+                style={{
+                  background: "rgba(0,0,0,0.08)",
+                  border: "none",
+                  borderRadius: "50%",
+                  width: "32px",
+                  height: "32px",
+                  cursor: "pointer",
+                  fontSize: "16px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  color: "#444",
+                  flexShrink: 0,
+                  marginTop: "2px",
+                }}
+              >
+                ×
+              </button>
+            </div>
+            <p style={{ fontSize: "14px", lineHeight: 1.6, color: "#333", margin: "0 0 16px" }}>
+              {proj.desc}
+            </p>
+            <div style={{ height: "1px", background: "rgba(200,150,180,0.3)", margin: "0 0 16px" }} />
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "8px" }}>
+              <div style={{ display: "flex", gap: "6px", flexWrap: "wrap" }}>
+                {proj.tech.map((t) => (
+                  <span
+                    key={t}
+                    style={{
+                      fontSize: "11px",
+                      fontWeight: 600,
+                      background: proj.accent + "18",
+                      color: proj.accent,
+                      borderRadius: "20px",
+                      padding: "4px 10px",
+                      border: `1px solid ${proj.accent}33`,
+                    }}
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
+              <span
+                style={{
+                  fontSize: "11px",
+                  background: "#fff0f6",
+                  border: "1px solid #f9c8e0",
+                  color: "#c45080",
+                  borderRadius: "20px",
+                  padding: "4px 12px",
+                  fontWeight: 500,
+                }}
+              >
+                ✦ {proj.highlight}
+              </span>
+            </div>
+          </div>
+          {proj.screenshots.length > 0 && (
+            <p style={{ textAlign: "center", fontSize: "11px", color: "rgba(180,100,140,0.7)", marginTop: "10px", letterSpacing: "0.06em" }}>
+              swipe the phone screen to see more ↑
+            </p>
+          )}
+        </div>
+      )}
+    </section>
   );
 }
 
@@ -279,6 +606,10 @@ function Index() {
     >
       <style>{`
         @keyframes vinyl-spin { to { transform: rotate(360deg); } }
+        @keyframes dial-ring {
+          0%   { transform: scale(1.04) translateY(-8px) rotate(-2.5deg); }
+          100% { transform: scale(1.04) translateY(-8px) rotate(2.5deg); }
+        }
         .vinyl-spin { animation: vinyl-spin 24s linear infinite; }
         .script { font-family: 'Allura', cursive; }
         .pink-bg { background: radial-gradient(circle at 50% 40%, #ffd9ec 0%, #ffeaf4 55%, #fff5fa 100%); }
@@ -378,38 +709,7 @@ function Index() {
       </section>
 
       {/* ===================== SLIDE 3 — Projects ===================== */}
-      <section className="slide pink-bg">
-        <div className="w-full max-w-[1100px]">
-          <div className="flex items-end justify-between mb-8">
-            <h2 className="script text-5xl md:text-7xl leading-none">Projects</h2>
-            <p className="text-sm md:text-base">featured work</p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
-            {PROJECTS.map((p, i) => {
-              const rotations = ["-rotate-3", "rotate-0", "rotate-3"];
-              return (
-                <div key={p.name} className="bg-white/70 backdrop-blur-sm rounded-2xl p-5 shadow-sm border border-pink-100">
-                  {/* phone with tilt — hovers back to straight */}
-                  <div className={`mb-5 ${rotations[i]} transition-transform hover:rotate-0 duration-300`}>
-                    <PhoneFrame bg={p.color}>
-                      <PhoneCarousel
-                        screenshots={p.screenshots}
-                        fallbackColor={p.color}
-                        fallbackName={p.name}
-                        fallbackTech={p.tech}
-                      />
-                    </PhoneFrame>
-                  </div>
-                  <h3 className="font-semibold text-lg">{p.name}</h3>
-                  <p className="body-text mt-1">{p.desc}</p>
-                  <p className="text-xs text-pink-700 mt-2 font-medium">{p.tech}</p>
-                  <p className="text-xs mt-2 italic">★ {p.highlight}</p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+      <Slide3 />
 
       {/* ===================== SLIDE 4 — Skills ===================== */}
       <section className="slide pink-bg">
