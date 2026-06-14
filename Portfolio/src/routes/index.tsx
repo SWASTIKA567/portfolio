@@ -2,6 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState, useEffect } from "react";     
 import type { ReactNode } from "react";
 import vinyl from "@/assets/pink-vinyl.png";
+import './fonts.css';
+
 
 // ── STEP 2: import your screenshots like this ──────────────────────────────
 // import postlyScreen1 from "@/assets/postly/screen1.png";
@@ -554,7 +556,7 @@ function Slide6() {
           font-size: 14px; outline:none;
          transition: border-color .2s, background .2s, box-shadow .2s;
           font-family: inherit;
-        box-shadow: 0 1px 4px rgba(212,86,154,0.04);
+         box-shadow: 0 1px 4px rgba(212,86,154,0.04);
         }
         .c-input:focus { border-color:#d4569a; background: rgba(212,86,154,0.03); box-shadow: 0 0 0 3px rgba(212,86,154,0.08); }
         .c-input::placeholder { color: #b08a9e; }
@@ -770,16 +772,18 @@ function Index() {
                 {t.n}
               </span>
             ))}
-            <span className="absolute text-black" style={{ fontSize: "clamp(11px,1.2vw,16px)", top: "52%", left: "78%" }}>2026</span>
-            <span className="absolute text-black z-10" style={{ fontSize: "clamp(22px,3.4vw,60px)", top: "62%", left: "62%", whiteSpace: "nowrap" }}>
+            <span className="absolute text-black" style={{ fontSize: "clamp(11px,1.2vw,16px)", top: "52%", left: "75%" }}>2026</span>
+            <span className="absolute text-black z-10" style={{ fontSize: "clamp(32px,4.4vw,70px)",
+               top: "62%", left: "62%", whiteSpace: "nowrap" }}>
               App Developer
             </span>
-            <h2 className="absolute text-black leading-none z-10 script" style={{ fontSize: "clamp(110px,16vw,260px)", top: "22%", left: "50%", transform: "translateX(-50%) rotate(-6deg)", whiteSpace: "nowrap" }}>
+            <h2 className="absolute text-black leading-none z-10 script" style={{ fontSize: "clamp(25px,5vw,50px)", top: "37%", left: "35%", transform: "translateX(-50%) rotate(-6deg)", whiteSpace: "nowrap" , fontFamily: 'jungle-george.regular',  }}>
+              This is
+            </h2>
+            <h2 className="absolute text-black leading-none z-10 script" style={{ fontSize: "clamp(120px,26vw,270px)", top: "27%", left: "50%", transform: "translateX(-50%) rotate(-6deg)", whiteSpace: "nowrap" , fontFamily: "'QwitcherGrypen-Bold', cursive"  }}>
               Swastika
             </h2>
-            <h1 className="absolute text-black leading-none z-10 script" style={{ fontSize: "min(19vw, 230px)", top: "50%", left: "50%", transform: "translate(-50%, -50%) rotate(-8deg)", whiteSpace: "nowrap" }}>
-              Portfolio
-            </h1>
+            
           </div>
         </div>
       </section>
