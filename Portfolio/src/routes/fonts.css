@@ -17,8 +17,20 @@
   font-style: normal;
 }
 @font-face {
-  font-family: 'jungle-george-regular';
-  src: url('../fonts/jungle-george-regular.ttf') format('truetype');
+  font-family: 'jungle-george.regular';
+  src: url('../fonts/jungle-george.regular.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
+}
+
+.script {
+  font-family: 'jungle-george.regular', cursive;
+}
+
+.body-text {
+  font-family: 'Armelie-Regular', sans-serif;
+}
+
+.h-section {
+  font-family: 'Rosehot', cursive;
 }
