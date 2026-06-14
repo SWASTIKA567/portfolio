@@ -512,8 +512,8 @@ function Slide6() {
     <section
       className="slide"
       style={{
-        background: "#0e0a10",
-        color: "#fff",
+        background: "#fff",
+        color: "#111",
         position: "relative",
         overflow: "hidden",
       }}
@@ -522,22 +522,22 @@ function Slide6() {
         @keyframes blob-a { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(60px,-40px) scale(1.15)} }
         @keyframes blob-b { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(-50px,50px) scale(1.1)} }
         @keyframes pulse-ring { 0%{transform:scale(1);opacity:.6} 100%{transform:scale(1.8);opacity:0} }
-        .c-blob { position:absolute; border-radius:999px; filter:blur(80px); opacity:.55; pointer-events:none; }
+        .c-blob { position:absolute; border-radius:999px; filter:blur(80px); opacity:.22; pointer-events:none; }
         .c-card {
-          background: rgba(255,255,255,0.04);
-          border: 1px solid rgba(255,255,255,0.08);
+           background: #fff;
+          border: 1px solid #f0d7e6;
           border-radius: 18px;
           padding: 18px 20px;
           display:flex; align-items:center; gap:14px;
           cursor:pointer;
           transition: all .35s cubic-bezier(.2,.7,.2,1);
-          backdrop-filter: blur(10px);
+          box-shadow: 0 2px 12px rgba(212,86,154,0.06);
         }
         .c-card:hover {
           transform: translateY(-4px);
           border-color: #d4569a;
-          background: rgba(212,86,154,0.10);
-          box-shadow: 0 18px 50px -20px rgba(212,86,154,0.55);
+           background: rgba(212,86,154,0.04);
+          box-shadow: 0 18px 50px -20px rgba(212,86,154,0.25);
         }
         .c-icon {
           width:44px; height:44px; border-radius:12px;
@@ -552,11 +552,12 @@ function Slide6() {
           border: 1px solid rgba(255,255,255,0.12);
           color:#fff; padding: 12px 14px; border-radius: 12px;
           font-size: 14px; outline:none;
-          transition: border-color .2s, background .2s;
+         transition: border-color .2s, background .2s, box-shadow .2s;
           font-family: inherit;
+        box-shadow: 0 1px 4px rgba(212,86,154,0.04);
         }
-        .c-input:focus { border-color:#d4569a; background: rgba(212,86,154,0.08); }
-        .c-input::placeholder { color: rgba(255,255,255,0.35); }
+        .c-input:focus { border-color:#d4569a; background: rgba(212,86,154,0.03); box-shadow: 0 0 0 3px rgba(212,86,154,0.08); }
+        .c-input::placeholder { color: #b08a9e; }
         .c-send {
           background: linear-gradient(135deg,#d4569a,#e88cb8);
           color:#fff; border:none; padding: 13px 28px;
@@ -564,12 +565,13 @@ function Slide6() {
           cursor:pointer; letter-spacing:.5px;
           transition: transform .2s, box-shadow .2s;
         }
-        .c-send:hover { transform: translateY(-2px); box-shadow: 0 14px 30px -10px rgba(212,86,154,.7); }
+        .c-send:hover { transform: translateY(-2px); box-shadow: 0 14px 30px -10px rgba(212,86,154,.45); }
+
         .c-avail {
           display:inline-flex; align-items:center; gap:10px;
           padding: 8px 16px; border-radius: 999px;
-          background: rgba(80,200,120,0.12); border: 1px solid rgba(80,200,120,0.3);
-          font-size:12px; color:#9ee5b0; letter-spacing:.5px;
+          background: rgba(80,200,120,0.10); border: 1px solid rgba(80,200,120,0.25);
+          font-size:12px; color:#2a8a4a; letter-spacing:.5px;
           position: relative;
         }
         .c-dot { width:8px; height:8px; border-radius:999px; background:#4ade80; position:relative; }
@@ -579,7 +581,7 @@ function Slide6() {
         }
         .c-toast {
           position:absolute; top:-34px; left:50%; transform:translateX(-50%);
-          background:#fff; color:#0e0a10; font-size:11px; font-weight:600;
+         background:#111; color:#fff; font-size:11px; font-weight:600;
           padding: 6px 12px; border-radius:6px; white-space:nowrap;
           animation: fade-in .2s ease-out;
         }
@@ -591,7 +593,7 @@ function Slide6() {
           <span className="c-avail">
             <span className="c-dot" /> Available for opportunities
           </span>
-          <p className="script" style={{ fontSize: 32, color: "#e88cb8", margin: "18px 0 0" }}>
+          <p className="script" style={{ fontSize: 32, color: "#d4569a", margin: "18px 0 0" }}>
             Let's create something
           </p>
           <h2 style={{ fontSize: 56, fontWeight: 700, margin: "4px 0 0", letterSpacing: "-0.03em" }}>
@@ -620,10 +622,10 @@ function Slide6() {
                 {copied === c.key && <span className="c-toast">Copied!</span>}
                 <div className="c-icon">{c.icon}</div>
                 <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{ fontSize: 11, color: "rgba(255,255,255,0.5)", letterSpacing: 2, textTransform: "uppercase" }}>
+                   <div style={{ fontSize: 11, color: "#a87a92", letterSpacing: 2, textTransform: "uppercase" }}>
                     {c.label}
                   </div>
-                  <div style={{ fontSize: 14, color: "#fff", overflow: "hidden", textOverflow: "ellipsis" }}>
+                 <div style={{ fontSize: 14, color: "#111", overflow: "hidden", textOverflow: "ellipsis" }}>
                     {c.value}
                   </div>
                 </div>
@@ -631,8 +633,8 @@ function Slide6() {
                   onClick={(e) => { e.stopPropagation(); copy(c.key, c.value); }}
                   style={{
                     background: "transparent",
-                    border: "1px solid rgba(255,255,255,0.15)",
-                    color: hover === c.key ? "#fff" : "rgba(255,255,255,0.5)",
+                    border: "1px solid #f0d7e6",
+                    color: hover === c.key ? "#d4569a" : "#b08a9e",
                     padding: "6px 10px",
                     borderRadius: 8,
                     fontSize: 11,
@@ -649,17 +651,17 @@ function Slide6() {
           <form
             onSubmit={submit}
             style={{
-              background: "rgba(255,255,255,0.03)",
-              border: "1px solid rgba(255,255,255,0.08)",
+             background: "#fff",
+              border: "1px solid #f0d7e6",
               borderRadius: 22,
               padding: 26,
               display: "grid",
               gap: 14,
-              backdropFilter: "blur(10px)",
+               boxShadow: "0 4px 24px rgba(212,86,154,0.06)",
             }}
           >
             <div>
-              <label style={{ fontSize: 11, color: "rgba(255,255,255,0.55)", letterSpacing: 2, textTransform: "uppercase" }}>
+              <label style={{ fontSize: 11, color: "#a87a92", letterSpacing: 2, textTransform: "uppercase" }}>
                 Your name
               </label>
               <input
