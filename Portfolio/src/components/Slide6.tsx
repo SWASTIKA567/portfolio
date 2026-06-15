@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { ABOUT, CONTACT } from "@/data/portfolio";
+import { ABOUT, CONTACT } from "@/data/portfolio.tsx";
 
 export function Slide6() {
   const [copied, setCopied] = useState<string | null>(null);
   const [hover, setHover] = useState<string | null>(null);
   const [form, setForm] = useState({ name: "", msg: "" });
   const [sent, setSent] = useState(false);
+
   const copy = async (label: string, value: string) => {
     try {
       await navigator.clipboard.writeText(value);
@@ -13,12 +14,14 @@ export function Slide6() {
       setTimeout(() => setCopied(null), 1600);
     } catch {}
   };
+
   const channels = [
     { key: "email", label: "Email", value: CONTACT.email, href: `mailto:${CONTACT.email}`, icon: "✉" },
     { key: "linkedin", label: "LinkedIn", value: CONTACT.linkedin, href: `https://${CONTACT.linkedin}`, icon: "in" },
-    { key: "github", label: "GitHub", value: CONTACT.github, href: `https://${CONTACT.github}`, icon: "⌖" },
+    { key: "github", label: "GitHub", value: CONTACT.github, href: `https://${CONTACT.github}`, icon: "◆" },
     { key: "phone", label: "Phone", value: ABOUT.contact.phone, href: `tel:${ABOUT.contact.phone.replace(/\s/g, "")}`, icon: "☎" },
   ];
+
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.name.trim() || !form.msg.trim()) return;
@@ -28,6 +31,7 @@ export function Slide6() {
     setSent(true);
     setTimeout(() => setSent(false), 2400);
   };
+
   return (
     <section
       className="slide"
@@ -44,7 +48,7 @@ export function Slide6() {
         @keyframes pulse-ring { 0%{transform:scale(1);opacity:.6} 100%{transform:scale(1.8);opacity:0} }
         .c-blob { position:absolute; border-radius:999px; filter:blur(80px); opacity:.22; pointer-events:none; }
         .c-card {
-           background: #fff;
+          background: #fff;
           border: 1px solid #f0d7e6;
           border-radius: 18px;
           padding: 18px 20px;
@@ -56,7 +60,7 @@ export function Slide6() {
         .c-card:hover {
           transform: translateY(-4px);
           border-color: #d4569a;
-           background: rgba(212,86,154,0.04);
+          background: rgba(212,86,154,0.04);
           box-shadow: 0 18px 50px -20px rgba(212,86,154,0.25);
         }
         .c-icon {
@@ -72,9 +76,9 @@ export function Slide6() {
           border: 1px solid rgba(255,255,255,0.12);
           color:#fff; padding: 12px 14px; border-radius: 12px;
           font-size: 14px; outline:none;
-         transition: border-color .2s, background .2s, box-shadow .2s;
+          transition: border-color .2s, background .2s, box-shadow .2s;
           font-family: inherit;
-         box-shadow: 0 1px 4px rgba(212,86,154,0.04);
+          box-shadow: 0 1px 4px rgba(212,86,154,0.04);
         }
         .c-input:focus { border-color:#d4569a; background: rgba(212,86,154,0.03); box-shadow: 0 0 0 3px rgba(212,86,154,0.08); }
         .c-input::placeholder { color: #b08a9e; }
@@ -86,7 +90,6 @@ export function Slide6() {
           transition: transform .2s, box-shadow .2s;
         }
         .c-send:hover { transform: translateY(-2px); box-shadow: 0 14px 30px -10px rgba(212,86,154,.45); }
-
         .c-avail {
           display:inline-flex; align-items:center; gap:10px;
           padding: 8px 16px; border-radius: 999px;
@@ -101,13 +104,15 @@ export function Slide6() {
         }
         .c-toast {
           position:absolute; top:-34px; left:50%; transform:translateX(-50%);
-         background:#111; color:#fff; font-size:11px; font-weight:600;
+          background:#111; color:#fff; font-size:11px; font-weight:600;
           padding: 6px 12px; border-radius:6px; white-space:nowrap;
           animation: fade-in .2s ease-out;
         }
       `}</style>
+
       <div className="c-blob" style={{ width: 480, height: 480, background: "#d4569a", top: -120, left: -120, animation: "blob-a 14s ease-in-out infinite" }} />
       <div className="c-blob" style={{ width: 420, height: 420, background: "#7c3aed", bottom: -100, right: -80, animation: "blob-b 16s ease-in-out infinite" }} />
+
       <div style={{ maxWidth: 1080, width: "100%", position: "relative", zIndex: 2 }}>
         <div style={{ textAlign: "center", marginBottom: 36 }}>
           <span className="c-avail">
@@ -120,6 +125,7 @@ export function Slide6() {
             together.
           </h2>
         </div>
+
         <div
           style={{
             display: "grid",
@@ -142,10 +148,10 @@ export function Slide6() {
                 {copied === c.key && <span className="c-toast">Copied!</span>}
                 <div className="c-icon">{c.icon}</div>
                 <div style={{ flex: 1, minWidth: 0 }}>
-                   <div style={{ fontSize: 11, color: "#a87a92", letterSpacing: 2, textTransform: "uppercase" }}>
+                  <div style={{ fontSize: 11, color: "#a87a92", letterSpacing: 2, textTransform: "uppercase" }}>
                     {c.label}
                   </div>
-                 <div style={{ fontSize: 14, color: "#111", overflow: "hidden", textOverflow: "ellipsis" }}>
+                  <div style={{ fontSize: 14, color: "#111", overflow: "hidden", textOverflow: "ellipsis" }}>
                     {c.value}
                   </div>
                 </div>
@@ -167,17 +173,18 @@ export function Slide6() {
               </div>
             ))}
           </div>
+
           {/* RIGHT — form */}
           <form
             onSubmit={submit}
             style={{
-             background: "#fff",
+              background: "#fff",
               border: "1px solid #f0d7e6",
               borderRadius: 22,
               padding: 26,
               display: "grid",
               gap: 14,
-               boxShadow: "0 4px 24px rgba(212,86,154,0.06)",
+              boxShadow: "0 4px 24px rgba(212,86,154,0.06)",
             }}
           >
             <div>
@@ -195,7 +202,7 @@ export function Slide6() {
               />
             </div>
             <div>
-       <label style={{ fontSize: 11, color: "#a87a92", letterSpacing: 2, textTransform: "uppercase" }}>
+              <label style={{ fontSize: 11, color: "#a87a92", letterSpacing: 2, textTransform: "uppercase" }}>
                 Message
               </label>
               <textarea
@@ -207,7 +214,7 @@ export function Slide6() {
                 placeholder="Tell me about your project..."
                 style={{ marginTop: 6, resize: "none", fontFamily: "inherit" }}
               />
-               <div style={{ textAlign: "right", fontSize: 10, color: "#b08a9e", marginTop: 4 }}>
+              <div style={{ textAlign: "right", fontSize: 10, color: "#b08a9e", marginTop: 4 }}>
                 {form.msg.length}/600
               </div>
             </div>
@@ -216,11 +223,12 @@ export function Slide6() {
             </button>
           </form>
         </div>
+
         <p
           style={{
             textAlign: "center",
             fontStyle: "italic",
-             color: "#a87a92",
+            color: "#a87a92",
             fontSize: 13,
             maxWidth: 560,
             margin: "32px auto 0",

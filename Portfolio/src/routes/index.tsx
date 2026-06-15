@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import vinyl from "@/assets/pink-vinyl.png";
-import { ABOUT, SKILLS, PROCESS, ACHIEVEMENTS } from "@/data/portfolio";
+import { ABOUT, SKILLS, PROCESS, ACHIEVEMENTS } from "@/data/portfolio.tsx";
 import { Slide3 } from "@/components/Slide3";
 import { Slide6 } from "@/components/Slide6";
 import "./fonts.css";

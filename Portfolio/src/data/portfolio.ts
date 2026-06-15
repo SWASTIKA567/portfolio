@@ -34,7 +34,11 @@ export const PROJECTS: Project[] = [
     tech: "Flutter · Firebase · GetX",
     highlight: "Built during internship",
     color: "#111",
-    screenshots: [] as string[],
+    screenshots: [
+      "/screenshots/postly-1.png",
+      "/screenshots/postly-2.png",
+      
+    ] as string[],
   },
   {
     name: "GraphGuard",

@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { PhoneFrame } from "./PhoneFrame";
-import { PROJECTS } from "@/data/portfolio";
+import { PROJECTS } from "@/data/portfolio.ts";
+import { PhoneFrame } from "@/components/PhoneFrame";
 
 export function Slide3() {
   const [active, setActive] = useState<number | null>(null);
@@ -91,7 +91,8 @@ export function Slide3() {
                 onClick={() => setActive(null)}
                 style={{ cursor: "pointer", animation: "slide-in-left 0.5s ease both" }}
               >
-                <PhoneFrame project={activeProject} scale={1.15} />
+                 <PhoneFrame project={activeProject}  autoplay />
+                
               </div>
 
               {/* details right */}
