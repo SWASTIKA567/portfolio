@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ABOUT, CONTACT } from "@/data/portfolio.tsx";
+import { ABOUT, CONTACT } from "@/data/portfolio";
 
 export function Slide6() {
   const [copied, setCopied] = useState<string | null>(null);
