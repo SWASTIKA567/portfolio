@@ -34,11 +34,7 @@ export const PROJECTS: Project[] = [
     tech: "Flutter · Firebase · GetX",
     highlight: "Built during internship",
     color: "#111",
-    screenshots: [
-      "/screenshots/postly-1.png",
-      "/screenshots/postly-2.png",
-      
-    ] as string[],
+    screenshots: ["/screenshots/postly-1.png", "/screenshots/postly-2.png"] as string[],
   },
   {
     name: "GraphGuard",
@@ -65,7 +61,28 @@ export const SKILLS = {
   Tools: ["Git", "GitHub", "Figma", "VS Code", "Android Studio"],
 };
 
-export const PROCESS = ["Idea", "UI Design", "Development", "Testing", "Deployment"];
+export const PROCESS = [
+  {
+    name: "Idea",
+    desc: "Brainstorming and research. Defining project scope, user stories, and technical requirements.",
+  },
+  {
+    name: "UI Design",
+    desc: "Crafting wireframes and high-fidelity mockups in Figma, focusing on intuitive UX/UI flows.",
+  },
+  {
+    name: "Development",
+    desc: "Writing clean, modular code with solid state management and API integrations.",
+  },
+  {
+    name: "Testing",
+    desc: "Rigorous testing of features, debugging edge cases, and ensuring smooth performance.",
+  },
+  {
+    name: "Deployment",
+    desc: "Launching the application to app stores and configuring analytics and monitoring.",
+  },
+];
 
 export const ACHIEVEMENTS = [
   { label: "Projects Completed", value: "12+" },

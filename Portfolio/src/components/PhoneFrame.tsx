@@ -16,13 +16,12 @@ export function PhoneFrame({ project, scale = 1, paused = false, autoplay = fals
   const total = project.screenshots.length;
 
   useEffect(() => {
-   if (total < 2 || paused || !started || hovering) return;
+    if (total < 2 || paused || !started || hovering) return;
     const t = setInterval(() => setCurrent((p) => (p + 1) % total), 2200);
     return () => clearInterval(t);
   }, [total, paused, started, hovering]);
 
-  const onTouchStart = (e: React.TouchEvent) =>
-    setTouchStart(e.touches[0].clientX);
+  const onTouchStart = (e: React.TouchEvent) => setTouchStart(e.touches[0].clientX);
   const onTouchEnd = (e: React.TouchEvent) => {
     if (touchStart === null || total < 2) return;
     const diff = touchStart - e.changedTouches[0].clientX;
@@ -31,18 +30,18 @@ export function PhoneFrame({ project, scale = 1, paused = false, autoplay = fals
     setTouchStart(null);
   };
 
-   const W = 270;
+  const W = 270;
   const H = 555;
   const showSlider = total > 0 && started;
   const displayIndex = total > 0 ? (showSlider ? current : 0) : 0;
 
   return (
     <div
-    onClick={() => {
-          if (!started && total > 1) setStarted(true);
-        }}
-        onMouseEnter={() => setHovering(true)}
-        onMouseLeave={() => setHovering(false)}
+      onClick={() => {
+        if (!started && total > 1) setStarted(true);
+      }}
+      onMouseEnter={() => setHovering(true)}
+      onMouseLeave={() => setHovering(false)}
       style={{
         width: W * scale,
         height: H * scale,
@@ -56,21 +55,60 @@ export function PhoneFrame({ project, scale = 1, paused = false, autoplay = fals
           transform: `scale(${scale})`,
           transformOrigin: "top left",
           transition: "transform 0.5s ease",
-          background:
-            "linear-gradient(145deg, #2a2a2e 0%, #0b0b0d 45%, #1a1a1d 100%)",
+          background: "linear-gradient(145deg, #2a2a2e 0%, #0b0b0d 45%, #1a1a1d 100%)",
           borderRadius: 48,
           padding: 8,
           boxShadow:
-           "0 40px 80px -20px rgba(0,0,0,0.55), 0 12px 28px -10px rgba(0,0,0,0.35), inset 0 0 0 1.5px rgba(255,255,255,0.08), inset 0 1.5px 0 rgba(255,255,255,0.15), inset 0 -1.5px 0 rgba(255,255,255,0.04)",
+            "0 40px 80px -20px rgba(0,0,0,0.55), 0 12px 28px -10px rgba(0,0,0,0.35), inset 0 0 0 1.5px rgba(255,255,255,0.08), inset 0 1.5px 0 rgba(255,255,255,0.15), inset 0 -1.5px 0 rgba(255,255,255,0.04)",
           position: "relative",
-           cursor: !started && total > 1 ? "pointer" : "default",
+          cursor: !started && total > 1 ? "pointer" : "default",
         }}
       >
-         {/* side buttons */}
-        <div style={{ position: "absolute", left: -2, top: 110, width: 3, height: 30, background: "linear-gradient(90deg,#000,#444)", borderRadius: 2 }} />
-        <div style={{ position: "absolute", left: -2, top: 160, width: 3, height: 50, background: "linear-gradient(90deg,#000,#444)", borderRadius: 2 }} />
-        <div style={{ position: "absolute", left: -2, top: 220, width: 3, height: 50, background: "linear-gradient(90deg,#000,#444)", borderRadius: 2 }} />
-        <div style={{ position: "absolute", right: -2, top: 170, width: 3, height: 80, background: "linear-gradient(-90deg,#000,#444)", borderRadius: 2 }} />
+        {/* side buttons */}
+        <div
+          style={{
+            position: "absolute",
+            left: -2,
+            top: 110,
+            width: 3,
+            height: 30,
+            background: "linear-gradient(90deg,#000,#444)",
+            borderRadius: 2,
+          }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            left: -2,
+            top: 160,
+            width: 3,
+            height: 50,
+            background: "linear-gradient(90deg,#000,#444)",
+            borderRadius: 2,
+          }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            left: -2,
+            top: 220,
+            width: 3,
+            height: 50,
+            background: "linear-gradient(90deg,#000,#444)",
+            borderRadius: 2,
+          }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            right: -2,
+            top: 170,
+            width: 3,
+            height: 80,
+            background: "linear-gradient(-90deg,#000,#444)",
+            borderRadius: 2,
+          }}
+        />
         {/* screen */}
         <div
           onTouchStart={onTouchStart}
@@ -95,7 +133,7 @@ export function PhoneFrame({ project, scale = 1, paused = false, autoplay = fals
               width: 95,
               height: 26,
               background: "#000",
-              
+
               borderRadius: 16,
               zIndex: 4,
               boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.05)",
@@ -140,7 +178,7 @@ export function PhoneFrame({ project, scale = 1, paused = false, autoplay = fals
                   display: "flex",
                   width: `${total * 100}%`,
                   height: "100%",
-                   transform: `translateX(-${displayIndex * (100 / total)}%)`,
+                  transform: `translateX(-${displayIndex * (100 / total)}%)`,
                   transition: "transform 0.6s cubic-bezier(0.65, 0, 0.35, 1)",
                 }}
               >
@@ -169,7 +207,7 @@ export function PhoneFrame({ project, scale = 1, paused = false, autoplay = fals
               </div>
 
               {/* dots */}
-             {!started && total > 1 && !paused && (
+              {!started && total > 1 && !paused && (
                 <div
                   style={{
                     position: "absolute",
@@ -216,9 +254,7 @@ export function PhoneFrame({ project, scale = 1, paused = false, autoplay = fals
                         height: 6,
                         borderRadius: 3,
                         background:
-                          current === i
-                            ? "rgba(255,255,255,0.95)"
-                            : "rgba(255,255,255,0.4)",
+                          current === i ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.4)",
                         border: "none",
                         padding: 0,
                         cursor: "pointer",
@@ -226,30 +262,30 @@ export function PhoneFrame({ project, scale = 1, paused = false, autoplay = fals
                       }}
                     />
                   ))}
-                   {/* glass reflection overlay */}
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              borderRadius: 40,
-              pointerEvents: "none",
-              background:
-                "linear-gradient(135deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.05) 22%, rgba(255,255,255,0) 45%, rgba(255,255,255,0) 70%, rgba(255,255,255,0.08) 100%)",
-              mixBlendMode: "overlay",
-              zIndex: 2,
-            }}
-          />
-          {/* subtle inner border highlight */}
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              borderRadius: 40,
-              pointerEvents: "none",
-              boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.08)",
-              zIndex: 2,
-            }}
-          />
+                  {/* glass reflection overlay */}
+                  <div
+                    style={{
+                      position: "absolute",
+                      inset: 0,
+                      borderRadius: 40,
+                      pointerEvents: "none",
+                      background:
+                        "linear-gradient(135deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.05) 22%, rgba(255,255,255,0) 45%, rgba(255,255,255,0) 70%, rgba(255,255,255,0.08) 100%)",
+                      mixBlendMode: "overlay",
+                      zIndex: 2,
+                    }}
+                  />
+                  {/* subtle inner border highlight */}
+                  <div
+                    style={{
+                      position: "absolute",
+                      inset: 0,
+                      borderRadius: 40,
+                      pointerEvents: "none",
+                      boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.08)",
+                      zIndex: 2,
+                    }}
+                  />
                 </div>
               )}
             </>

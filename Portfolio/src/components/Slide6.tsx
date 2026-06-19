@@ -16,10 +16,34 @@ export function Slide6() {
   };
 
   const channels = [
-    { key: "email", label: "Email", value: CONTACT.email, href: `mailto:${CONTACT.email}`, icon: "✉" },
-    { key: "linkedin", label: "LinkedIn", value: CONTACT.linkedin, href: `https://${CONTACT.linkedin}`, icon: "in" },
-    { key: "github", label: "GitHub", value: CONTACT.github, href: `https://${CONTACT.github}`, icon: "◆" },
-    { key: "phone", label: "Phone", value: ABOUT.contact.phone, href: `tel:${ABOUT.contact.phone.replace(/\s/g, "")}`, icon: "☎" },
+    {
+      key: "email",
+      label: "Email",
+      value: CONTACT.email,
+      href: `mailto:${CONTACT.email}`,
+      icon: "✉",
+    },
+    {
+      key: "linkedin",
+      label: "LinkedIn",
+      value: CONTACT.linkedin,
+      href: `https://${CONTACT.linkedin}`,
+      icon: "in",
+    },
+    {
+      key: "github",
+      label: "GitHub",
+      value: CONTACT.github,
+      href: `https://${CONTACT.github}`,
+      icon: "◆",
+    },
+    {
+      key: "phone",
+      label: "Phone",
+      value: ABOUT.contact.phone,
+      href: `tel:${ABOUT.contact.phone.replace(/\s/g, "")}`,
+      icon: "☎",
+    },
   ];
 
   const submit = (e: React.FormEvent) => {
@@ -110,8 +134,28 @@ export function Slide6() {
         }
       `}</style>
 
-      <div className="c-blob" style={{ width: 480, height: 480, background: "#d4569a", top: -120, left: -120, animation: "blob-a 14s ease-in-out infinite" }} />
-      <div className="c-blob" style={{ width: 420, height: 420, background: "#7c3aed", bottom: -100, right: -80, animation: "blob-b 16s ease-in-out infinite" }} />
+      <div
+        className="c-blob"
+        style={{
+          width: 480,
+          height: 480,
+          background: "#d4569a",
+          top: -120,
+          left: -120,
+          animation: "blob-a 14s ease-in-out infinite",
+        }}
+      />
+      <div
+        className="c-blob"
+        style={{
+          width: 420,
+          height: 420,
+          background: "#7c3aed",
+          bottom: -100,
+          right: -80,
+          animation: "blob-b 16s ease-in-out infinite",
+        }}
+      />
 
       <div style={{ maxWidth: 1080, width: "100%", position: "relative", zIndex: 2 }}>
         <div style={{ textAlign: "center", marginBottom: 36 }}>
@@ -121,7 +165,9 @@ export function Slide6() {
           <p className="script" style={{ fontSize: 32, color: "#d4569a", margin: "18px 0 0" }}>
             Let's create something
           </p>
-          <h2 style={{ fontSize: 56, fontWeight: 700, margin: "4px 0 0", letterSpacing: "-0.03em" }}>
+          <h2
+            style={{ fontSize: 56, fontWeight: 700, margin: "4px 0 0", letterSpacing: "-0.03em" }}
+          >
             together.
           </h2>
         </div>
@@ -142,21 +188,40 @@ export function Slide6() {
                 className="c-card"
                 onMouseEnter={() => setHover(c.key)}
                 onMouseLeave={() => setHover(null)}
-                onClick={() => window.open(c.href, c.key === "email" || c.key === "phone" ? "_self" : "_blank")}
+                onClick={() =>
+                  window.open(c.href, c.key === "email" || c.key === "phone" ? "_self" : "_blank")
+                }
                 style={{ position: "relative" }}
               >
                 {copied === c.key && <span className="c-toast">Copied!</span>}
                 <div className="c-icon">{c.icon}</div>
                 <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{ fontSize: 11, color: "#a87a92", letterSpacing: 2, textTransform: "uppercase" }}>
+                  <div
+                    style={{
+                      fontSize: 11,
+                      color: "#a87a92",
+                      letterSpacing: 2,
+                      textTransform: "uppercase",
+                    }}
+                  >
                     {c.label}
                   </div>
-                  <div style={{ fontSize: 14, color: "#111", overflow: "hidden", textOverflow: "ellipsis" }}>
+                  <div
+                    style={{
+                      fontSize: 14,
+                      color: "#111",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                    }}
+                  >
                     {c.value}
                   </div>
                 </div>
                 <button
-                  onClick={(e) => { e.stopPropagation(); copy(c.key, c.value); }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    copy(c.key, c.value);
+                  }}
                   style={{
                     background: "transparent",
                     border: "1px solid #f0d7e6",
@@ -188,7 +253,14 @@ export function Slide6() {
             }}
           >
             <div>
-              <label style={{ fontSize: 11, color: "#a87a92", letterSpacing: 2, textTransform: "uppercase" }}>
+              <label
+                style={{
+                  fontSize: 11,
+                  color: "#a87a92",
+                  letterSpacing: 2,
+                  textTransform: "uppercase",
+                }}
+              >
                 Your name
               </label>
               <input
@@ -202,7 +274,14 @@ export function Slide6() {
               />
             </div>
             <div>
-              <label style={{ fontSize: 11, color: "#a87a92", letterSpacing: 2, textTransform: "uppercase" }}>
+              <label
+                style={{
+                  fontSize: 11,
+                  color: "#a87a92",
+                  letterSpacing: 2,
+                  textTransform: "uppercase",
+                }}
+              >
                 Message
               </label>
               <textarea

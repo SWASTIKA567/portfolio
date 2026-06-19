@@ -1,19 +1,18 @@
 import { createFileRoute } from "@tanstack/react-router";
 import vinyl from "@/assets/pink-vinyl.png";
-import { ABOUT, SKILLS, PROCESS, ACHIEVEMENTS } from "@/data/portfolio";
+import { ABOUT, SKILLS, PROCESS } from "@/data/portfolio";
 import { Slide2 } from "@/components/Slide2";
 import { Slide3 } from "@/components/Slide3";
 import { Slide6 } from "@/components/Slide6";
 import "./fonts.css";
-
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Swastika — Portfolio" },
       { name: "description", content: "Portfolio of Swastika Singh, App Developer." },
-       { property: "og:description", content: "Portfolio of Swastika Singh, App Developer." },
-       { property: "og:title", content: "Swastika — Portfolio" },
+      { property: "og:description", content: "Portfolio of Swastika Singh, App Developer." },
+      { property: "og:title", content: "Swastika — Portfolio" },
     ],
     links: [
       {
@@ -27,10 +26,7 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <div
-      className="w-full"
-      style={{ fontFamily: "Inter, sans-serif", background: "#fff5fa" }}
-    >
+    <div className="w-full" style={{ fontFamily: "Inter, sans-serif", background: "#fff5fa" }}>
       <style>{`
         @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
         @keyframes slide-in-left {
@@ -71,26 +67,62 @@ function Index() {
               { n: "03", top: "85%", left: "47%" },
               { n: "05", top: "72%", left: "70%" },
             ].map((t) => (
-              <span key={t.n} className="absolute text-black" style={{ fontSize: "clamp(10px,1.1vw,15px)", top: t.top, left: t.left }}>
+              <span
+                key={t.n}
+                className="absolute text-black"
+                style={{ fontSize: "clamp(10px,1.1vw,15px)", top: t.top, left: t.left }}
+              >
                 {t.n}
               </span>
             ))}
-            <span className="absolute text-black" style={{ fontSize: "clamp(11px,1.2vw,16px)", top: "52%", left: "75%" }}>2026</span>
-            <span className="absolute text-black z-10" style={{ fontSize: "clamp(32px,4.4vw,70px)", top: "62%", left: "62%", whiteSpace: "nowrap" }}>
+            <span
+              className="absolute text-black"
+              style={{ fontSize: "clamp(11px,1.2vw,16px)", top: "52%", left: "75%" }}
+            >
+              2026
+            </span>
+            <span
+              className="absolute text-black z-10"
+              style={{
+                fontSize: "clamp(32px,4.4vw,70px)",
+                top: "62%",
+                left: "62%",
+                whiteSpace: "nowrap",
+              }}
+            >
               App Developer
             </span>
-            <h2 className="absolute text-black leading-none z-10 script" style={{ fontSize: "clamp(25px,5vw,50px)", top: "37%", left: "35%", transform: "translateX(-50%) rotate(-6deg)", whiteSpace: "nowrap", fontFamily: "jungle-george.regular" }}>
+            <h2
+              className="absolute text-black leading-none z-10 script"
+              style={{
+                fontSize: "clamp(25px,5vw,50px)",
+                top: "37%",
+                left: "35%",
+                transform: "translateX(-50%) rotate(-6deg)",
+                whiteSpace: "nowrap",
+                fontFamily: "jungle-george.regular",
+              }}
+            >
               This is
             </h2>
-            <h2 className="absolute text-black leading-none z-10 script" style={{ fontSize: "clamp(120px,26vw,270px)", top: "27%", left: "50%", transform: "translateX(-50%) rotate(-6deg)", whiteSpace: "nowrap", fontFamily: "'QwitcherGrypen-Bold', cursive" }}>
+            <h2
+              className="absolute text-black leading-none z-10 script"
+              style={{
+                fontSize: "clamp(120px,26vw,270px)",
+                top: "27%",
+                left: "50%",
+                transform: "translateX(-50%) rotate(-6deg)",
+                whiteSpace: "nowrap",
+                fontFamily: "'QwitcherGrypen-Bold', cursive",
+              }}
+            >
               Swastika
             </h2>
           </div>
         </div>
       </section>
 
-      
-  {/* ===================== SLIDE 2 — About Me ===================== */}
+      {/* ===================== SLIDE 2 — About Me ===================== */}
       <Slide2 />
       {/* ===================== SLIDE 3 — Projects ===================== */}
       <Slide3 />
@@ -104,7 +136,10 @@ function Index() {
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
             {Object.entries(SKILLS).map(([cat, items]) => (
-              <div key={cat} className="bg-white/70 backdrop-blur-sm rounded-2xl p-5 border border-pink-100">
+              <div
+                key={cat}
+                className="bg-white/70 backdrop-blur-sm rounded-2xl p-5 border border-pink-100"
+              >
                 <p className="h-section text-pink-700">{cat}</p>
                 <ul className="mt-3 space-y-2">
                   {items.map((item) => (
@@ -120,26 +155,43 @@ function Index() {
         </div>
       </section>
 
-      {/* ===================== SLIDE 5 — Process & Achievements ===================== */}
-      <section className="slide pink-bg">
-        <div className="w-full max-w-[1100px]">
+      {/* ===================== SLIDE 5 — Process ===================== */}
+      <section className="slide pink-bg relative overflow-hidden">
+        {/* Background Vinyl with low opacity */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden flex items-center justify-center z-0">
+          <img
+            src={vinyl}
+            alt=""
+            aria-hidden="true"
+            className="vinyl-spin w-[80vh] h-[80vh] opacity-[0.08] select-none"
+          />
+        </div>
+
+        <div className="w-full max-w-[1100px] relative z-10">
           <div className="flex items-end justify-between mb-8">
             <h2 className="script text-5xl md:text-7xl leading-none">Process</h2>
             <p className="text-sm md:text-base">how I build</p>
           </div>
-          <div className="flex flex-wrap items-center justify-center gap-2 md:gap-3 mb-10">
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 w-full">
             {PROCESS.map((step, i) => (
-              <div key={step} className="flex items-center gap-2 md:gap-3">
-                <span className="px-3 py-2 md:px-5 md:py-3 bg-black text-white rounded-full text-xs md:text-sm">{step}</span>
-                {i < PROCESS.length - 1 && <span className="text-pink-500 text-lg">→</span>}
-              </div>
-            ))}
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-            {ACHIEVEMENTS.map((a) => (
-              <div key={a.label} className="bg-white/70 rounded-2xl p-5 text-center border border-pink-100">
-                <p className="script text-4xl md:text-5xl text-pink-700 leading-none">{a.value}</p>
-                <p className="text-xs md:text-sm mt-2">{a.label}</p>
+              <div
+                key={step.name}
+                className="group relative overflow-hidden bg-white/70 backdrop-blur-sm border border-pink-100/80 rounded-2xl p-6 h-[220px] flex flex-col justify-between transition-all duration-500 hover:bg-white/95 hover:border-pink-300 hover:shadow-xl hover:shadow-pink-900/5 cursor-pointer"
+              >
+                {/* Step number top-right inside card */}
+                <span className="absolute top-4 right-4 text-3xl font-extrabold text-pink-100 group-hover:text-pink-400 transition-colors duration-500 select-none">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+
+                <div className="flex flex-col h-full justify-end mt-8">
+                  <h3 className="font-semibold text-lg text-neutral-800 transition-transform duration-500 group-hover:-translate-y-2 group-hover:text-pink-600">
+                    {step.name}
+                  </h3>
+                  <p className="text-xs text-neutral-600 opacity-0 group-hover:opacity-100 max-h-0 group-hover:max-h-[120px] overflow-hidden transition-all duration-500 ease-in-out mt-1 leading-relaxed">
+                    {step.desc}
+                  </p>
+                </div>
               </div>
             ))}
           </div>

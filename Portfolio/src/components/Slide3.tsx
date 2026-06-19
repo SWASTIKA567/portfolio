@@ -13,9 +13,7 @@ export function Slide3() {
           <p className="script" style={{ fontSize: 28, color: "#d4569a", margin: 0 }}>
             Projects
           </p>
-          <h2 style={{ fontSize: 34, fontWeight: 600, margin: "4px 0 0" }}>
-            featured work
-          </h2>
+          <h2 style={{ fontSize: 34, fontWeight: 600, margin: "4px 0 0" }}>featured work</h2>
           {active !== null && (
             <p style={{ fontSize: 12, color: "#888", marginTop: 8 }}>
               tap the phone again to close
@@ -59,12 +57,8 @@ export function Slide3() {
                   cursor: "pointer",
                   transition: "transform 0.3s ease",
                 }}
-                onMouseEnter={(e) =>
-                  (e.currentTarget.style.transform = "translateY(-8px)")
-                }
-                onMouseLeave={(e) =>
-                  (e.currentTarget.style.transform = "translateY(0)")
-                }
+                onMouseEnter={(e) => (e.currentTarget.style.transform = "translateY(-8px)")}
+                onMouseLeave={(e) => (e.currentTarget.style.transform = "translateY(0)")}
               >
                 <PhoneFrame project={p} paused />
               </button>
@@ -91,8 +85,7 @@ export function Slide3() {
                 onClick={() => setActive(null)}
                 style={{ cursor: "pointer", animation: "slide-in-left 0.5s ease both" }}
               >
-                 <PhoneFrame project={activeProject}  autoplay />
-                
+                <PhoneFrame project={activeProject} autoplay />
               </div>
 
               {/* details right */}

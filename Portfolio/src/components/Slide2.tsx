@@ -7,7 +7,6 @@ const navItems = ["Home", "About", "Work", "Projects", "Contact"];
 export function Slide2() {
   return (
     <section className="relative min-h-screen overflow-hidden bg-[#fcfbf8] text-neutral-900">
-      
       {/* Vinyl — top right quarter, hidden on mobile */}
       <div className="pointer-events-none absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 hidden md:block">
         <img
@@ -35,9 +34,7 @@ export function Slide2() {
           ))}
         </ul>
         <div className="flex flex-col items-center gap-3 text-[10px] uppercase tracking-widest text-neutral-500">
-          <span style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}>
-            Est. 2026
-          </span>
+          <span style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}>Est. 2026</span>
         </div>
       </nav>
 
@@ -66,9 +63,7 @@ export function Slide2() {
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-pink-500">
             Portfolio · 2026
           </p>
-          <h2 className="mb-4 text-2xl font-semibold tracking-tight text-neutral-900">
-            about me
-          </h2>
+          <h2 className="mb-4 text-2xl font-semibold tracking-tight text-neutral-900">about me</h2>
           <p className="text-[15px] leading-relaxed text-neutral-700">{ABOUT.intro}</p>
 
           <ul className="mt-5 space-y-3 text-sm text-neutral-800">
@@ -113,16 +108,19 @@ export function Slide2() {
           <div className="relative" style={{ width: "200vh", height: "200vh" }}>
             <div
               className="pointer-events-auto absolute rotate-[8deg] bg-white p-4 pb-16 shadow-2xl shadow-pink-900/20"
-              style={{ top: "12vh", right: "2vh" }}
+              style={{ top: "12vh", right: "20vh" }}
             >
               <img
                 src={portrait}
                 alt="Portrait of Swastika"
-                width={340}
-                height={420}
-                className="block h-[420px] w-[340px] object-cover grayscale"
+                width={280}
+                height={360}
+                className="block h-[360px] w-[280px] object-cover grayscale"
               />
-              <div className="font-script absolute bottom-3 left-0 right-0 text-center text-4xl text-neutral-800" style={{ fontFamily: "'Allura', cursive" }}>
+              <div
+                className="font-script absolute bottom-3 left-0 right-0 text-center text-4xl text-neutral-800"
+                style={{ fontFamily: "'Allura', cursive" }}
+              >
                 Swastika
               </div>
             </div>
@@ -177,7 +175,6 @@ export function Slide2() {
           </div>
         </main>
       </div>
-
     </section>
   );
 }
