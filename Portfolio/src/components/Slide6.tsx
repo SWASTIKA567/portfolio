@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ABOUT, CONTACT } from "@/data/portfolio";
+import { ScrollReveal } from "@/components/ScrollReveal";
 
 export function Slide6() {
   const [copied, setCopied] = useState<string | null>(null);
@@ -158,19 +159,22 @@ export function Slide6() {
       />
 
       <div style={{ maxWidth: 1080, width: "100%", position: "relative", zIndex: 2 }}>
-        <div style={{ textAlign: "center", marginBottom: 36 }}>
-          <span className="c-avail">
-            <span className="c-dot" /> Available for opportunities
-          </span>
-          <p className="script" style={{ fontSize: 32, color: "#d4569a", margin: "18px 0 0" }}>
-            Let's create something
-          </p>
-          <h2
-            style={{ fontSize: 56, fontWeight: 700, margin: "4px 0 0", letterSpacing: "-0.03em" }}
-          >
-            together.
-          </h2>
-        </div>
+        {/* Header */}
+        <ScrollReveal animation="slide-up">
+          <div style={{ textAlign: "center", marginBottom: 36 }}>
+            <span className="c-avail">
+              <span className="c-dot" /> Available for opportunities
+            </span>
+            <p className="script" style={{ fontSize: 32, color: "#d4569a", margin: "18px 0 0" }}>
+              Let's create something
+            </p>
+            <h2
+              style={{ fontSize: 56, fontWeight: 700, margin: "4px 0 0", letterSpacing: "-0.03em" }}
+            >
+              together.
+            </h2>
+          </div>
+        </ScrollReveal>
 
         <div
           style={{
@@ -181,7 +185,7 @@ export function Slide6() {
           }}
         >
           {/* LEFT — channels */}
-          <div style={{ display: "grid", gap: 12 }}>
+          <ScrollReveal animation="slide-up" delay={150} style={{ display: "grid", gap: 12 }}>
             {channels.map((c) => (
               <div
                 key={c.key}
@@ -237,87 +241,92 @@ export function Slide6() {
                 </button>
               </div>
             ))}
-          </div>
+          </ScrollReveal>
 
           {/* RIGHT — form */}
-          <form
-            onSubmit={submit}
-            style={{
-              background: "#fff",
-              border: "1px solid #f0d7e6",
-              borderRadius: 22,
-              padding: 26,
-              display: "grid",
-              gap: 14,
-              boxShadow: "0 4px 24px rgba(212,86,154,0.06)",
-            }}
-          >
-            <div>
-              <label
-                style={{
-                  fontSize: 11,
-                  color: "#a87a92",
-                  letterSpacing: 2,
-                  textTransform: "uppercase",
-                }}
-              >
-                Your name
-              </label>
-              <input
-                className="c-input"
-                type="text"
-                maxLength={80}
-                value={form.name}
-                onChange={(e) => setForm({ ...form, name: e.target.value })}
-                placeholder="Jane Doe"
-                style={{ marginTop: 6 }}
-              />
-            </div>
-            <div>
-              <label
-                style={{
-                  fontSize: 11,
-                  color: "#a87a92",
-                  letterSpacing: 2,
-                  textTransform: "uppercase",
-                }}
-              >
-                Message
-              </label>
-              <textarea
-                className="c-input"
-                maxLength={600}
-                rows={4}
-                value={form.msg}
-                onChange={(e) => setForm({ ...form, msg: e.target.value })}
-                placeholder="Tell me about your project..."
-                style={{ marginTop: 6, resize: "none", fontFamily: "inherit" }}
-              />
-              <div style={{ textAlign: "right", fontSize: 10, color: "#b08a9e", marginTop: 4 }}>
-                {form.msg.length}/600
+          <ScrollReveal animation="slide-up" delay={300}>
+            <form
+              onSubmit={submit}
+              style={{
+                background: "#fff",
+                border: "1px solid #f0d7e6",
+                borderRadius: 22,
+                padding: 26,
+                display: "grid",
+                gap: 14,
+                boxShadow: "0 4px 24px rgba(212,86,154,0.06)",
+                width: "100%",
+              }}
+            >
+              <div>
+                <label
+                  style={{
+                    fontSize: 11,
+                    color: "#a87a92",
+                    letterSpacing: 2,
+                    textTransform: "uppercase",
+                  }}
+                >
+                  Your name
+                </label>
+                <input
+                  className="c-input"
+                  type="text"
+                  maxLength={80}
+                  value={form.name}
+                  onChange={(e) => setForm({ ...form, name: e.target.value })}
+                  placeholder="Jane Doe"
+                  style={{ marginTop: 6 }}
+                />
               </div>
-            </div>
-            <button type="submit" className="c-send">
-              {sent ? "Opening mail ✓" : "Send message →"}
-            </button>
-          </form>
+              <div>
+                <label
+                  style={{
+                    fontSize: 11,
+                    color: "#a87a92",
+                    letterSpacing: 2,
+                    textTransform: "uppercase",
+                  }}
+                >
+                  Message
+                </label>
+                <textarea
+                  className="c-input"
+                  maxLength={600}
+                  rows={4}
+                  value={form.msg}
+                  onChange={(e) => setForm({ ...form, msg: e.target.value })}
+                  placeholder="Tell me about your project..."
+                  style={{ marginTop: 6, resize: "none", fontFamily: "inherit" }}
+                />
+                <div style={{ textAlign: "right", fontSize: 10, color: "#b08a9e", marginTop: 4 }}>
+                  {form.msg.length}/600
+                </div>
+              </div>
+              <button type="submit" className="c-send">
+                {sent ? "Opening mail ✓" : "Send message →"}
+              </button>
+            </form>
+          </ScrollReveal>
         </div>
 
-        <p
-          style={{
-            textAlign: "center",
-            fontStyle: "italic",
-            color: "#a87a92",
-            fontSize: 13,
-            maxWidth: 560,
-            margin: "32px auto 0",
-          }}
-        >
-          "{CONTACT.closing}"
-        </p>
-        <p style={{ marginTop: 24, textAlign: "center", fontSize: 11, color: "#c9a8b8" }}>
-          © 2026 Swastika Singh · Built with care
-        </p>
+        <ScrollReveal animation="slide-up" delay={600}>
+          <p
+            style={{
+              textAlign: "center",
+              fontStyle: "italic",
+              color: "#a87a92",
+              fontSize: 13,
+              maxWidth: 560,
+              margin: "32px auto 0",
+            }}
+          >
+            "{CONTACT.closing}"
+          </p>
+          <p style={{ marginTop: 24, textAlign: "center", fontSize: 11, color: "#c9a8b8" }}>
+            © 2026 Swastika Singh · Built with care
+          </p>
+        </ScrollReveal>
       </div>
     </section>
   );

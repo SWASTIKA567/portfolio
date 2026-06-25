@@ -5,6 +5,7 @@ import { Slide3 } from "@/components/Slide3";
 import { Slide6 } from "@/components/Slide6";
 import { Slide2 } from "@/components/Slide2";
 import { Slide4 } from "@/components/Slide4";
+import { ScrollReveal } from "@/components/ScrollReveal";
 
 import "./fonts.css";
 const portrait = "/screenshots/postly-1.png"
@@ -55,6 +56,25 @@ function Index() {
           .h-section { font-size: 16px; }
           .body-text { font-size: 15px; }
         }
+        @keyframes marquee {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .marquee-container {
+          overflow: hidden;
+          white-space: nowrap;
+          display: flex;
+          width: 100%;
+          background: #111111;
+          border-top: 2px solid #ec4899;
+          border-bottom: 2px solid #ec4899;
+          box-shadow: 0 4px 20px rgba(236, 72, 153, 0.15);
+        }
+        .marquee-content {
+          display: flex;
+          width: max-content;
+          animation: marquee 20s linear infinite;
+        }
       `}</style>
 
       {/* ===================== SLIDE 1 — Hero ===================== */}
@@ -92,6 +112,24 @@ function Index() {
         </div>
       </section>
 
+      {/* ===================== Animated Marquee Strip ===================== */}
+      <div className="marquee-container py-3.5 md:py-4 select-none relative z-10">
+        <div className="marquee-content flex items-center text-xs md:text-sm tracking-[0.2em] font-semibold uppercase">
+          {[1, 2, 3, 4].map((groupKey) => (
+            <span key={groupKey} className="flex items-center flex-shrink-0">
+              <span className="text-pink-500 mx-6 md:mx-10 font-extrabold">UI</span>
+              <span className="text-white/40">★</span>
+              <span className="text-white mx-6 md:mx-10 font-extrabold">DEVELOPMENT</span>
+              <span className="text-pink-500/40">★</span>
+              <span className="text-pink-500 mx-6 md:mx-10 font-extrabold">TESTING</span>
+              <span className="text-white/40">★</span>
+              <span className="text-white mx-6 md:mx-10 font-extrabold">DESIGN</span>
+              <span className="text-pink-500/40">★</span>
+            </span>
+          ))}
+        </div>
+      </div>
+
       
  {/* ===================== SLIDE 2 — About Me ===================== */}
 <Slide2 />
@@ -114,39 +152,43 @@ function Index() {
   </div>
 
   <div className="w-full max-w-[1100px] relative z-10">
-    <div className="flex items-end justify-between mb-4">
-      <h2 className="script text-5xl md:text-7xl leading-none">Process</h2>
-      <p className="text-sm md:text-base">how I build</p>
-    </div>
-    <p className="text-sm md:text-base text-neutral-600 max-w-2xl mb-8 leading-relaxed">
-      Every project I build follows the same five-step process — research-driven
-      ideas, intentional design, clean development, thorough testing, and
-      confident shipping. It&apos;s how I keep quality consistent from start to
-      finish.
-    </p>
+    <ScrollReveal animation="slide-up">
+      <div className="flex items-end justify-between mb-4">
+        <h2 className="script text-5xl md:text-7xl leading-none">Process</h2>
+        <p className="text-sm md:text-base">how I build</p>
+      </div>
+      <p className="text-sm md:text-base text-neutral-600 max-w-2xl mb-8 leading-relaxed">
+        Every project I build follows the same five-step process — research-driven
+        ideas, intentional design, clean development, thorough testing, and
+        confident shipping. It&apos;s how I keep quality consistent from start to
+        finish.
+      </p>
+    </ScrollReveal>
     
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 w-full">
-      {PROCESS.map((step, i) => (
-        <div
-          key={step.name}
-          className="group relative overflow-hidden bg-white/70 backdrop-blur-sm border border-pink-100/80 rounded-2xl p-6 h-[220px] flex flex-col justify-between transition-all duration-500 hover:bg-white/95 hover:border-pink-300 hover:shadow-xl hover:shadow-pink-900/5 cursor-pointer"
-        >
-          {/* Step number top-right inside card */}
-          <span className="absolute top-4 right-4 text-3xl font-extrabold text-pink-100 group-hover:text-pink-400 transition-colors duration-500 select-none">
-            {String(i + 1).padStart(2, "0")}
-          </span>
-          
-          <div className="flex flex-col h-full justify-end mt-8">
-            <h3 className="font-semibold text-lg text-neutral-800 transition-transform duration-500 group-hover:-translate-y-2 group-hover:text-pink-600">
-              {step.name}
-            </h3>
-            <p className="text-xs text-neutral-600 opacity-0 group-hover:opacity-100 max-h-0 group-hover:max-h-[120px] overflow-hidden transition-all duration-500 ease-in-out mt-1 leading-relaxed">
-              {step.desc}
-            </p>
+    <ScrollReveal animation="slide-up" delay={200}>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 w-full">
+        {PROCESS.map((step, i) => (
+          <div
+            key={step.name}
+            className="group relative overflow-hidden bg-white/70 backdrop-blur-sm border border-pink-100/80 rounded-2xl p-6 h-[220px] flex flex-col justify-between transition-all duration-500 hover:bg-white/95 hover:border-pink-300 hover:shadow-xl hover:shadow-pink-900/5 cursor-pointer"
+          >
+            {/* Step number top-right inside card */}
+            <span className="absolute top-4 right-4 text-3xl font-extrabold text-pink-100 group-hover:text-pink-400 transition-colors duration-500 select-none">
+              {String(i + 1).padStart(2, "0")}
+            </span>
+            
+            <div className="flex flex-col h-full justify-end mt-8">
+              <h3 className="font-semibold text-lg text-neutral-800 transition-transform duration-500 group-hover:-translate-y-2 group-hover:text-pink-600">
+                {step.name}
+              </h3>
+              <p className="text-xs text-neutral-600 opacity-0 group-hover:opacity-100 max-h-0 group-hover:max-h-[120px] overflow-hidden transition-all duration-500 ease-in-out mt-1 leading-relaxed">
+                {step.desc}
+              </p>
+            </div>
           </div>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
+    </ScrollReveal>
   </div>
 </section>
       {/* ===================== SLIDE 6 — Contact ===================== */}

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { PROJECTS } from "@/data/portfolio.ts";
 import { PhoneFrame } from "@/components/PhoneFrame";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ScrollReveal } from "@/components/ScrollReveal";
 
 export function Slide3() {
   const [active, setActive] = useState<number>(0);
@@ -47,20 +48,22 @@ export function Slide3() {
     <section className="slide" style={{ background: "#fafafa", padding: "60px 20px" }}>
       <div style={{ width: "100%", maxWidth: 1180 }}>
         {/* Header */}
-        <div style={{ textAlign: "center", marginBottom: 40 }}>
-          <p className="script" style={{ fontSize: 32, color: "#d4569a", margin: 0 }}>
-            Projects
-          </p>
-          <h2 style={{ fontSize: 36, fontWeight: 600, margin: "4px 0 0", color: "#111" }}>
-            featured work
-          </h2>
-          <p style={{ fontSize: 12, color: "#777", marginTop: 8 }}>
-            {isFocused 
-              ? "interact with the active phone screen or return to projects"
-              : "click the center phone to focus and see project details"
-            }
-          </p>
-        </div>
+        <ScrollReveal animation="slide-up">
+          <div style={{ textAlign: "center", marginBottom: 40 }}>
+            <p className="script" style={{ fontSize: 32, color: "#d4569a", margin: 0 }}>
+              Projects
+            </p>
+            <h2 style={{ fontSize: 36, fontWeight: 600, margin: "4px 0 0", color: "#111" }}>
+              featured work
+            </h2>
+            <p style={{ fontSize: 12, color: "#777", marginTop: 8 }}>
+              {isFocused 
+                ? "interact with the active phone screen or return to projects"
+                : "click the center phone to focus and see project details"
+              }
+            </p>
+          </div>
+        </ScrollReveal>
 
         {/* Carousel Stage */}
         <div

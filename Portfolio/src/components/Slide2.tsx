@@ -1,6 +1,7 @@
 import vinyl from "@/assets/pink-vinyl.png";
 const portrait = "/screenshots/postly-1.png";
 import { ABOUT } from "@/data/portfolio";
+import { ScrollReveal } from "@/components/ScrollReveal";
 
 const navItems = ["Home", "About", "Work", "Projects", "Contact"];
 
@@ -59,46 +60,48 @@ export function Slide2() {
         </div>
 
         {/* Content */}
-        <div className="w-full">
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-pink-500">
-            Portfolio · 2026
-          </p>
-          <h2 className="mb-4 text-2xl font-semibold tracking-tight text-neutral-900">about me</h2>
-          <p className="text-[15px] leading-relaxed text-neutral-700">{ABOUT.intro}</p>
+        <ScrollReveal animation="slide-up" className="w-full">
+          <div className="w-full">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-pink-500">
+              Portfolio · 2026
+            </p>
+            <h2 className="mb-4 text-2xl font-semibold tracking-tight text-neutral-900">about me</h2>
+            <p className="text-[15px] leading-relaxed text-neutral-700">{ABOUT.intro}</p>
 
-          <ul className="mt-5 space-y-3 text-sm text-neutral-800">
-            {[...ABOUT.experience, ...ABOUT.education].map((item) => (
-              <li key={item} className="flex gap-3">
-                <span className="mt-2 h-1 w-1 flex-none rounded-full bg-pink-500" />
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
+            <ul className="mt-5 space-y-3 text-sm text-neutral-800">
+              {[...ABOUT.experience, ...ABOUT.education].map((item) => (
+                <li key={item} className="flex gap-3">
+                  <span className="mt-2 h-1 w-1 flex-none rounded-full bg-pink-500" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
 
-          <div className="mt-6 grid grid-cols-2 gap-6">
-            <div>
-              <h3 className="mb-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-pink-600">
-                Language
-              </h3>
-              <ul className="space-y-1 text-sm text-neutral-700">
-                {ABOUT.languages.map((l) => (
-                  <li key={l}>{l}</li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h3 className="mb-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-pink-600">
-                Contact
-              </h3>
-              <p className="text-sm text-neutral-700">
-                <a href={`mailto:${ABOUT.contact.email}`} className="hover:text-pink-500 break-all">
-                  {ABOUT.contact.email}
-                </a>
-              </p>
-              <p className="text-sm text-neutral-700">Tel {ABOUT.contact.phone}</p>
+            <div className="mt-6 grid grid-cols-2 gap-6">
+              <div>
+                <h3 className="mb-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-pink-600">
+                  Language
+                </h3>
+                <ul className="space-y-1 text-sm text-neutral-700">
+                  {ABOUT.languages.map((l) => (
+                    <li key={l}>{l}</li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <h3 className="mb-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-pink-600">
+                  Contact
+                </h3>
+                <p className="text-sm text-neutral-700">
+                  <a href={`mailto:${ABOUT.contact.email}`} className="hover:text-pink-500 break-all">
+                    {ABOUT.contact.email}
+                  </a>
+                </p>
+                <p className="text-sm text-neutral-700">Tel {ABOUT.contact.phone}</p>
+              </div>
             </div>
           </div>
-        </div>
+        </ScrollReveal>
       </div>
 
       {/* ── DESKTOP LAYOUT (≥ md) ── */}
@@ -130,48 +133,50 @@ export function Slide2() {
         {/* Content column */}
         <main className="relative z-10 ml-16 flex min-h-screen items-center px-8 lg:px-16">
           <div className="w-full max-w-xl py-20">
-            <section id="about">
-              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.3em] text-pink-500">
-                Portfolio · 2026
-              </p>
-              <h2 className="mb-6 text-2xl font-semibold tracking-tight text-neutral-900">
-                about me
-              </h2>
-              <p className="text-[15px] leading-relaxed text-neutral-700">{ABOUT.intro}</p>
+            <ScrollReveal animation="slide-up">
+              <section id="about">
+                <p className="mb-4 text-xs font-semibold uppercase tracking-[0.3em] text-pink-500">
+                  Portfolio · 2026
+                </p>
+                <h2 className="mb-6 text-2xl font-semibold tracking-tight text-neutral-900">
+                  about me
+                </h2>
+                <p className="text-[15px] leading-relaxed text-neutral-700">{ABOUT.intro}</p>
 
-              <ul className="mt-6 space-y-3 text-sm text-neutral-800">
-                {[...ABOUT.experience, ...ABOUT.education].map((item) => (
-                  <li key={item} className="flex gap-3">
-                    <span className="mt-2 h-1 w-1 flex-none rounded-full bg-pink-500" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
+                <ul className="mt-6 space-y-3 text-sm text-neutral-800">
+                  {[...ABOUT.experience, ...ABOUT.education].map((item) => (
+                    <li key={item} className="flex gap-3">
+                      <span className="mt-2 h-1 w-1 flex-none rounded-full bg-pink-500" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
 
-              <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2">
-                <div>
-                  <h3 className="mb-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-pink-600">
-                    Language
-                  </h3>
-                  <ul className="space-y-1 text-sm text-neutral-700">
-                    {ABOUT.languages.map((l) => (
-                      <li key={l}>{l}</li>
-                    ))}
-                  </ul>
+                <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2">
+                  <div>
+                    <h3 className="mb-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-pink-600">
+                      Language
+                    </h3>
+                    <ul className="space-y-1 text-sm text-neutral-700">
+                      {ABOUT.languages.map((l) => (
+                        <li key={l}>{l}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 className="mb-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-pink-600">
+                      Contact
+                    </h3>
+                    <p className="text-sm text-neutral-700">
+                      <a href={`mailto:${ABOUT.contact.email}`} className="hover:text-pink-500">
+                        {ABOUT.contact.email}
+                      </a>
+                    </p>
+                    <p className="text-sm text-neutral-700">Telephone {ABOUT.contact.phone}</p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="mb-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-pink-600">
-                    Contact
-                  </h3>
-                  <p className="text-sm text-neutral-700">
-                    <a href={`mailto:${ABOUT.contact.email}`} className="hover:text-pink-500">
-                      {ABOUT.contact.email}
-                    </a>
-                  </p>
-                  <p className="text-sm text-neutral-700">Telephone {ABOUT.contact.phone}</p>
-                </div>
-              </div>
-            </section>
+              </section>
+            </ScrollReveal>
           </div>
         </main>
       </div>
