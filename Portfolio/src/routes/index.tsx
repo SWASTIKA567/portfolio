@@ -1,9 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import vinyl from "@/assets/pink-vinyl.png";
-import { ABOUT, SKILLS, PROCESS, ACHIEVEMENTS } from "@/data/portfolio";
+import { ABOUT, PROCESS, ACHIEVEMENTS } from "@/data/portfolio";
 import { Slide3 } from "@/components/Slide3";
 import { Slide6 } from "@/components/Slide6";
 import { Slide2 } from "@/components/Slide2";
+import { Slide4 } from "@/components/Slide4";
 
 import "./fonts.css";
 const portrait = "/screenshots/postly-1.png"
@@ -97,31 +98,8 @@ function Index() {
       {/* ===================== SLIDE 3 — Projects ===================== */}
       <Slide3 />
 
-      {/* ===================== SLIDE 4 — Skills ===================== */}
-      <section className="slide pink-bg">
-        
-        <div className="w-full max-w-[1100px]">
-          <div className="flex items-end justify-between mb-8">
-            <h2 className="script text-5xl md:text-7xl leading-none">Skills</h2>
-            <p className="text-sm md:text-base">tech stack</p>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
-            {Object.entries(SKILLS).map(([cat, items]) => (
-              <div key={cat} className="bg-white/70 backdrop-blur-sm rounded-2xl p-5 border border-pink-100">
-                <p className="h-section text-pink-700">{cat}</p>
-                <ul className="mt-3 space-y-2">
-                  {items.map((item) => (
-                    <li key={item} className="flex items-center gap-2 body-text">
-                      <span className="w-1.5 h-1.5 rounded-full bg-pink-500" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* ===================== SLIDE 4 — Experience & Skills ===================== */}
+      <Slide4 />
 
       {/* ===================== SLIDE 5 — Process ===================== */}
 <section className="slide pink-bg relative overflow-hidden">
