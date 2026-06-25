@@ -1,23 +1,22 @@
 import { createFileRoute } from "@tanstack/react-router";
 import vinyl from "@/assets/pink-vinyl.png";
-import { ABOUT, PROCESS, ACHIEVEMENTS } from "@/data/portfolio";
+import { PROCESS } from "@/data/portfolio";
 import { Slide3 } from "@/components/Slide3";
 import { Slide6 } from "@/components/Slide6";
 import { Slide2 } from "@/components/Slide2";
 import { Slide4 } from "@/components/Slide4";
 import { ScrollReveal } from "@/components/ScrollReveal";
+import { Navbar } from "@/components/Navbar";
 
 import "./fonts.css";
-const portrait = "/screenshots/postly-1.png"
 
-
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute("/")(  {
   head: () => ({
     meta: [
       { title: "Swastika — Portfolio" },
       { name: "description", content: "Portfolio of Swastika Singh, App Developer." },
-       { property: "og:description", content: "Portfolio of Swastika Singh, App Developer." },
-       { property: "og:title", content: "Swastika — Portfolio" },
+      { property: "og:description", content: "Portfolio of Swastika Singh, App Developer." },
+      { property: "og:title", content: "Swastika — Portfolio" },
     ],
     links: [
       {
@@ -53,6 +52,7 @@ function Index() {
         .h-section { font-weight: 600; font-size: 14px; letter-spacing: 0.04em; margin-bottom: 6px; }
         .body-text { font-size: 13px; line-height: 1.55; color: #222; }
         @media (min-width: 768px) {
+          .slide { padding-left: 84px; }
           .h-section { font-size: 16px; }
           .body-text { font-size: 15px; }
         }
@@ -77,8 +77,11 @@ function Index() {
         }
       `}</style>
 
+      {/* ===================== GLOBAL NAVBAR ===================== */}
+      <Navbar />
+
       {/* ===================== SLIDE 1 — Hero ===================== */}
-      <section className="slide pink-bg relative overflow-hidden">
+      <section id="home" className="slide pink-bg relative overflow-hidden">
         <div className="mt-[-110px]">
           <div className="relative w-[min(75vw,880px)] aspect-square">
             <img
@@ -130,69 +133,76 @@ function Index() {
         </div>
       </div>
 
-      
- {/* ===================== SLIDE 2 — About Me ===================== */}
-<Slide2 />
-      {/* ===================== SLIDE 3 — Projects ===================== */}
-      <Slide3 />
+      {/* ===================== SLIDE 2 — About Me ===================== */}
+      <div id="about">
+        <Slide2 />
+      </div>
 
-      {/* ===================== SLIDE 4 — Experience & Skills ===================== */}
-      <Slide4 />
+      {/* ===================== SLIDE 3 — Projects ===================== */}
+      <div id="projects">
+        <Slide3 />
+      </div>
+
+      {/* ===================== SLIDE 4 — Journey (Experience & Skills) ===================== */}
+      <div id="journey">
+        <Slide4 />
+      </div>
 
       {/* ===================== SLIDE 5 — Process ===================== */}
-<section className="slide pink-bg relative overflow-hidden">
-  {/* Background Vinyl with low opacity */}
-  <div className="absolute inset-0 pointer-events-none overflow-hidden flex items-center justify-center z-0">
-    <img
-      src={vinyl}
-      alt=""
-      aria-hidden="true"
-      className="vinyl-spin w-[120vh] h-[120vh] opacity-[0.2] select-none"
-    />
-  </div>
+      <section id="process" className="slide pink-bg relative overflow-hidden">
+        {/* Background Vinyl with low opacity */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden flex items-center justify-center z-0">
+          <img
+            src={vinyl}
+            alt=""
+            aria-hidden="true"
+            className="vinyl-spin w-[120vh] h-[120vh] opacity-[0.2] select-none"
+          />
+        </div>
 
-  <div className="w-full max-w-[1100px] relative z-10">
-    <ScrollReveal animation="slide-up">
-      <div className="flex items-end justify-between mb-4">
-        <h2 className="script text-5xl md:text-7xl leading-none">Process</h2>
-        <p className="text-sm md:text-base">how I build</p>
-      </div>
-      <p className="text-sm md:text-base text-neutral-600 max-w-2xl mb-8 leading-relaxed">
-        Every project I build follows the same five-step process — research-driven
-        ideas, intentional design, clean development, thorough testing, and
-        confident shipping. It&apos;s how I keep quality consistent from start to
-        finish.
-      </p>
-    </ScrollReveal>
-    
-    <ScrollReveal animation="slide-up" delay={200}>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 w-full">
-        {PROCESS.map((step, i) => (
-          <div
-            key={step.name}
-            className="group relative overflow-hidden bg-white/70 backdrop-blur-sm border border-pink-100/80 rounded-2xl p-6 h-[220px] flex flex-col justify-between transition-all duration-500 hover:bg-white/95 hover:border-pink-300 hover:shadow-xl hover:shadow-pink-900/5 cursor-pointer"
-          >
-            {/* Step number top-right inside card */}
-            <span className="absolute top-4 right-4 text-3xl font-extrabold text-pink-100 group-hover:text-pink-400 transition-colors duration-500 select-none">
-              {String(i + 1).padStart(2, "0")}
-            </span>
-            
-            <div className="flex flex-col h-full justify-end mt-8">
-              <h3 className="font-semibold text-lg text-neutral-800 transition-transform duration-500 group-hover:-translate-y-2 group-hover:text-pink-600">
-                {step.name}
-              </h3>
-              <p className="text-xs text-neutral-600 opacity-0 group-hover:opacity-100 max-h-0 group-hover:max-h-[120px] overflow-hidden transition-all duration-500 ease-in-out mt-1 leading-relaxed">
-                {step.desc}
-              </p>
+        <div className="w-full max-w-[1100px] relative z-10">
+          <ScrollReveal animation="slide-up">
+            <div className="flex items-end justify-between mb-4">
+              <h2 className="script text-5xl md:text-7xl leading-none">Process</h2>
+              <p className="text-sm md:text-base">how I build</p>
             </div>
-          </div>
-        ))}
-      </div>
-    </ScrollReveal>
-  </div>
-</section>
+            <p className="text-sm md:text-base text-neutral-600 max-w-2xl mb-8 leading-relaxed">
+              Every project I build follows the same five-step process — research-driven
+              ideas, intentional design, clean development, thorough testing, and
+              confident shipping. It&apos;s how I keep quality consistent from start to
+              finish.
+            </p>
+          </ScrollReveal>
+
+          <ScrollReveal animation="slide-up" delay={200}>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 w-full">
+              {PROCESS.map((step, i) => (
+                <div
+                  key={step.name}
+                  className="group relative overflow-hidden bg-white/70 backdrop-blur-sm border border-pink-100/80 rounded-2xl p-6 h-[220px] flex flex-col justify-between transition-all duration-500 hover:bg-white/95 hover:border-pink-300 hover:shadow-xl hover:shadow-pink-900/5 cursor-pointer"
+                >
+                  <span className="absolute top-4 right-4 text-3xl font-extrabold text-pink-100 group-hover:text-pink-400 transition-colors duration-500 select-none">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <div className="flex flex-col h-full justify-end mt-8">
+                    <h3 className="font-semibold text-lg text-neutral-800 transition-transform duration-500 group-hover:-translate-y-2 group-hover:text-pink-600">
+                      {step.name}
+                    </h3>
+                    <p className="text-xs text-neutral-600 opacity-0 group-hover:opacity-100 max-h-0 group-hover:max-h-[120px] overflow-hidden transition-all duration-500 ease-in-out mt-1 leading-relaxed">
+                      {step.desc}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
       {/* ===================== SLIDE 6 — Contact ===================== */}
-      <Slide6 />
+      <div id="contact">
+        <Slide6 />
+      </div>
     </div>
   );
 }

@@ -3,8 +3,6 @@ const portrait = "/screenshots/postly-1.png";
 import { ABOUT } from "@/data/portfolio";
 import { ScrollReveal } from "@/components/ScrollReveal";
 
-const navItems = ["Home", "About", "Work", "Projects", "Contact"];
-
 export function Slide2() {
   return (
     <section className="relative min-h-screen overflow-hidden bg-[#fcfbf8] text-neutral-900">
@@ -17,27 +15,6 @@ export function Slide2() {
           className="vinyl-spin h-[200vh] w-[200vh] max-w-none select-none pointer-events-none"
         />
       </div>
-
-      {/* Vertical navigation */}
-      <nav className="fixed left-0 top-0 z-30 hidden md:flex h-screen w-16 flex-col items-center justify-between border-r border-neutral-200/60 bg-white/60 py-8 backdrop-blur-sm">
-        <div className="text-sm font-bold tracking-widest">S.</div>
-        <ul className="flex flex-col items-center gap-10">
-          {navItems.map((item) => (
-            <li key={item}>
-              <a
-                href={`#${item.toLowerCase()}`}
-                className="block whitespace-nowrap text-xs font-medium uppercase tracking-[0.25em] text-neutral-700 transition-colors hover:text-pink-500"
-                style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
-              >
-                {item}
-              </a>
-            </li>
-          ))}
-        </ul>
-        <div className="flex flex-col items-center gap-3 text-[10px] uppercase tracking-widest text-neutral-500">
-          <span style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}>Est. 2026</span>
-        </div>
-      </nav>
 
       {/* ── MOBILE LAYOUT (< md) ── */}
       <div className="md:hidden flex flex-col items-center pt-16 px-6 pb-12">
@@ -131,7 +108,7 @@ export function Slide2() {
         </div>
 
         {/* Content column */}
-        <main className="relative z-10 ml-16 flex min-h-screen items-center px-8 lg:px-16">
+        <main className="relative z-10 flex min-h-screen items-center px-8 lg:px-16">
           <div className="w-full max-w-xl py-20">
             <ScrollReveal animation="slide-up">
               <section id="about">
