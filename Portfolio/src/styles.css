@@ -1,4 +1,5 @@
 @import "tailwindcss" source(none);
+@import "./routes/fonts.css";
 @source "../src";
 
 @custom-variant dark (&:is(.dark *));
@@ -18,6 +19,12 @@
  */
 
 @theme inline {
+  --font-sans: var(--font-main);
+  --font-heading: var(--font-heading);
+  --font-script: var(--font-script);
+  --font-signature: var(--font-signature);
+  --font-accent: var(--font-accent);
+
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -139,5 +146,6 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-main);
   }
 }

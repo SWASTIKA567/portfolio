@@ -30,8 +30,7 @@ export function Slide2() {
 
         {/* Hello script */}
         <div
-          className="text-[3.5rem] leading-none text-neutral-900 mb-6"
-          style={{ fontFamily: "'Allura', cursive" }}
+          className="font-script text-[3.5rem] leading-none text-neutral-900 mb-6"
         >
           {ABOUT.hello}
         </div>
@@ -99,7 +98,6 @@ export function Slide2() {
               />
               <div
                 className="font-script absolute bottom-3 left-0 right-0 text-center text-4xl text-neutral-800"
-                style={{ fontFamily: "'Allura', cursive" }}
               >
                 Swastika
               </div>
@@ -108,7 +106,7 @@ export function Slide2() {
         </div>
 
         {/* Content column */}
-        <main className="relative z-10 flex min-h-screen items-center px-8 lg:px-16">
+        <main className="relative z-10 flex min-h-screen items-center pl-16 md:pl-28 lg:pl-44 pr-8 lg:pr-16">
           <div className="w-full max-w-xl py-20">
             <ScrollReveal animation="slide-up">
               <section id="about">

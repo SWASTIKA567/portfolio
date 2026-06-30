@@ -86,13 +86,6 @@ export function Navbar() {
           })}
         </ul>
 
-        {/* Footer label */}
-        <span
-          className="text-[9px] uppercase tracking-widest text-neutral-400"
-          style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
-        >
-          Est. 2026
-        </span>
       </nav>
 
       {/* ── MOBILE: Top bar with hamburger ── */}

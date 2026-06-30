@@ -1,3 +1,11 @@
+:root {
+  --font-main: "Inter", sans-serif;
+  --font-heading: "Rosehot", sans-serif;
+  --font-script: "jungle-george.regular", "Allura", cursive;
+  --font-signature: "QwitcherGrypen-Bold", "Allura", cursive;
+  --font-accent: "Armelie-Regular", sans-serif;
+}
+
 @font-face {
   font-family: "Armelie-Regular";
   src: url("../fonts/Armelie-Regular.woff2") format("woff2");
@@ -8,6 +16,12 @@
   font-family: "QwitcherGrypen-Bold";
   src: url("../fonts/QwitcherGrypen-Bold.ttf") format("truetype");
   font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "QwitcherGrypen-Regular";
+  src: url("../fonts/QwitcherGrypen-Regular.ttf") format("truetype");
+  font-weight: 400;
   font-style: normal;
 }
 @font-face {
@@ -23,14 +37,22 @@
   font-style: normal;
 }
 
-.script {
-  font-family: "jungle-george.regular", cursive;
+.font-main {
+  font-family: var(--font-main);
 }
 
-.body-text {
-  font-family: "Rosehot", cursive;
+.font-heading, .h-section, .body-text {
+  font-family: var(--font-heading);
 }
 
-.h-section {
-  font-family: "Rosehot", cursive;
+.font-script, .script {
+  font-family: var(--font-script);
+}
+
+.font-signature {
+  font-family: var(--font-signature);
+}
+
+.font-accent {
+  font-family: var(--font-accent);
 }

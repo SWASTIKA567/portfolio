@@ -31,8 +31,8 @@ export const Route = createFileRoute("/")(  {
 function Index() {
   return (
     <div
-      className="w-full"
-      style={{ fontFamily: "Inter, sans-serif", background: "#fff5fa" }}
+      className="w-full font-sans"
+      style={{ background: "#fff5fa" }}
     >
       <style>{`
         @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
@@ -46,7 +46,7 @@ function Index() {
         }
         @keyframes vinyl-spin { to { transform: rotate(360deg); } }
         .vinyl-spin { animation: vinyl-spin 24s linear infinite; }
-        .script { font-family: 'Allura', cursive; }
+        .script { font-family: var(--font-script); }
         .pink-bg { background: radial-gradient(circle at 50% 40%, #ffd9ec 0%, #ffeaf4 55%, #fff5fa 100%); }
         .slide { min-height: 100vh; width: 100%; display: flex; align-items: center; justify-content: center; padding: 48px 20px; }
         .h-section { font-weight: 600; font-size: 14px; letter-spacing: 0.04em; margin-bottom: 6px; }
@@ -105,10 +105,10 @@ function Index() {
             <span className="absolute text-black z-10" style={{ fontSize: "clamp(32px,4.4vw,70px)", top: "62%", left: "62%", whiteSpace: "nowrap" }}>
               App Developer
             </span>
-            <h2 className="absolute text-black leading-none z-10 script" style={{ fontSize: "clamp(25px,5vw,50px)", top: "37%", left: "35%", transform: "translateX(-50%) rotate(-6deg)", whiteSpace: "nowrap", fontFamily: "jungle-george.regular" }}>
+            <h2 className="absolute text-black leading-none z-10 script" style={{ fontSize: "clamp(25px,5vw,50px)", top: "37%", left: "35%", transform: "translateX(-50%) rotate(-6deg)", whiteSpace: "nowrap" }}>
               This is
             </h2>
-            <h2 className="absolute text-black leading-none z-10 script" style={{ fontSize: "clamp(120px,26vw,270px)", top: "27%", left: "50%", transform: "translateX(-50%) rotate(-6deg)", whiteSpace: "nowrap", fontFamily: "'QwitcherGrypen-Bold', cursive" }}>
+            <h2 className="absolute text-black leading-none z-10 font-signature" style={{ fontSize: "clamp(120px,26vw,270px)", top: "27%", left: "50%", transform: "translateX(-50%) rotate(-6deg)", whiteSpace: "nowrap" }}>
               Swastika
             </h2>
           </div>
