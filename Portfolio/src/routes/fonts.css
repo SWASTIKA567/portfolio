@@ -4,6 +4,7 @@
   --font-script: "jungle-george.regular", "Allura", cursive;
   --font-signature: "QwitcherGrypen-Bold", "Allura", cursive;
   --font-accent: "Armelie-Regular", sans-serif;
+  --font-this-is: "Allura", cursive; /* You can change this to "Armelie-Regular", "jungle-george.regular", "Rosehot", etc. */
 }
 
 @font-face {
@@ -55,4 +56,8 @@
 
 .font-accent {
   font-family: var(--font-accent);
+}
+
+.font-this-is {
+  font-family: var(--font-this-is);
 }

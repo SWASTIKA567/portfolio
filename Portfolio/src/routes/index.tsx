@@ -105,7 +105,7 @@ function Index() {
             <span className="absolute text-black z-10" style={{ fontSize: "clamp(32px,4.4vw,70px)", top: "62%", left: "62%", whiteSpace: "nowrap" }}>
               App Developer
             </span>
-            <h2 className="absolute text-black leading-none z-10 script" style={{ fontSize: "clamp(25px,5vw,50px)", top: "37%", left: "35%", transform: "translateX(-50%) rotate(-6deg)", whiteSpace: "nowrap" }}>
+            <h2 className="absolute text-black leading-none z-10 font-this-is" style={{ fontSize: "clamp(25px,5vw,50px)", top: "37%", left: "35%", transform: "translateX(-50%) rotate(-6deg)", whiteSpace: "nowrap" }}>
               This is
             </h2>
             <h2 className="absolute text-black leading-none z-10 font-signature" style={{ fontSize: "clamp(120px,26vw,270px)", top: "27%", left: "50%", transform: "translateX(-50%) rotate(-6deg)", whiteSpace: "nowrap" }}>

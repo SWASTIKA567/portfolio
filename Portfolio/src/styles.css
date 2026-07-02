@@ -24,6 +24,7 @@
   --font-script: var(--font-script);
   --font-signature: var(--font-signature);
   --font-accent: var(--font-accent);
+  --font-this-is: var(--font-this-is);
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);

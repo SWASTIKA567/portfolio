@@ -86,6 +86,10 @@ export function Navbar() {
           })}
         </ul>
 
+        {/* Spacer of identical size to logo to ensure vertical centering of links */}
+        <div className="text-sm font-bold tracking-widest opacity-0 select-none pointer-events-none" aria-hidden="true">
+          S.
+        </div>
       </nav>
 
       {/* ── MOBILE: Top bar with hamburger ── */}
