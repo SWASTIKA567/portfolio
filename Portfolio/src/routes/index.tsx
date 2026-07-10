@@ -90,25 +90,13 @@ function Index() {
               className="vinyl-spin absolute inset-0 w-full h-full object-contain select-none pointer-events-none"
               draggable={false}
             />
-            {[
-              { n: "02", top: "21%", left: "44%" },
-              { n: "01", top: "32%", left: "9%" },
-              { n: "04", top: "78%", left: "16%" },
-              { n: "03", top: "85%", left: "47%" },
-              { n: "05", top: "72%", left: "70%" },
-            ].map((t) => (
-              <span key={t.n} className="absolute text-black" style={{ fontSize: "clamp(10px,1.1vw,15px)", top: t.top, left: t.left }}>
-                {t.n}
-              </span>
-            ))}
-            <span className="absolute text-black" style={{ fontSize: "clamp(11px,1.2vw,16px)", top: "52%", left: "75%" }}>2026</span>
-            <span className="absolute text-black z-10" style={{ fontSize: "clamp(32px,4.4vw,70px)", top: "62%", left: "62%", whiteSpace: "nowrap" }}>
+            <span className="absolute text-black z-10 font-accent" style={{ fontSize: "clamp(32px,4.4vw,70px)", top: "62%", left: "62%", whiteSpace: "nowrap" }}>
               App Developer
             </span>
-            <h2 className="absolute text-black leading-none z-10 font-this-is" style={{ fontSize: "clamp(25px,5vw,50px)", top: "37%", left: "35%", transform: "translateX(-50%) rotate(-6deg)", whiteSpace: "nowrap" }}>
+            <h2 className="absolute text-black leading-none z-10 font-this-is" style={{ fontSize: "clamp(25px,5vw,50px)", top: "40%", left: "38%", transform: "translateX(-50%) rotate(-6deg)", whiteSpace: "nowrap" }}>
               This is
             </h2>
-            <h2 className="absolute text-black leading-none z-10 font-signature" style={{ fontSize: "clamp(120px,26vw,270px)", top: "27%", left: "50%", transform: "translateX(-50%) rotate(-6deg)", whiteSpace: "nowrap" }}>
+            <h2 className="absolute text-black leading-none z-10 font-signature" style={{ fontSize: "clamp(120px,26vw,270px)", top: "30%", left: "50%", transform: "translateX(-50%) rotate(-6deg)", whiteSpace: "nowrap" }}>
               Swastika
             </h2>
           </div>

@@ -41,7 +41,7 @@ export function Slide2() {
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-pink-500">
               Portfolio · 2026
             </p>
-            <h2 className="mb-4 text-2xl font-semibold tracking-tight text-neutral-900">about me</h2>
+            <h2 className="script text-5xl md:text-7xl leading-none text-neutral-900 mb-4">about me</h2>
             <p className="text-[15px] leading-relaxed text-neutral-700">{ABOUT.intro}</p>
 
             <ul className="mt-5 space-y-3 text-sm text-neutral-800">
@@ -113,7 +113,7 @@ export function Slide2() {
                 <p className="mb-4 text-xs font-semibold uppercase tracking-[0.3em] text-pink-500">
                   Portfolio · 2026
                 </p>
-                <h2 className="mb-6 text-2xl font-semibold tracking-tight text-neutral-900">
+                <h2 className="script text-6xl md:text-8xl leading-none text-neutral-900 mb-6">
                   about me
                 </h2>
                 <p className="text-[15px] leading-relaxed text-neutral-700">{ABOUT.intro}</p>
