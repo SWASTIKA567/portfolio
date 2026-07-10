@@ -30,7 +30,7 @@ export function Slide2() {
 
         {/* Hello script */}
         <div
-          className="font-script text-[3.5rem] leading-none text-neutral-900 mb-6"
+          className="font-script text-[4.5rem] leading-none text-neutral-900 mb-6"
         >
           {ABOUT.hello}
         </div>
@@ -38,44 +38,20 @@ export function Slide2() {
         {/* Content */}
         <ScrollReveal animation="slide-up" className="w-full">
           <div className="w-full">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-pink-500">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.3em] text-pink-500">
               Portfolio · 2026
             </p>
-            <h2 className="script text-5xl md:text-7xl leading-none text-neutral-900 mb-4">about me</h2>
-            <p className="text-[15px] leading-relaxed text-neutral-700">{ABOUT.intro}</p>
+            <h2 className="script text-6xl md:text-8xl leading-none text-neutral-900 mb-4">about me</h2>
+            <p className="text-lg md:text-xl leading-relaxed text-neutral-700">{ABOUT.intro}</p>
 
-            <ul className="mt-5 space-y-3 text-sm text-neutral-800">
+            <ul className="mt-5 space-y-4 text-base md:text-lg text-neutral-800">
               {[...ABOUT.experience, ...ABOUT.education].map((item) => (
                 <li key={item} className="flex gap-3">
-                  <span className="mt-2 h-1 w-1 flex-none rounded-full bg-pink-500" />
+                  <span className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-pink-500" />
                   <span>{item}</span>
                 </li>
               ))}
             </ul>
-
-            <div className="mt-6 grid grid-cols-2 gap-6">
-              <div>
-                <h3 className="mb-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-pink-600">
-                  Language
-                </h3>
-                <ul className="space-y-1 text-sm text-neutral-700">
-                  {ABOUT.languages.map((l) => (
-                    <li key={l}>{l}</li>
-                  ))}
-                </ul>
-              </div>
-              <div>
-                <h3 className="mb-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-pink-600">
-                  Contact
-                </h3>
-                <p className="text-sm text-neutral-700">
-                  <a href={`mailto:${ABOUT.contact.email}`} className="hover:text-pink-500 break-all">
-                    {ABOUT.contact.email}
-                  </a>
-                </p>
-                <p className="text-sm text-neutral-700">Tel {ABOUT.contact.phone}</p>
-              </div>
-            </div>
           </div>
         </ScrollReveal>
       </div>
@@ -107,49 +83,25 @@ export function Slide2() {
 
         {/* Content column */}
         <main className="relative z-10 flex min-h-screen items-center pl-16 md:pl-28 lg:pl-44 pr-8 lg:pr-16">
-          <div className="w-full max-w-xl py-20">
+          <div className="w-full max-w-2xl py-20">
             <ScrollReveal animation="slide-up">
               <section id="about">
-                <p className="mb-4 text-xs font-semibold uppercase tracking-[0.3em] text-pink-500">
+                <p className="mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-pink-500">
                   Portfolio · 2026
                 </p>
                 <h2 className="script text-6xl md:text-8xl leading-none text-neutral-900 mb-6">
                   about me
                 </h2>
-                <p className="text-[15px] leading-relaxed text-neutral-700">{ABOUT.intro}</p>
+                <p className="text-lg md:text-xl leading-relaxed text-neutral-700">{ABOUT.intro}</p>
 
-                <ul className="mt-6 space-y-3 text-sm text-neutral-800">
+                <ul className="mt-6 space-y-4 text-base md:text-lg text-neutral-800">
                   {[...ABOUT.experience, ...ABOUT.education].map((item) => (
                     <li key={item} className="flex gap-3">
-                      <span className="mt-2 h-1 w-1 flex-none rounded-full bg-pink-500" />
+                      <span className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-pink-500" />
                       <span>{item}</span>
                     </li>
                   ))}
                 </ul>
-
-                <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2">
-                  <div>
-                    <h3 className="mb-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-pink-600">
-                      Language
-                    </h3>
-                    <ul className="space-y-1 text-sm text-neutral-700">
-                      {ABOUT.languages.map((l) => (
-                        <li key={l}>{l}</li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div>
-                    <h3 className="mb-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-pink-600">
-                      Contact
-                    </h3>
-                    <p className="text-sm text-neutral-700">
-                      <a href={`mailto:${ABOUT.contact.email}`} className="hover:text-pink-500">
-                        {ABOUT.contact.email}
-                      </a>
-                    </p>
-                    <p className="text-sm text-neutral-700">Telephone {ABOUT.contact.phone}</p>
-                  </div>
-                </div>
               </section>
             </ScrollReveal>
           </div>
