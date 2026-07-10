@@ -42,9 +42,9 @@ export function Slide2() {
               Portfolio · 2026
             </p>
             <h2 className="script text-6xl md:text-8xl leading-none text-neutral-900 mb-4">about me</h2>
-            <p className="text-[17px] leading-relaxed text-neutral-700">{ABOUT.intro}</p>
+            <p className="text-[19px] leading-relaxed text-neutral-700">{ABOUT.intro}</p>
 
-            <ul className="mt-5 space-y-3 text-base text-neutral-800">
+            <ul className="mt-6 space-y-4 text-lg text-neutral-800">
               {[...ABOUT.experience, ...ABOUT.education].map((item) => (
                 <li key={item} className="flex gap-3">
                   <span className="mt-2 h-1 w-1 flex-none rounded-full bg-pink-500" />
@@ -92,9 +92,9 @@ export function Slide2() {
                 <h2 className="script text-6xl md:text-8xl leading-none text-neutral-900 mb-6">
                   about me
                 </h2>
-                <p className="text-[17px] leading-relaxed text-neutral-700">{ABOUT.intro}</p>
+                <p className="text-[19px] leading-relaxed text-neutral-700">{ABOUT.intro}</p>
 
-                <ul className="mt-6 space-y-3 text-base text-neutral-800">
+                <ul className="mt-8 space-y-5 text-lg text-neutral-800">
                   {[...ABOUT.experience, ...ABOUT.education].map((item) => (
                     <li key={item} className="flex gap-3">
                       <span className="mt-2 h-1 w-1 flex-none rounded-full bg-pink-500" />

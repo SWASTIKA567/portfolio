@@ -11,10 +11,7 @@ export const ABOUT = {
   hello: "Hello",
   intro:
     "I'm Swastika, a Flutter developer who enjoys turning ideas into apps that actually work well and feel good to use. I build primarily with Flutter, Dart, and Firebase, and I care as much about clean architecture and state management as I do about the small UI details most people overlook. Alongside development, I sharpen my problem-solving through competitive programming, which keeps my fundamentals sharp beyond just app-building. I'm good at creating new designs and love exploring different design directions.",
-  experience: [
-    "Organized a Technical Event | College Fest | 2025",
-    "App Developer Intern | Fintech Company | 2025 - Now",
-  ],
+  experience: [],
   education: [
     "B.Tech in Information Technology",
     "Dr. APJ Abdul Kalam Technical University | 2024 - Now",
