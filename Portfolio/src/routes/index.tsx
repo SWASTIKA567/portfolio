@@ -90,7 +90,7 @@ function Index() {
               className="vinyl-spin absolute inset-0 w-full h-full object-contain select-none pointer-events-none"
               draggable={false}
             />
-            <span className="absolute text-black z-10 font-accent" style={{ fontSize: "clamp(32px,4.4vw,70px)", top: "62%", left: "62%", whiteSpace: "nowrap" }}>
+            <span className="absolute text-black z-10 font-script" style={{ fontSize: "clamp(32px,4.4vw,70px)", top: "62%", left: "62%", whiteSpace: "nowrap" }}>
               App Developer
             </span>
             <h2 className="absolute text-black leading-none z-10 font-this-is" style={{ fontSize: "clamp(25px,5vw,50px)", top: "40%", left: "38%", transform: "translateX(-50%) rotate(-6deg)", whiteSpace: "nowrap" }}>
