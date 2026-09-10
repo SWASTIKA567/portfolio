@@ -3,7 +3,14 @@ import { useEffect, useRef, useState } from "react";
 interface ScrollRevealProps {
   children: React.ReactNode;
   className?: string;
-  animation?: "fade-in" | "slide-up" | "slide-left" | "slide-right" | "scale-up";
+  animation?:
+    | "fade-in"
+    | "slide-up"
+    | "slide-left"
+    | "slide-right"
+    | "scale-up"
+    | "3d-rise"
+    | "3d-flip";
   delay?: number;
   duration?: number;
   style?: React.CSSProperties;
@@ -12,9 +19,9 @@ interface ScrollRevealProps {
 export function ScrollReveal({
   children,
   className = "",
-  animation = "slide-up",
+  animation = "3d-rise",
   delay = 0,
-  duration = 600,
+  duration = 750,
   style = {},
 }: ScrollRevealProps) {
   const [isVisible, setIsVisible] = useState(false);
@@ -25,13 +32,12 @@ export function ScrollReveal({
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          // Stop observing once visible to maintain stability
           if (ref.current) observer.unobserve(ref.current);
         }
       },
       {
-        threshold: 0.05, // trigger when 5% of the element is visible
-        rootMargin: "0px 0px -40px 0px", // trigger slightly before it enters the viewport
+        threshold: 0.05,
+        rootMargin: "0px 0px -40px 0px",
       }
     );
 
@@ -49,18 +55,20 @@ export function ScrollReveal({
   }, []);
 
   const getAnimationStyles = () => {
-    const base = {
+    const base: React.CSSProperties = {
       transitionProperty: "opacity, transform",
       transitionDuration: `${duration}ms`,
       transitionDelay: `${delay}ms`,
-      transitionTimingFunction: "cubic-bezier(0.215, 0.610, 0.355, 1.000)", // smooth ease-out
+      transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)", // spring-like smooth ease-out
+      transformStyle: "preserve-3d",
+      willChange: "transform, opacity",
     };
 
     if (isVisible) {
       return {
         ...base,
         opacity: 1,
-        transform: "translate(0) scale(1)",
+        transform: "perspective(1200px) rotateX(0deg) rotateY(0deg) translate3d(0, 0, 0) scale(1)",
       };
     }
 
@@ -74,9 +82,25 @@ export function ScrollReveal({
       case "slide-right":
         return { ...base, opacity: 0, transform: "translateX(-30px)" };
       case "scale-up":
-        return { ...base, opacity: 0, transform: "scale(0.95)" };
+        return { ...base, opacity: 0, transform: "scale(0.92)" };
+      case "3d-rise":
+        return {
+          ...base,
+          opacity: 0,
+          transform: "perspective(1200px) rotateX(16deg) translate3d(0, 45px, -60px) scale(0.95)",
+        };
+      case "3d-flip":
+        return {
+          ...base,
+          opacity: 0,
+          transform: "perspective(1200px) rotateY(-20deg) translate3d(-35px, 0, -40px)",
+        };
       default:
-        return { ...base, opacity: 0, transform: "translateY(30px)" };
+        return {
+          ...base,
+          opacity: 0,
+          transform: "perspective(1200px) rotateX(16deg) translate3d(0, 45px, -60px) scale(0.95)",
+        };
     }
   };
 

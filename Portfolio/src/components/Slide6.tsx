@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { ABOUT, CONTACT } from "@/data/portfolio";
 import { ScrollReveal } from "@/components/ScrollReveal";
+import { Tilt3D } from "@/components/Tilt3D";
+import { Mail, Linkedin, Github, Phone, Copy, Check, Send, Sparkles } from "lucide-react";
 
 export function Slide6() {
   const [copied, setCopied] = useState<string | null>(null);
@@ -8,11 +10,27 @@ export function Slide6() {
   const [form, setForm] = useState({ name: "", msg: "" });
   const [sent, setSent] = useState(false);
 
+  const blob1Ref = useRef<HTMLDivElement>(null);
+  const blob2Ref = useRef<HTMLDivElement>(null);
+
+  // 3D Parallax on background blobs
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      const x = (e.clientX / window.innerWidth - 0.5) * 60;
+      const y = (e.clientY / window.innerHeight - 0.5) * 60;
+      if (blob1Ref.current) blob1Ref.current.style.transform = `translate(${x}px, ${y}px)`;
+      if (blob2Ref.current) blob2Ref.current.style.transform = `translate(${-x}px, ${-y}px)`;
+    };
+
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
   const copy = async (label: string, value: string) => {
     try {
       await navigator.clipboard.writeText(value);
       setCopied(label);
-      setTimeout(() => setCopied(null), 1600);
+      setTimeout(() => setCopied(null), 1800);
     } catch {}
   };
 
@@ -22,28 +40,28 @@ export function Slide6() {
       label: "Email",
       value: CONTACT.email,
       href: `mailto:${CONTACT.email}`,
-      icon: "✉",
+      icon: <Mail className="w-5 h-5 text-white" />,
     },
     {
       key: "linkedin",
       label: "LinkedIn",
       value: CONTACT.linkedin,
       href: `https://${CONTACT.linkedin}`,
-      icon: "in",
+      icon: <Linkedin className="w-5 h-5 text-white" />,
     },
     {
       key: "github",
       label: "GitHub",
       value: CONTACT.github,
       href: `https://${CONTACT.github}`,
-      icon: "◆",
+      icon: <Github className="w-5 h-5 text-white" />,
     },
     {
       key: "phone",
       label: "Phone",
       value: ABOUT.contact.phone,
       href: `tel:${ABOUT.contact.phone.replace(/\s/g, "")}`,
-      icon: "☎",
+      icon: <Phone className="w-5 h-5 text-white" />,
     },
   ];
 
@@ -59,272 +77,211 @@ export function Slide6() {
 
   return (
     <section
-      className="slide"
+      className="slide relative overflow-hidden"
       style={{
-        background: "#fff",
+        background: "#ffffff",
         color: "#111",
         position: "relative",
-        overflow: "hidden",
       }}
     >
       <style>{`
-        @keyframes blob-a { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(60px,-40px) scale(1.15)} }
-        @keyframes blob-b { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(-50px,50px) scale(1.1)} }
         @keyframes pulse-ring { 0%{transform:scale(1);opacity:.6} 100%{transform:scale(1.8);opacity:0} }
-        .c-blob { position:absolute; border-radius:999px; filter:blur(80px); opacity:.22; pointer-events:none; }
-        .c-card {
-          background: #fff;
-          border: 1px solid #f0d7e6;
-          border-radius: 18px;
-          padding: 18px 20px;
-          display:flex; align-items:center; gap:14px;
-          cursor:pointer;
-          transition: all .35s cubic-bezier(.2,.7,.2,1);
-          box-shadow: 0 2px 12px rgba(212,86,154,0.06);
-        }
-        .c-card:hover {
-          transform: translateY(-4px);
-          border-color: #d4569a;
-          background: rgba(212,86,154,0.04);
-          box-shadow: 0 18px 50px -20px rgba(212,86,154,0.25);
-        }
-        .c-icon {
-          width:44px; height:44px; border-radius:12px;
-          background: linear-gradient(135deg,#d4569a,#e88cb8);
-          display:flex; align-items:center; justify-content:center;
-          font-weight:700; color:#fff; font-size:18px; flex-shrink:0;
-          font-family: Georgia, serif;
-        }
-        .c-input {
-          width:100%;
-          background: rgba(255,255,255,0.04);
-          border: 1px solid rgba(255,255,255,0.12);
-          color:#fff; padding: 12px 14px; border-radius: 12px;
-          font-size: 14px; outline:none;
-          transition: border-color .2s, background .2s, box-shadow .2s;
-          font-family: inherit;
-          box-shadow: 0 1px 4px rgba(212,86,154,0.04);
-        }
-        .c-input:focus { border-color:#d4569a; background: rgba(212,86,154,0.03); box-shadow: 0 0 0 3px rgba(212,86,154,0.08); }
-        .c-input::placeholder { color: #b08a9e; }
-        .c-send {
-          background: linear-gradient(135deg,#d4569a,#e88cb8);
-          color:#fff; border:none; padding: 13px 28px;
-          border-radius: 999px; font-weight:600; font-size:14px;
-          cursor:pointer; letter-spacing:.5px;
-          transition: transform .2s, box-shadow .2s;
-        }
-        .c-send:hover { transform: translateY(-2px); box-shadow: 0 14px 30px -10px rgba(212,86,154,.45); }
-        .c-avail {
-          display:inline-flex; align-items:center; gap:10px;
-          padding: 8px 16px; border-radius: 999px;
-          background: rgba(80,200,120,0.10); border: 1px solid rgba(80,200,120,0.25);
-          font-size:12px; color:#2a8a4a; letter-spacing:.5px;
-          position: relative;
-        }
-        .c-dot { width:8px; height:8px; border-radius:999px; background:#4ade80; position:relative; }
-        .c-dot::after {
-          content:""; position:absolute; inset:-2px; border-radius:999px;
-          background:#4ade80; animation: pulse-ring 1.6s ease-out infinite;
-        }
-        .c-toast {
-          position:absolute; top:-34px; left:50%; transform:translateX(-50%);
-          background:#111; color:#fff; font-size:11px; font-weight:600;
-          padding: 6px 12px; border-radius:6px; white-space:nowrap;
-          animation: fade-in .2s ease-out;
-        }
+        .c-blob { position:absolute; border-radius:999px; filter:blur(80px); opacity:.22; pointer-events:none; transition: transform 0.4s ease-out; }
       `}</style>
 
+      {/* 3D Floating Blobs */}
       <div
+        ref={blob1Ref}
+        className="c-blob"
+        style={{
+          width: 520,
+          height: 520,
+          background: "#ec4899",
+          top: -140,
+          left: -140,
+        }}
+      />
+      <div
+        ref={blob2Ref}
         className="c-blob"
         style={{
           width: 480,
           height: 480,
-          background: "#d4569a",
-          top: -120,
-          left: -120,
-          animation: "blob-a 14s ease-in-out infinite",
-        }}
-      />
-      <div
-        className="c-blob"
-        style={{
-          width: 420,
-          height: 420,
-          background: "#7c3aed",
-          bottom: -100,
-          right: -80,
-          animation: "blob-b 16s ease-in-out infinite",
+          background: "#a855f7",
+          bottom: -120,
+          right: -100,
         }}
       />
 
-      <div style={{ maxWidth: 1080, width: "100%", position: "relative", zIndex: 2 }}>
+      <div style={{ maxWidth: 1100, width: "100%", position: "relative", zIndex: 10 }}>
         {/* Header */}
-        <ScrollReveal animation="slide-up">
-          <div style={{ textAlign: "center", marginBottom: 36 }}>
-            <span className="c-avail">
-              <span className="c-dot" /> Available for opportunities
+        <ScrollReveal animation="3d-rise">
+          <div style={{ textAlign: "center", marginBottom: 40 }}>
+            <span className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-700 text-xs font-semibold tracking-wider shadow-xs">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 relative">
+                <span className="absolute inset-[-2px] rounded-full bg-emerald-500 animate-ping" />
+              </span>
+              Available for opportunities
             </span>
-            <p className="script" style={{ fontSize: 32, color: "#d4569a", margin: "18px 0 0" }}>
+
+            <p className="script" style={{ fontSize: 36, color: "#d4569a", margin: "18px 0 0" }}>
               Let's create something
             </p>
             <h2
-              style={{ fontSize: 56, fontWeight: 700, margin: "4px 0 0", letterSpacing: "-0.03em" }}
+              style={{
+                fontSize: "clamp(38px, 6vw, 64px)",
+                fontWeight: 800,
+                margin: "4px 0 0",
+                letterSpacing: "-0.03em",
+              }}
             >
               together.
             </h2>
           </div>
         </ScrollReveal>
 
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1.1fr 1fr",
-            gap: 28,
-            alignItems: "start",
-          }}
-        >
-          {/* LEFT — channels */}
-          <ScrollReveal animation="slide-up" delay={150} style={{ display: "grid", gap: 12 }}>
-            {channels.map((c) => (
-              <div
-                key={c.key}
-                className="c-card"
-                onMouseEnter={() => setHover(c.key)}
-                onMouseLeave={() => setHover(null)}
-                onClick={() =>
-                  window.open(c.href, c.key === "email" || c.key === "phone" ? "_self" : "_blank")
-                }
-                style={{ position: "relative" }}
-              >
-                {copied === c.key && <span className="c-toast">Copied!</span>}
-                <div className="c-icon">{c.icon}</div>
-                <div style={{ flex: 1, minWidth: 0 }}>
-                  <div
-                    style={{
-                      fontSize: 11,
-                      color: "#a87a92",
-                      letterSpacing: 2,
-                      textTransform: "uppercase",
-                    }}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+          {/* LEFT — 3D Contact Channel Cards (6 cols) */}
+          <div className="md:col-span-6 space-y-4">
+            <ScrollReveal animation="3d-rise" delay={150}>
+              <div className="space-y-3.5">
+                {channels.map((c) => (
+                  <Tilt3D
+                    key={c.key}
+                    maxTilt={12}
+                    perspective={900}
+                    scale={1.03}
+                    glare={true}
+                    glareMaxOpacity={0.2}
+                    className="w-full"
                   >
-                    {c.label}
-                  </div>
-                  <div
-                    style={{
-                      fontSize: 14,
-                      color: "#111",
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                    }}
-                  >
-                    {c.value}
-                  </div>
-                </div>
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    copy(c.key, c.value);
-                  }}
-                  style={{
-                    background: "transparent",
-                    border: "1px solid #f0d7e6",
-                    color: hover === c.key ? "#d4569a" : "#b08a9e",
-                    padding: "6px 10px",
-                    borderRadius: 8,
-                    fontSize: 11,
-                    cursor: "pointer",
-                    transition: "all .2s",
-                  }}
-                >
-                  copy
-                </button>
-              </div>
-            ))}
-          </ScrollReveal>
+                    <div
+                      onMouseEnter={() => setHover(c.key)}
+                      onMouseLeave={() => setHover(null)}
+                      onClick={() =>
+                        window.open(
+                          c.href,
+                          c.key === "email" || c.key === "phone" ? "_self" : "_blank"
+                        )
+                      }
+                      className="relative bg-white/90 hover:bg-white backdrop-blur-md border border-pink-100 hover:border-pink-300 rounded-2xl p-4 md:p-5 flex items-center gap-4 cursor-pointer shadow-md hover:shadow-xl hover:shadow-pink-900/10 transition-all duration-300"
+                    >
+                      {/* Copied Toast */}
+                      {copied === c.key && (
+                        <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-neutral-900 text-white text-[11px] font-bold px-3 py-1 rounded-md shadow-lg flex items-center gap-1 z-30 animate-bounce">
+                          <Check className="w-3 h-3 text-emerald-400" /> Copied!
+                        </span>
+                      )}
 
-          {/* RIGHT — form */}
-          <ScrollReveal animation="slide-up" delay={300}>
-            <form
-              onSubmit={submit}
-              style={{
-                background: "#fff",
-                border: "1px solid #f0d7e6",
-                borderRadius: 22,
-                padding: 26,
-                display: "grid",
-                gap: 14,
-                boxShadow: "0 4px 24px rgba(212,86,154,0.06)",
-                width: "100%",
-              }}
-            >
-              <div>
-                <label
-                  style={{
-                    fontSize: 11,
-                    color: "#a87a92",
-                    letterSpacing: 2,
-                    textTransform: "uppercase",
-                  }}
-                >
-                  Your name
-                </label>
-                <input
-                  className="c-input"
-                  type="text"
-                  maxLength={80}
-                  value={form.name}
-                  onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  placeholder="Jane Doe"
-                  style={{ marginTop: 6 }}
-                />
+                      {/* 3D Icon */}
+                      <div
+                        className="w-12 h-12 rounded-xl bg-gradient-to-br from-pink-500 to-rose-400 flex items-center justify-center flex-shrink-0 shadow-md shadow-pink-500/30 transition-transform duration-300 group-hover:scale-110"
+                        style={{ transform: "translateZ(18px)" }}
+                      >
+                        {c.icon}
+                      </div>
+
+                      {/* Details */}
+                      <div className="flex-1 min-w-0" style={{ transform: "translateZ(12px)" }}>
+                        <div className="text-[10px] uppercase font-bold tracking-[0.2em] text-pink-600">
+                          {c.label}
+                        </div>
+                        <div className="text-sm font-semibold text-neutral-900 truncate">
+                          {c.value}
+                        </div>
+                      </div>
+
+                      {/* Copy button */}
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          copy(c.key, c.value);
+                        }}
+                        className="p-2 rounded-lg border border-pink-100 hover:border-pink-300 text-neutral-400 hover:text-pink-600 bg-pink-50/50 hover:bg-pink-50 transition-all duration-200 cursor-pointer shadow-xs active:scale-90"
+                        title="Copy to clipboard"
+                        style={{ transform: "translateZ(15px)" }}
+                      >
+                        <Copy className="w-4 h-4" />
+                      </button>
+                    </div>
+                  </Tilt3D>
+                ))}
               </div>
-              <div>
-                <label
-                  style={{
-                    fontSize: 11,
-                    color: "#a87a92",
-                    letterSpacing: 2,
-                    textTransform: "uppercase",
-                  }}
+            </ScrollReveal>
+          </div>
+
+          {/* RIGHT — 3D Contact Form (6 cols) */}
+          <div className="md:col-span-6">
+            <ScrollReveal animation="3d-rise" delay={250}>
+              <Tilt3D
+                maxTilt={8}
+                perspective={1000}
+                scale={1.01}
+                glare={false}
+                className="w-full"
+              >
+                <form
+                  onSubmit={submit}
+                  className="bg-white/90 backdrop-blur-md border border-pink-100/90 rounded-3xl p-7 md:p-8 shadow-xl shadow-pink-900/5 flex flex-col gap-4"
                 >
-                  Message
-                </label>
-                <textarea
-                  className="c-input"
-                  maxLength={600}
-                  rows={4}
-                  value={form.msg}
-                  onChange={(e) => setForm({ ...form, msg: e.target.value })}
-                  placeholder="Tell me about your project..."
-                  style={{ marginTop: 6, resize: "none", fontFamily: "inherit" }}
-                />
-                <div style={{ textAlign: "right", fontSize: 10, color: "#b08a9e", marginTop: 4 }}>
-                  {form.msg.length}/600
-                </div>
-              </div>
-              <button type="submit" className="c-send">
-                {sent ? "Opening mail ✓" : "Send message →"}
-              </button>
-            </form>
-          </ScrollReveal>
+                  <div className="flex items-center justify-between border-b border-pink-100 pb-3 mb-1">
+                    <h3 className="font-bold text-lg text-neutral-900">Send a Direct Note</h3>
+                    <Sparkles className="w-4 h-4 text-pink-500" />
+                  </div>
+
+                  <div>
+                    <label className="text-[11px] font-bold uppercase tracking-wider text-pink-600 block mb-1.5">
+                      Your Name
+                    </label>
+                    <input
+                      type="text"
+                      maxLength={80}
+                      value={form.name}
+                      onChange={(e) => setForm({ ...form, name: e.target.value })}
+                      placeholder="Jane Doe"
+                      className="w-full bg-neutral-50/80 border border-neutral-200/80 focus:border-pink-400 rounded-xl px-4 py-3 text-sm text-neutral-900 outline-none transition-all duration-200 focus:bg-white focus:ring-3 focus:ring-pink-400/20"
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label className="text-[11px] font-bold uppercase tracking-wider text-pink-600 block mb-1.5">
+                      Message
+                    </label>
+                    <textarea
+                      maxLength={600}
+                      rows={4}
+                      value={form.msg}
+                      onChange={(e) => setForm({ ...form, msg: e.target.value })}
+                      placeholder="Tell me about your project or idea..."
+                      className="w-full bg-neutral-50/80 border border-neutral-200/80 focus:border-pink-400 rounded-xl px-4 py-3 text-sm text-neutral-900 outline-none transition-all duration-200 focus:bg-white focus:ring-3 focus:ring-pink-400/20 resize-none font-sans"
+                      required
+                    />
+                    <div className="text-right text-[10px] text-neutral-400 mt-1">
+                      {form.msg.length}/600
+                    </div>
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="w-full bg-gradient-to-r from-pink-500 via-pink-600 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white font-bold py-3.5 px-6 rounded-full text-sm shadow-lg shadow-pink-500/25 hover:shadow-xl hover:shadow-pink-500/40 hover:-translate-y-0.5 active:translate-y-0 active:scale-98 transition-all duration-250 cursor-pointer flex items-center justify-center gap-2"
+                  >
+                    <Send className="w-4 h-4" />
+                    <span>{sent ? "Opening Mail Client ✓" : "Send Message"}</span>
+                  </button>
+                </form>
+              </Tilt3D>
+            </ScrollReveal>
+          </div>
         </div>
 
-        <ScrollReveal animation="slide-up" delay={600}>
-          <p
-            style={{
-              textAlign: "center",
-              fontStyle: "italic",
-              color: "#a87a92",
-              fontSize: 13,
-              maxWidth: 560,
-              margin: "32px auto 0",
-            }}
-          >
+        {/* Footer Quote */}
+        <ScrollReveal animation="3d-rise" delay={400}>
+          <p className="text-center italic text-neutral-500 text-xs md:text-sm max-w-xl mx-auto mt-12">
             "{CONTACT.closing}"
           </p>
-          <p style={{ marginTop: 24, textAlign: "center", fontSize: 11, color: "#c9a8b8" }}>
-            © 2026 Swastika Singh · Built with care
+          <p className="mt-5 text-center text-xs text-neutral-400 font-medium">
+            © 2026 Swastika Singh · Built with 3D Care
           </p>
         </ScrollReveal>
       </div>

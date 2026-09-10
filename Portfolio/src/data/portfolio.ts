@@ -31,7 +31,7 @@ export const PROJECTS: Project[] = [
     tech: "Flutter · Firebase · GetX",
     highlight: "Built during internship",
     color: "#111",
-    screenshots: ["/screenshots/postly-1.png", "/screenshots/postly-2.png"] as string[],
+    screenshots: ["/screenshots/postly-1.png", "/screenshots/postly-2.png" , "/screenshots/postly-3.jpeg", "/screenshots/postly-4.jpeg"] as string[],
   },
   {
     name: "GraphGuard",
@@ -39,7 +39,7 @@ export const PROJECTS: Project[] = [
     tech: "Flutter · TigerGraph · GetX",
     highlight: "Top 5 — Devcation Delhi 2026",
     color: "#1a1a2e",
-    screenshots: [] as string[],
+    screenshots: ["/screenshots/graph-1.jpeg", "/screenshots/graph-2.jpeg", "/screenshots/graph-3.jpeg"] as string[],
   },
   {
     name: "GameZone",
@@ -47,7 +47,7 @@ export const PROJECTS: Project[] = [
     tech: "Flutter · Firebase",
     highlight: "Coming soon",
     color: "#00796B",
-    screenshots: [] as string[],
+    screenshots: [ "/screenshots/gamezone-1.jpeg", "/screenshots/gamezone-2.jpeg" , "/screenshots/gamezone-3.jpeg", "/screenshots/gamezone-4.jpeg" , "/screenshots/gmaezone-5.jpeg"] as string[],
   },
 ];
 

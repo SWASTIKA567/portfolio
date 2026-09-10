@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 
 const navItems = [
-  { label: "Home",       id: "home" },
-  { label: "About",      id: "about" },
-  { label: "Projects",   id: "projects" },
-  { label: "Journey",    id: "journey" },
-  { label: "Process",    id: "process" },
-  { label: "Contact",    id: "contact" },
+  { label: "Home", id: "home" },
+  { label: "About", id: "about" },
+  { label: "Projects", id: "projects" },
+  { label: "Journey", id: "journey" },
+  { label: "Process", id: "process" },
+  { label: "Contact", id: "contact" },
 ];
 
 export function Navbar() {
@@ -48,17 +48,19 @@ export function Navbar() {
 
   return (
     <>
-      {/* ── DESKTOP: Vertical left sidebar ── */}
+      {/* ── DESKTOP: Vertical left sidebar with 3D dock feel ── */}
       <nav
-        className="fixed left-0 top-0 z-50 hidden md:flex h-screen w-16 flex-col items-center justify-between border-r border-neutral-200/60 bg-white/70 py-8 backdrop-blur-md"
-        style={{ boxShadow: "2px 0 16px rgba(236,72,153,0.04)" }}
+        className="fixed left-0 top-0 z-50 hidden md:flex h-screen w-16 flex-col items-center justify-between border-r border-neutral-200/70 bg-white/75 py-8 backdrop-blur-md transition-all duration-300"
+        style={{
+          boxShadow: "4px 0 24px rgba(236,72,153,0.06)",
+        }}
       >
         {/* Logo / initials */}
         <button
           onClick={() => scrollTo("home")}
-          className="text-sm font-bold tracking-widest text-neutral-900 hover:text-pink-500 transition-colors cursor-pointer"
+          className="text-base font-extrabold tracking-widest text-neutral-900 hover:text-pink-500 transition-all duration-300 hover:scale-115 cursor-pointer"
         >
-          S.
+          S<span className="text-pink-500">.</span>
         </button>
 
         {/* Nav links (vertical) */}
@@ -66,35 +68,41 @@ export function Navbar() {
           {navItems.map(({ label, id }) => {
             const isActive = active === id;
             return (
-              <li key={id}>
+              <li key={id} className="relative group">
                 <button
                   onClick={() => scrollTo(id)}
-                  className={`block whitespace-nowrap text-[10px] font-semibold uppercase tracking-[0.25em] transition-all duration-300 cursor-pointer ${
-                    isActive ? "text-pink-500" : "text-neutral-500 hover:text-pink-400"
+                  className={`block whitespace-nowrap text-[10px] font-bold uppercase tracking-[0.25em] transition-all duration-300 cursor-pointer ${
+                    isActive
+                      ? "text-pink-600 scale-110"
+                      : "text-neutral-500 hover:text-pink-500 hover:scale-105"
                   }`}
                   style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
                   title={label}
                 >
                   {label}
                 </button>
-                {/* Active indicator dot */}
+                {/* Active indicator dot with glow */}
                 {isActive && (
-                  <span className="block w-1 h-1 rounded-full bg-pink-500 mx-auto mt-1" />
+                  <span className="block w-1.5 h-1.5 rounded-full bg-pink-500 mx-auto mt-1.5 shadow-sm shadow-pink-500/80 animate-pulse" />
                 )}
               </li>
             );
           })}
         </ul>
 
-        {/* Spacer of identical size to logo to ensure vertical centering of links */}
-        <div className="text-sm font-bold tracking-widest opacity-0 select-none pointer-events-none" aria-hidden="true">
+        {/* Spacer */}
+        <div
+          className="text-sm font-bold tracking-widest opacity-0 select-none pointer-events-none"
+          aria-hidden="true"
+        >
           S.
         </div>
       </nav>
 
       {/* ── MOBILE: Top bar with hamburger ── */}
-      <header className="fixed top-0 left-0 right-0 z-50 md:hidden bg-white/80 backdrop-blur-md border-b border-neutral-100/60 px-5 py-3 flex items-center justify-between"
-        style={{ boxShadow: "0 2px 16px rgba(236,72,153,0.06)" }}
+      <header
+        className="fixed top-0 left-0 right-0 z-50 md:hidden bg-white/85 backdrop-blur-md border-b border-pink-100/60 px-5 py-3 flex items-center justify-between"
+        style={{ boxShadow: "0 2px 16px rgba(236,72,153,0.08)" }}
       >
         <button
           onClick={() => scrollTo("home")}
@@ -147,8 +155,12 @@ export function Navbar() {
                       : "text-neutral-700 hover:text-pink-500 hover:bg-pink-50/40"
                   }`}
                 >
-                  {isActive && <span className="w-1.5 h-1.5 rounded-full bg-pink-500 flex-shrink-0" />}
-                  {!isActive && <span className="w-1.5 h-1.5 rounded-full bg-neutral-200 flex-shrink-0" />}
+                  {isActive && (
+                    <span className="w-1.5 h-1.5 rounded-full bg-pink-500 flex-shrink-0" />
+                  )}
+                  {!isActive && (
+                    <span className="w-1.5 h-1.5 rounded-full bg-neutral-200 flex-shrink-0" />
+                  )}
                   {label}
                 </button>
               </li>
