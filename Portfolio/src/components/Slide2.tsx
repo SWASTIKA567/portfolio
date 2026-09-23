@@ -1,13 +1,22 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import vinyl from "@/assets/pink-vinyl.png";
 const portrait = "/screenshots/postly-1.png";
 import { ABOUT } from "@/data/portfolio";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { Tilt3D } from "@/components/Tilt3D";
-import { GraduationCap, Award } from "lucide-react";
+import { GraduationCap, Award, Disc, ArrowRight } from "lucide-react";
+import { ProjectsScreen } from "@/components/ProjectsScreen";
 
 export function Slide2() {
+  const [isProjectsOpen, setIsProjectsOpen] = useState(false);
   const bgVinylRef = useRef<HTMLImageElement>(null);
+
+  // Listen for open projects event
+  useEffect(() => {
+    const handleOpen = () => setIsProjectsOpen(true);
+    window.addEventListener("open-projects-screen", handleOpen);
+    return () => window.removeEventListener("open-projects-screen", handleOpen);
+  }, []);
 
   // Gentle 3D parallax on background vinyl
   useEffect(() => {
@@ -83,6 +92,18 @@ export function Slide2() {
                   <span className="text-sm font-medium text-neutral-800">{item}</span>
                 </div>
               ))}
+            </div>
+
+            {/* My Projects Button (Mobile) */}
+            <div className="mt-8 flex justify-center">
+              <button
+                onClick={() => setIsProjectsOpen(true)}
+                className="group inline-flex items-center gap-3 px-7 py-3.5 rounded-full bg-neutral-900 hover:bg-black text-white font-bold text-xs tracking-wider uppercase shadow-[0_10px_25px_-5px_rgba(236,72,153,0.35)] active:scale-95 transition-all duration-300 cursor-pointer border border-pink-500/40 hover:border-pink-400"
+              >
+                <Disc className="w-4 h-4 text-pink-400 group-hover:rotate-180 transition-transform duration-700" />
+                <span>My Projects</span>
+                <ArrowRight className="w-3.5 h-3.5 text-pink-400 group-hover:translate-x-1 transition-transform" />
+              </button>
             </div>
           </div>
         </ScrollReveal>
@@ -168,11 +189,26 @@ export function Slide2() {
                     </Tilt3D>
                   ))}
                 </div>
+
+                {/* My Projects Button (Desktop) */}
+                <div className="mt-10 pt-2">
+                  <button
+                    onClick={() => setIsProjectsOpen(true)}
+                    className="group inline-flex items-center gap-3.5 px-8 py-4 rounded-full bg-neutral-900 hover:bg-black text-white font-bold text-sm tracking-wider uppercase shadow-[0_12px_30px_-5px_rgba(236,72,153,0.35)] hover:shadow-[0_18px_36px_-5px_rgba(236,72,153,0.5)] hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer border border-pink-500/40 hover:border-pink-400"
+                  >
+                    <Disc className="w-4 h-4 text-pink-400 group-hover:rotate-180 transition-transform duration-700" />
+                    <span>My Projects</span>
+                    <ArrowRight className="w-4 h-4 text-pink-400 group-hover:translate-x-1.5 transition-transform duration-300" />
+                  </button>
+                </div>
               </section>
             </ScrollReveal>
           </div>
         </main>
       </div>
+
+      {/* Interactive Projects Modal / Screen (Exclusive to button click) */}
+      <ProjectsScreen isOpen={isProjectsOpen} onClose={() => setIsProjectsOpen(false)} />
     </section>
   );
 }
