@@ -2,7 +2,6 @@ import { useEffect, useRef } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import vinyl from "@/assets/pink-vinyl.png";
 import { PROCESS } from "@/data/portfolio";
-import { Slide3 } from "@/components/Slide3";
 import { Slide6 } from "@/components/Slide6";
 import { Slide2 } from "@/components/Slide2";
 import { Slide4 } from "@/components/Slide4";
@@ -134,10 +133,6 @@ function Index() {
         <Slide2 />
       </div>
 
-      {/* ===================== SLIDE 3 — Projects ===================== */}
-      <div id="projects">
-        <Slide3 />
-      </div>
 
       {/* ===================== SLIDE 4 — Journey (Experience & Skills) ===================== */}
       <div id="journey">

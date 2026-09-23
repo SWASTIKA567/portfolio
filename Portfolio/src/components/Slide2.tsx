@@ -4,7 +4,7 @@ const portrait = "/screenshots/postly-1.png";
 import { ABOUT } from "@/data/portfolio";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { Tilt3D } from "@/components/Tilt3D";
-import { GraduationCap, Briefcase, Award } from "lucide-react";
+import { GraduationCap, Award } from "lucide-react";
 
 export function Slide2() {
   const bgVinylRef = useRef<HTMLImageElement>(null);
