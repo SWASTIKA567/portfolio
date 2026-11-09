@@ -1,6 +1,7 @@
 import React from "react";
 import type { ProjectShowcaseData } from "@/data/projectsData";
 import { ArrowUpRight, Trophy } from "lucide-react";
+import { PremiumPhoneFrame } from "@/components/PremiumPhoneFrame";
 
 interface MinimalStackCardProps {
   project: ProjectShowcaseData;
@@ -143,30 +144,18 @@ export function MinimalStackCard({
           </div>
         </div>
 
-        {/* ── Right Column: Clean Screenshot Presentation (md:col-span-5) ── */}
-        <div className="md:col-span-5 h-full flex flex-col items-center justify-center">
-          <div
-            className="w-full h-full max-h-[380px] rounded-2xl p-3 border flex flex-col items-center justify-center shadow-xs transition-transform duration-300 hover:scale-[1.02]"
-            style={{
-              backgroundColor: project.theme.lightBg,
-              borderColor: project.theme.border,
-            }}
-          >
-            {/* Clean Screenshot Frame */}
-            <div className="w-full h-[85%] rounded-xl overflow-hidden shadow-sm border border-neutral-200/80 bg-white">
-              <img
-                src={project.mockupCover}
-                alt={project.name}
-                className="w-full h-full object-cover object-top"
-              />
-            </div>
-
-            {/* Subtle caption */}
-            <div className="mt-2 text-center">
-              <span className="text-[11px] font-medium text-neutral-500 truncate block">
-                {project.screenshots[0]?.title || "App Interface Preview"}
-              </span>
-            </div>
+        {/* ── Right Column: Premium Flagship Smartphone Mockup (md:col-span-5) ── */}
+        <div className="md:col-span-5 h-full flex flex-col items-center justify-center relative">
+          <div className="transition-transform duration-500 hover:scale-105">
+            <PremiumPhoneFrame
+              imageSrc={project.mockupCover}
+              alt={project.name}
+              width={195}
+              height={395}
+              rotate={2}
+              showButtons={true}
+              glare={true}
+            />
           </div>
         </div>
       </div>

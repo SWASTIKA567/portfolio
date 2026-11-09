@@ -26,12 +26,17 @@ export const ABOUT = {
 
 export const PROJECTS: Project[] = [
   {
-    name: "Postly",
-    desc: "Poster e-commerce app with real-time cart and Firebase backend.",
-    tech: "Flutter · Firebase · GetX",
-    highlight: "Built during internship",
-    color: "#111",
-    screenshots: ["/screenshots/postly-1.png", "/screenshots/postly-2.png" , "/screenshots/postly-3.jpeg", "/screenshots/postly-4.jpeg"] as string[],
+    name: "Kechi",
+    desc: "Custom Print-on-Demand Studio & E-Commerce platform with Shadowfax logistics and Razorpay.",
+    tech: "Flutter · Node.js · MongoDB · Razorpay",
+    highlight: "Full-Stack E-Commerce Studio",
+    color: "#9E1B32",
+    screenshots: [
+      "/screenshots/kechi/kechi-home.png",
+      "/screenshots/kechi/kechi-detail.png",
+      "/screenshots/kechi/kechi-cart.png",
+      "/screenshots/kechi/kechi-wishlist.png",
+    ] as string[],
   },
   {
     name: "GraphGuard",

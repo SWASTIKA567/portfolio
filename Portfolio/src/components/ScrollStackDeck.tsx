@@ -100,7 +100,7 @@ export function ScrollStackDeck({ onSelectProject }: ScrollStackDeckProps) {
   const card1Scale = 1 - 0.04 * t2;
   const card1Opacity = t1 < 0.02 ? 0 : 1 - 0.12 * t2;
 
-  // Card 2 (Postly)
+  // Card 2 (Kechi)
   // Starts below viewport, slides in during t2
   const card2SlideIn = (1 - t2) * (viewportHeight * 0.95);
   const card2TranslateY = card2SlideIn;

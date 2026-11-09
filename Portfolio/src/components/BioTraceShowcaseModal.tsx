@@ -14,6 +14,7 @@ import {
   CheckCircle2,
   ArrowDown,
 } from "lucide-react";
+import { PremiumPhoneFrame } from "@/components/PremiumPhoneFrame";
 
 interface BioTraceShowcaseModalProps {
   isOpen: boolean;
@@ -94,7 +95,7 @@ export function BioTraceShowcaseModal({
                 <button
                   onClick={onClose}
                   aria-label="Close Showcase"
-                  className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs font-mono uppercase tracking-wider transition-all border border-white/15 cursor-pointer shadow-xs"
+                  className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs font-mono uppercase tracking-wider transition-all border border-white/15 cursor-pointer shadow-xs"
                 >
                   <span>Close</span>
                   <X className="w-4 h-4 text-[#F6A5A5]" />
@@ -143,13 +144,16 @@ export function BioTraceShowcaseModal({
                 01 DETECT
               </span>
 
-              {/* Center Phone Top Peeking */}
-              <div className="w-[190px] sm:w-[220px] h-[55px] overflow-hidden rounded-t-[28px] border-t-[5px] border-x-[5px] border-[#18191a] shadow-2xl bg-[#18191a] mx-auto relative flex items-start justify-center">
-                <div className="w-full h-[180px] rounded-t-[22px] overflow-hidden bg-emerald-900 relative">
-                  <img
-                    src="/screenshots/biotrace/biotrace-results.png"
+              {/* Center Premium Phone Top Peeking */}
+              <div className="w-[200px] sm:w-[230px] h-[55px] overflow-hidden mx-auto relative flex items-start justify-center">
+                <div className="translate-y-[-10px]">
+                  <PremiumPhoneFrame
+                    imageSrc="/screenshots/biotrace/biotrace-results.png"
                     alt="eDNA Species Portal"
-                    className="w-full h-auto object-cover object-top scale-[1.04]"
+                    width={200}
+                    height={420}
+                    showButtons={false}
+                    glare={false}
                   />
                 </div>
               </div>
@@ -319,7 +323,6 @@ export function BioTraceShowcaseModal({
               ========================================================================= */}
           <section className="bg-[#FCEAEF] px-6 sm:px-14 lg:px-20 py-20 lg:py-28 border-b border-pink-200/50 relative overflow-hidden">
             <div className="max-w-[1140px] mx-auto">
-              {/* Top Sub-tag & Center Analysis Result line */}
               <div className="flex items-center justify-between mb-10 pb-2">
                 <div className="text-xs font-mono font-bold uppercase tracking-[0.25em] text-neutral-500">
                   03 / RESEARCHER WORKSPACE
@@ -333,7 +336,7 @@ export function BioTraceShowcaseModal({
               </div>
 
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-                {/* Left Typography Block (Matches image exactly) */}
+                {/* Left Typography Block */}
                 <div className="lg:col-span-5 space-y-6">
                   <h2 className="text-5xl sm:text-6xl lg:text-[72px] font-black text-[#111111] leading-[0.96] tracking-[-0.035em]">
                     Complex<br />
@@ -347,38 +350,32 @@ export function BioTraceShowcaseModal({
                   </p>
                 </div>
 
-                {/* Right Dual Realistic Smartphone Mockups (Matches image exactly) */}
-                <div className="lg:col-span-7 flex items-center justify-center relative min-h-[520px]">
+                {/* Right Dual Premium Smartphone Mockups */}
+                <div className="lg:col-span-7 flex items-center justify-center relative min-h-[540px]">
                   {/* Back Left Phone (Tilted Left) */}
-                  <div className="w-[220px] sm:w-[250px] rounded-[44px] p-2 bg-[#18191a] shadow-2xl border-[3px] border-neutral-700/60 rotate-[-8deg] absolute left-0 sm:left-6 top-8 z-10 transition-transform hover:scale-105 duration-300">
-                    {/* Punch hole camera */}
-                    <div className="absolute top-3 left-1/2 -translate-x-1/2 w-3.5 h-3.5 rounded-full bg-black z-30 flex items-center justify-center">
-                      <div className="w-1 h-1 rounded-full bg-blue-900/40" />
-                    </div>
-                    {/* Inner Screen */}
-                    <div className="w-full h-[470px] rounded-[36px] overflow-hidden bg-[#1E5C2B] relative">
-                      <img
-                        src="/screenshots/biotrace/biotrace-results.png"
-                        alt="Researcher Workspace"
-                        className="w-full h-full object-cover object-top scale-[1.04]"
-                      />
-                    </div>
+                  <div className="absolute left-0 sm:left-4 top-8 z-10 transition-transform hover:scale-105 duration-300">
+                    <PremiumPhoneFrame
+                      imageSrc="/screenshots/biotrace/biotrace-results.png"
+                      alt="Researcher Workspace"
+                      width={230}
+                      height={470}
+                      rotate={-8}
+                      showButtons={true}
+                      glare={true}
+                    />
                   </div>
 
                   {/* Front Right Phone (Tilted Right, In Focus) */}
-                  <div className="w-[245px] sm:w-[275px] rounded-[48px] p-2.5 bg-[#18191a] shadow-[0_30px_75px_-15px_rgba(0,0,0,0.45)] border-[3.5px] border-neutral-700/80 rotate-[4deg] relative z-20 transition-transform hover:scale-105 duration-300">
-                    {/* Punch hole camera & speaker */}
-                    <div className="absolute top-3.5 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-black z-30 flex items-center justify-center">
-                      <div className="w-1.5 h-1.5 rounded-full bg-blue-900/50" />
-                    </div>
-                    {/* Inner Screen with scale to eliminate black edge artifacts */}
-                    <div className="w-full h-[510px] rounded-[38px] overflow-hidden bg-[#1E5C2B] relative">
-                      <img
-                        src="/screenshots/biotrace/biotrace-results.png"
-                        alt="eDNA Species Portal Details"
-                        className="w-full h-full object-cover object-top scale-[1.04]"
-                      />
-                    </div>
+                  <div className="relative z-20 translate-x-12 sm:translate-x-16 transition-transform hover:scale-105 duration-300">
+                    <PremiumPhoneFrame
+                      imageSrc="/screenshots/biotrace/biotrace-results.png"
+                      alt="eDNA Species Portal Details"
+                      width={255}
+                      height={520}
+                      rotate={4}
+                      showButtons={true}
+                      glare={true}
+                    />
                   </div>
                 </div>
               </div>
@@ -397,35 +394,31 @@ export function BioTraceShowcaseModal({
             />
 
             <div className="max-w-[1100px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
-              {/* Left Phone Visual (Matches Screenshot 2 Exactly) */}
+              {/* Left Phone Visual with Floating Badges */}
               <div className="lg:col-span-6 flex flex-col items-center justify-center relative">
                 {/* Floating Pill Left: BATCH-READY */}
-                <div className="absolute -left-3 sm:left-4 top-28 z-30 px-3.5 py-1.5 rounded-full bg-neutral-900 text-white text-[11px] font-mono font-bold uppercase tracking-wider shadow-xl flex items-center gap-1.5 border border-white/20">
+                <div className="absolute -left-3 sm:left-2 top-28 z-30 px-3.5 py-1.5 rounded-full bg-neutral-900 text-white text-[11px] font-mono font-bold uppercase tracking-wider shadow-xl flex items-center gap-1.5 border border-white/20">
                   <FileSpreadsheet className="w-3.5 h-3.5 text-emerald-400" />
                   <span>BATCH-READY</span>
                 </div>
 
                 {/* Floating Pill Right: PIPELINE CLOUD PROCESSED */}
-                <div className="absolute -right-3 sm:right-4 bottom-24 z-30 px-4 py-2 rounded-full bg-neutral-900 text-white text-[11px] font-mono font-bold uppercase tracking-wider shadow-xl flex items-center gap-2 border border-white/20">
+                <div className="absolute -right-3 sm:right-2 bottom-24 z-30 px-4 py-2 rounded-full bg-neutral-900 text-white text-[11px] font-mono font-bold uppercase tracking-wider shadow-xl flex items-center gap-2 border border-white/20">
                   <Cpu className="w-3.5 h-3.5 text-emerald-400" />
                   <span>PIPELINE CLOUD PROCESSED</span>
                 </div>
 
-                {/* Clean Smartphone Mockup (No black side borders) */}
-                <div className="w-[250px] sm:w-[285px] rounded-[48px] p-2 bg-[#18191a] shadow-2xl border-[3.5px] border-neutral-700/80 relative">
-                  <div className="absolute top-3 left-1/2 -translate-x-1/2 w-3.5 h-3.5 rounded-full bg-black z-30" />
-                  
-                  {/* Inner screen with scale to eliminate black edge artifacts */}
-                  <div className="w-full h-[510px] rounded-[40px] overflow-hidden bg-[#1E5C2B]">
-                    <img
-                      src="/screenshots/biotrace/biotrace-input.png"
-                      alt="Researcher Input Screen"
-                      className="w-full h-full object-cover object-top scale-[1.04]"
-                    />
-                  </div>
-                </div>
+                {/* Premium Phone Mockup */}
+                <PremiumPhoneFrame
+                  imageSrc="/screenshots/biotrace/biotrace-input.png"
+                  alt="Researcher Input Screen"
+                  width={255}
+                  height={520}
+                  showButtons={true}
+                  glare={true}
+                />
 
-                {/* Step Sequence Breadcrumb (from Screenshot 2) */}
+                {/* Step Sequence Breadcrumb */}
                 <div className="mt-6 flex items-center gap-2 text-[10px] sm:text-xs font-mono font-bold text-neutral-600 uppercase tracking-widest bg-white border border-neutral-200/90 px-5 py-2 rounded-full shadow-md">
                   <span>SELECT</span>
                   <span>→</span>
@@ -574,18 +567,16 @@ export function BioTraceShowcaseModal({
                 </div>
               </div>
 
-              {/* Clean Smartphone Mockup for Community */}
+              {/* Premium Phone Mockup for Community */}
               <div className="lg:col-span-6 flex justify-center">
-                <div className="w-[250px] sm:w-[285px] rounded-[48px] p-2 bg-[#18191a] shadow-2xl border-[3.5px] border-neutral-700/80 relative">
-                  <div className="absolute top-3 left-1/2 -translate-x-1/2 w-3.5 h-3.5 rounded-full bg-black z-30" />
-                  <div className="w-full h-[510px] rounded-[40px] overflow-hidden bg-[#1E5C2B]">
-                    <img
-                      src="/screenshots/biotrace/biotrace-community.png"
-                      alt="Open Projects & Community"
-                      className="w-full h-full object-cover object-top scale-[1.04]"
-                    />
-                  </div>
-                </div>
+                <PremiumPhoneFrame
+                  imageSrc="/screenshots/biotrace/biotrace-community.png"
+                  alt="Open Projects & Community"
+                  width={255}
+                  height={520}
+                  showButtons={true}
+                  glare={true}
+                />
               </div>
             </div>
           </section>

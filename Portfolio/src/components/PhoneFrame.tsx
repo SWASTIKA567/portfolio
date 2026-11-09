@@ -9,6 +9,9 @@ type Props = {
   enableTilt?: boolean;
 };
 
+// ✦ CHANGED — exact side-button gradient from the premium preview
+const BTN = "linear-gradient(#b4b9b5, #6f7471)";
+
 export function PhoneFrame({
   project,
   scale = 1,
@@ -25,11 +28,12 @@ export function PhoneFrame({
   const phoneRef = useRef<HTMLDivElement>(null);
   const glareRef = useRef<HTMLDivElement>(null);
 
-  // 3D Tilt states
   const targetTiltX = useRef(0);
   const targetTiltY = useRef(0);
   const currentTiltX = useRef(0);
   const currentTiltY = useRef(0);
+  const targetLift = useRef(0); // ✦ CHANGED — hover lift like the preview
+  const currentLift = useRef(0); // ✦ CHANGED
   const animFrameId = useRef<number | null>(null);
 
   useEffect(() => {
@@ -38,16 +42,19 @@ export function PhoneFrame({
     return () => clearInterval(t);
   }, [total, paused, started, hovering]);
 
-  // Smooth lerp for phone 3D tilt
   useEffect(() => {
     if (!enableTilt) return;
 
     const loop = () => {
       currentTiltX.current += (targetTiltX.current - currentTiltX.current) * 0.1;
       currentTiltY.current += (targetTiltY.current - currentTiltY.current) * 0.1;
+      currentLift.current += (targetLift.current - currentLift.current) * 0.1; // ✦ CHANGED
 
       if (phoneRef.current) {
-        phoneRef.current.style.transform = `scale(${scale}) perspective(1000px) rotateX(${currentTiltX.current.toFixed(
+        // ✦ CHANGED — translateY adds the lift
+        phoneRef.current.style.transform = `scale(${scale}) translateY(${currentLift.current.toFixed(
+          2
+        )}px) perspective(1000px) rotateX(${currentTiltX.current.toFixed(
           2
         )}deg) rotateY(${currentTiltY.current.toFixed(2)}deg)`;
       }
@@ -55,7 +62,8 @@ export function PhoneFrame({
       if (glareRef.current) {
         const gx = 50 + currentTiltY.current * 3;
         const gy = 50 - currentTiltX.current * 3;
-        glareRef.current.style.background = `radial-gradient(circle 240px at ${gx}% ${gy}%, rgba(255,255,255,0.22), transparent 70%)`;
+        // ✦ CHANGED — softer moving glare so the preview look stays clean
+        glareRef.current.style.background = `radial-gradient(circle 240px at ${gx}% ${gy}%, rgba(255,255,255,0.12), transparent 70%)`;
       }
 
       animFrameId.current = requestAnimationFrame(loop);
@@ -70,21 +78,22 @@ export function PhoneFrame({
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!enableTilt || !phoneRef.current) return;
     const rect = phoneRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+    const xRel = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+    const yRel = ((e.clientY - rect.top) / rect.height) * 2 - 1;
+    targetTiltX.current = -yRel * 8; // ✦ CHANGED — slightly gentler tilt
+    targetTiltY.current = xRel * 8;
+  };
 
-    const xRel = (x / rect.width) * 2 - 1;
-    const yRel = (y / rect.height) * 2 - 1;
-
-    // Subtle 3D tilt up to 10 degrees
-    targetTiltX.current = -yRel * 10;
-    targetTiltY.current = xRel * 10;
+  const handleMouseEnter = () => {
+    setHovering(true);
+    targetLift.current = -6; // ✦ CHANGED
   };
 
   const handleMouseLeave = () => {
     setHovering(false);
     targetTiltX.current = 0;
     targetTiltY.current = 0;
+    targetLift.current = 0; // ✦ CHANGED
   };
 
   const onTouchStart = (e: React.TouchEvent) => setTouchStart(e.touches[0].clientX);
@@ -97,7 +106,7 @@ export function PhoneFrame({
   };
 
   const W = 270;
-  const H = 555;
+  const H = 579; // ✦ CHANGED — 9 : 19.3 ratio, same as the preview
   const showSlider = total > 0 && started;
   const displayIndex = total > 0 ? (showSlider ? current : 0) : 0;
 
@@ -106,7 +115,7 @@ export function PhoneFrame({
       onClick={() => {
         if (!started && total > 1) setStarted(true);
       }}
-      onMouseEnter={() => setHovering(true)}
+      onMouseEnter={handleMouseEnter}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{
@@ -123,293 +132,247 @@ export function PhoneFrame({
           height: H,
           transform: `scale(${scale})`,
           transformOrigin: "top left",
-          transition: "box-shadow 0.4s ease",
-          background:
-            "linear-gradient(145deg, #323236 0%, #151518 40%, #0d0d0f 70%, #202025 100%)",
-          borderRadius: 48,
-          padding: 8,
-          boxShadow: hovering
-            ? "0 50px 100px -20px rgba(0,0,0,0.65), 0 25px 50px -15px rgba(236,72,153,0.2), inset 0 0 0 1.5px rgba(255,255,255,0.22), inset 0 2px 2px rgba(255,255,255,0.3), inset 0 -2px 2px rgba(0,0,0,0.6)"
-            : "0 40px 80px -20px rgba(0,0,0,0.55), 0 12px 28px -10px rgba(0,0,0,0.35), inset 0 0 0 1.5px rgba(255,255,255,0.12), inset 0 1.5px 0 rgba(255,255,255,0.2), inset 0 -1.5px 0 rgba(255,255,255,0.04)",
+          // ✦ CHANGED — exact titanium frame from the preview
+          background: "linear-gradient(145deg, #dfe2de, #8d928e 35%, #eceeea 60%, #7b807c)",
+          borderRadius: 46,
+          padding: 10,
+          boxShadow:
+            "0 0 0 1px rgba(0,0,0,.25), inset 0 0 0 1.5px rgba(255,255,255,.65), 0 40px 60px -28px rgba(20,48,31,.45), 0 14px 24px -14px rgba(0,0,0,.3)",
           position: "relative",
           cursor: !started && total > 1 ? "pointer" : "default",
           transformStyle: "preserve-3d",
           willChange: "transform",
         }}
       >
-        {/* Extruded metallic side buttons with 3D highlights */}
-        <div
-          style={{
-            position: "absolute",
-            left: -3,
-            top: 110,
-            width: 3.5,
-            height: 32,
-            background: "linear-gradient(180deg, #555 0%, #222 50%, #444 100%)",
-            borderRadius: "2px 0 0 2px",
-            boxShadow: "-1px 0 2px rgba(0,0,0,0.5)",
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            left: -3,
-            top: 160,
-            width: 3.5,
-            height: 52,
-            background: "linear-gradient(180deg, #555 0%, #222 50%, #444 100%)",
-            borderRadius: "2px 0 0 2px",
-            boxShadow: "-1px 0 2px rgba(0,0,0,0.5)",
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            left: -3,
-            top: 220,
-            width: 3.5,
-            height: 52,
-            background: "linear-gradient(180deg, #555 0%, #222 50%, #444 100%)",
-            borderRadius: "2px 0 0 2px",
-            boxShadow: "-1px 0 2px rgba(0,0,0,0.5)",
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            right: -3,
-            top: 170,
-            width: 3.5,
-            height: 82,
-            background: "linear-gradient(180deg, #555 0%, #222 50%, #444 100%)",
-            borderRadius: "0 2px 2px 0",
-            boxShadow: "1px 0 2px rgba(0,0,0,0.5)",
-          }}
-        />
+        {/* ✦ CHANGED — side buttons, same positions as preview */}
+        {[
+          { side: "left", top: "17%", h: 22 },
+          { side: "left", top: "25%", h: 44 },
+          { side: "left", top: "33%", h: 44 },
+          { side: "right", top: "28%", h: 70 },
+        ].map((b, i) => (
+          <span
+            key={i}
+            style={{
+              position: "absolute",
+              [b.side]: -3,
+              top: b.top,
+              width: 3,
+              height: b.h,
+              background: BTN,
+              borderRadius: 2,
+            }}
+          />
+        ))}
 
-        {/* Outer Bevel Rim */}
+        {/* ✦ CHANGED — black bezel */}
         <div
-          style={{
-            position: "absolute",
-            inset: 3,
-            borderRadius: 44,
-            border: "1px solid rgba(255,255,255,0.08)",
-            pointerEvents: "none",
-          }}
-        />
-
-        {/* Screen */}
-        <div
-          onTouchStart={onTouchStart}
-          onTouchEnd={onTouchEnd}
           style={{
             width: "100%",
             height: "100%",
-            borderRadius: 40,
-            overflow: "hidden",
-            background: project.color,
-            position: "relative",
-            boxShadow: "inset 0 0 0 2px rgba(0,0,0,0.9), inset 0 0 12px rgba(0,0,0,0.4)",
-            transformStyle: "preserve-3d",
+            borderRadius: 37,
+            background: "#050605",
+            padding: 6,
+            boxShadow: "inset 0 0 0 1px #1c1f1d",
           }}
         >
-          {/* Dynamic Island / Notch with camera lens and micro sensor */}
           <div
+            onTouchStart={onTouchStart}
+            onTouchEnd={onTouchEnd}
             style={{
-              position: "absolute",
-              top: 11,
-              left: "50%",
-              transform: "translateX(-50%)",
-              width: 96,
-              height: 26,
-              background: "#000",
-              borderRadius: 16,
-              zIndex: 10,
-              boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.12), 0 2px 6px rgba(0,0,0,0.5)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              padding: "0 10px",
+              width: "100%",
+              height: "100%",
+              borderRadius: 31,
+              overflow: "hidden",
+              background: project.color,
+              position: "relative",
             }}
           >
-            {/* Camera sensor */}
+            {/* ✦ CHANGED — island: 34% wide, 24px tall */}
             <div
               style={{
-                width: 9,
-                height: 9,
-                borderRadius: "50%",
-                background: "radial-gradient(circle, #1a2a40 20%, #080d15 80%)",
-                boxShadow: "inset 0 0 2px rgba(0,180,255,0.4)",
+                position: "absolute",
+                top: 10,
+                left: "50%",
+                transform: "translateX(-50%)",
+                width: "34%",
+                height: 24,
+                background: "#000",
+                borderRadius: 20,
+                zIndex: 10,
               }}
             />
-            {/* Speaker bar */}
+
+            {/* ✦ CHANGED — dark home bar like the preview */}
             <div
               style={{
-                width: 38,
-                height: 3.5,
-                borderRadius: 2,
-                background: "#151515",
+                position: "absolute",
+                bottom: 9,
+                left: "50%",
+                transform: "translateX(-50%)",
+                width: "34%",
+                height: 4,
+                borderRadius: 4,
+                background: "rgba(0,0,0,.65)",
+                zIndex: 9,
+              }}
+            />
+
+            {total === 0 ? (
+              <div
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  color: "rgba(255,255,255,0.95)",
+                  textAlign: "center",
+                  padding: 16,
+                }}
+              >
+                <div style={{ fontSize: 26, fontWeight: 600, letterSpacing: 0.5 }}>{project.name}</div>
+                <div
+                  style={{
+                    marginTop: 10,
+                    fontSize: 11,
+                    opacity: 0.7,
+                    letterSpacing: 0.4,
+                    textTransform: "uppercase",
+                  }}
+                >
+                  {project.tech}
+                </div>
+              </div>
+            ) : (
+              <>
+                <div
+                  style={{
+                    display: "flex",
+                    width: `${total * 100}%`,
+                    height: "100%",
+                    transform: `translateX(-${displayIndex * (100 / total)}%)`,
+                    transition: "transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)",
+                  }}
+                >
+                  {project.screenshots.map((src, i) => (
+                    <div key={i} style={{ width: `${100 / total}%`, height: "100%", flexShrink: 0 }}>
+                      <img
+                        src={src}
+                        alt={`${project.name} screenshot ${i + 1}`}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "cover",
+                          objectPosition: "top", // ✦ CHANGED
+                          display: "block",
+                        }}
+                        draggable={false}
+                      />
+                    </div>
+                  ))}
+                </div>
+
+                {!started && total > 1 && !paused && (
+                  <div
+                    style={{
+                      position: "absolute",
+                      bottom: 50,
+                      left: "50%",
+                      transform: "translateX(-50%)",
+                      background: "rgba(0,0,0,0.65)",
+                      color: "#fff",
+                      fontSize: 11,
+                      padding: "6px 14px",
+                      borderRadius: 999,
+                      backdropFilter: "blur(12px)",
+                      border: "1px solid rgba(255,255,255,0.22)",
+                      zIndex: 8,
+                      letterSpacing: 0.4,
+                    }}
+                  >
+                    tap to play ▶
+                  </div>
+                )}
+
+                {total > 1 && started && (
+                  <div
+                    style={{
+                      position: "absolute",
+                      bottom: 20, // ✦ CHANGED — above the home bar
+                      left: 0,
+                      right: 0,
+                      display: "flex",
+                      justifyContent: "center",
+                      gap: 6,
+                      zIndex: 8,
+                    }}
+                  >
+                    {project.screenshots.map((_, i) => (
+                      <button
+                        key={i}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setCurrent(i);
+                        }}
+                        style={{
+                          width: current === i ? 20 : 6,
+                          height: 6,
+                          borderRadius: 3,
+                          background: current === i ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.45)",
+                          border: "none",
+                          padding: 0,
+                          cursor: "pointer",
+                          transition: "all 0.25s ease",
+                        }}
+                      />
+                    ))}
+                  </div>
+                )}
+              </>
+            )}
+
+            {/* Moving glare (subtle) */}
+            <div
+              ref={glareRef}
+              style={{
+                position: "absolute",
+                inset: 0,
+                pointerEvents: "none",
+                mixBlendMode: "screen",
+                zIndex: 6,
+              }}
+            />
+
+            {/* ✦ CHANGED — static glass glare, identical to preview */}
+            <div
+              style={{
+                position: "absolute",
+                inset: 0,
+                pointerEvents: "none",
+                background: "linear-gradient(115deg, rgba(255,255,255,.2), rgba(255,255,255,0) 38%)",
+                zIndex: 7,
               }}
             />
           </div>
-
-          {total === 0 ? (
-            <div
-              style={{
-                width: "100%",
-                height: "100%",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                color: "rgba(255,255,255,0.95)",
-                textAlign: "center",
-                padding: 16,
-              }}
-            >
-              <div style={{ fontSize: 26, fontWeight: 600, letterSpacing: 0.5 }}>
-                {project.name}
-              </div>
-              <div
-                style={{
-                  marginTop: 10,
-                  fontSize: 11,
-                  opacity: 0.7,
-                  letterSpacing: 0.4,
-                  textTransform: "uppercase",
-                }}
-              >
-                {project.tech}
-              </div>
-            </div>
-          ) : (
-            <>
-              {/* Sliding strip of screenshots */}
-              <div
-                style={{
-                  display: "flex",
-                  width: `${total * 100}%`,
-                  height: "100%",
-                  transform: `translateX(-${displayIndex * (100 / total)}%)`,
-                  transition: "transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)",
-                }}
-              >
-                {project.screenshots.map((src, i) => (
-                  <div
-                    key={i}
-                    style={{
-                      width: `${100 / total}%`,
-                      height: "100%",
-                      flexShrink: 0,
-                    }}
-                  >
-                    <img
-                      src={src}
-                      alt={`${project.name} screenshot ${i + 1}`}
-                      style={{
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "cover",
-                        display: "block",
-                      }}
-                      draggable={false}
-                    />
-                  </div>
-                ))}
-              </div>
-
-              {/* Tap to play prompt if not started */}
-              {!started && total > 1 && !paused && (
-                <div
-                  style={{
-                    position: "absolute",
-                    bottom: 50,
-                    left: "50%",
-                    transform: "translateX(-50%)",
-                    background: "rgba(0,0,0,0.65)",
-                    color: "#fff",
-                    fontSize: 11,
-                    padding: "6px 14px",
-                    borderRadius: 999,
-                    backdropFilter: "blur(12px)",
-                    border: "1px solid rgba(255,255,255,0.22)",
-                    zIndex: 8,
-                    letterSpacing: 0.4,
-                    boxShadow: "0 6px 16px rgba(0,0,0,0.3)",
-                  }}
-                >
-                  tap to play ▶
-                </div>
-              )}
-
-              {/* Dots navigation */}
-              {total > 1 && started && (
-                <div
-                  style={{
-                    position: "absolute",
-                    bottom: 14,
-                    left: 0,
-                    right: 0,
-                    display: "flex",
-                    justifyContent: "center",
-                    gap: 6,
-                    zIndex: 8,
-                  }}
-                >
-                  {project.screenshots.map((_, i) => (
-                    <button
-                      key={i}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setCurrent(i);
-                      }}
-                      style={{
-                        width: current === i ? 20 : 6,
-                        height: 6,
-                        borderRadius: 3,
-                        background:
-                          current === i
-                            ? "rgba(255,255,255,0.95)"
-                            : "rgba(255,255,255,0.4)",
-                        border: "none",
-                        padding: 0,
-                        cursor: "pointer",
-                        transition: "all 0.25s ease",
-                      }}
-                    />
-                  ))}
-                </div>
-              )}
-
-              {/* Dynamic 3D Curved Glass Specular Sheen */}
-              <div
-                ref={glareRef}
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  borderRadius: 40,
-                  pointerEvents: "none",
-                  mixBlendMode: "screen",
-                  zIndex: 6,
-                  transition: "background 0.2s ease",
-                }}
-              />
-
-              {/* Subtle glass edge reflection */}
-              <div
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  borderRadius: 40,
-                  pointerEvents: "none",
-                  background:
-                    "linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.03) 30%, transparent 60%, rgba(255,255,255,0.1) 100%)",
-                  zIndex: 7,
-                }}
-              />
-            </>
-          )}
         </div>
+
+        {/* ✦ CHANGED — floor shadow under the phone */}
+        <div
+          style={{
+            position: "absolute",
+            left: "10%",
+            right: "10%",
+            bottom: -26,
+            height: 18,
+            borderRadius: "50%",
+            background: "radial-gradient(closest-side, rgba(20,48,31,.28), transparent)",
+            filter: "blur(4px)",
+            zIndex: -1,
+            pointerEvents: "none",
+          }}
+        />
       </div>
     </div>
   );

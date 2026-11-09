@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from "react";
 import vinyl from "@/assets/pink-vinyl.png";
-const portrait = "/screenshots/postly-1.png";
+const portrait = "/screenshots/kechi/kechi-home.png";
 import { ABOUT } from "@/data/portfolio";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { Tilt3D } from "@/components/Tilt3D";
