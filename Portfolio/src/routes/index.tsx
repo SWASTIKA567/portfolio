@@ -4,6 +4,7 @@ import vinyl from "@/assets/pink-vinyl.png";
 import { PROCESS } from "@/data/portfolio";
 import { Slide6 } from "@/components/Slide6";
 import { Slide2 } from "@/components/Slide2";
+import { Slide3 } from "@/components/Slide3";
 import { Slide4 } from "@/components/Slide4";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { Navbar } from "@/components/Navbar";
@@ -47,7 +48,7 @@ function Index() {
   }, []);
 
   return (
-    <div className="w-full font-sans relative overflow-x-hidden" style={{ background: "#fff5fa" }}>
+    <div className="w-full font-sans relative overflow-x-clip" style={{ background: "#fff5fa" }}>
       {/* Ambient Mouse Spotlight Light */}
       <div
         ref={spotlightRef}
@@ -133,6 +134,10 @@ function Index() {
         <Slide2 />
       </div>
 
+      {/* ===================== SLIDE 3 — Featured Projects (Scroll Stack Deck) ===================== */}
+      <div id="projects">
+        <Slide3 />
+      </div>
 
       {/* ===================== SLIDE 4 — Journey (Experience & Skills) ===================== */}
       <div id="journey">
