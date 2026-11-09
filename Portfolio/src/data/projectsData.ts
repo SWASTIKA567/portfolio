@@ -57,6 +57,7 @@ export interface ProjectShowcaseData {
   keyFeatures: { title: string; desc: string }[];
   skillsDemonstrated: string[];
   mockupCover: string;
+  logo?: string;
 }
 
 export const SHOWCASE_PROJECTS: ProjectShowcaseData[] = [
@@ -263,111 +264,188 @@ export const SHOWCASE_PROJECTS: ProjectShowcaseData[] = [
       "Cloud Workflow Orchestration",
     ],
   },
-  {
-    id: "graphguard",
+    {
+    id: "circle",
     codeNumber: "02",
-    categoryTag: "CYBERSECURITY // GRAPH THREAT MAPPING",
-    name: "GraphGuard",
-    tagline: "GitHub Repo Vulnerability Scanner & Security Graph",
-    badge: "Top 5 — Devcation Delhi 2026",
-    role: "Full Stack Mobile & Graph Architecture",
-    team: "3 Members",
-    domain: ["Cybersecurity", "Graph Databases", "Cloud Infrastructure", "Flutter"],
+    categoryTag: "CAMPUS UTILITY // STUDENT ECOSYSTEM",
+    name: "Circle",
+    tagline: "Full-Stack Campus Utility & Student Ecosystem Mobile Application",
+    badge: "College Campus Utility Platform",
+    role: "Full-Stack Mobile Developer · Campus ERP Integration",
+    team: "Swastika Singh (Lead Developer)",
+    domain: [
+      "Campus Tech",
+      "Education",
+      "Mobile Development",
+      "ERP Integration",
+      "AI & Chatbots",
+    ],
     tagChips: [
-      "TigerGraph GSQL",
-      "Transitive Vulnerabilities",
-      "FCM Push Alerts",
-      "Automated PR Fixes",
-      "Flutter & Dart",
+      "Flutter & GetX",
+      "Node.js & Express",
+      "Live ERP Attendance",
+      "75% Bunk Calculator",
+      "Cloudinary Notes",
+      "AI Campus Bot",
     ],
     theme: {
-      primary: "#4338CA",
-      primaryDark: "#1E1B4B",
-      accent: "#4F46E5",
+      primary: "#7C3AED",
+      primaryDark: "#4C1D95",
+      accent: "#A78BFA",
       cardBg: "#FFFFFF",
-      lightBg: "#F5F7FF",
-      textDark: "#1E1B4B",
-      badgeBg: "#EEF2FF",
-      badgeText: "#3730A3",
-      border: "#E0E7FF",
+      lightBg: "#F5F3FF",
+      textDark: "#1E1035",
+      badgeBg: "#EDE9FE",
+      badgeText: "#6D28D9",
+      border: "#DDD6FE",
     },
-    mockupCover: "/screenshots/graph-1.jpeg",
+    mockupCover: "/screenshots/circle/circle-attendance.png",
+    logo: "/screenshots/circle/circle-logo.png",
     heroSummary:
-      "A deep dependency-graph analyzer that maps GitHub repo attack surfaces and surfaces critical transitive vulnerabilities in real-time.",
+      "A unified student ecosystem featuring live AKGEC ERP attendance synchronization, a 75% attendance margin/bunk calculator, Cloudinary semester notes repository, and an AI campus assistant.",
     oneLiner:
-      "GraphGuard leverages TigerGraph and Flutter to visualize vulnerability propagation trees and notify developers with push alerts.",
+      "Circle streamlines college life by combining real-time ERP attendance negotiation, academic lecture notes, society discovery, and an AI campus chatbot into one cohesive Flutter app.",
     problem: {
-      title: "Hidden Transitive Vulnerabilities",
+      title: "Fragmented Campus Portals & Academic Friction",
       points: [
-        "Deep dependency trees mask malicious packages and zero-days.",
-        "Static CLI scans fail to show vulnerability propagation paths.",
-        "Developers lack immediate mobile notifications for critical CVE alerts.",
+        "Students juggle outdated, slow college ERP portals to check attendance percentages.",
+        "Academic lecture notes and previous years' question papers (PYQs) remain scattered across Google Drive links and WhatsApp groups.",
+        "Society recruitment announcements and campus event deadlines get lost without a centralized notice board.",
+        "Campus-specific inquiries lack an automated real-time query resolution system.",
       ],
       summary:
-        "Modern applications pull thousands of packages where one vulnerable child dependency compromises the entire repository.",
+        "Disjointed college systems force students to constantly switch across slow web portals and fragmented chat channels.",
     },
     solution: {
-      title: "Real-Time Graph-Based Threat Mapping",
+      title: "Unified Mobile Student Utility & Community Hub",
       points: [
-        "Visualizes dependency trees via TigerGraph graph queries.",
-        "FCM push notifications the moment a newly disclosed CVE affects a tracked repository.",
-        "Automated PR generation with patched dependency recommendations.",
+        "Automated AKGEC ERP API handshake computing live subject-wise attendance and safe-bunk margin calculations.",
+        "Cloudinary-backed semester academic repository organizing lecture notes and PYQs by branch and semester.",
+        "Interactive campus society directory, event notice feeds, and an AI-powered conversational campus assistant (Circle Bot).",
       ],
       summary:
-        "Converts flat CVE tables into intuitive graph relationships.",
+        "Circle centralizes student academics, campus events, and administrative tracking into a responsive Flutter application backed by Node.js and MongoDB.",
     },
     screenshots: [
       {
-        url: "/screenshots/graph-1.jpeg",
-        title: "Vulnerability Scan Dashboard",
-        caption: "Real-time threat level breakdown and package risk hierarchy.",
+        url: "/screenshots/circle/circle-attendance.png",
+        title: "Live ERP Attendance & Margin Tracker",
+        caption: "Direct AKGEC ERP synchronization with 75% threshold and safe-bunk calculator.",
       },
       {
-        url: "/screenshots/graph-2.jpeg",
-        title: "Graph Dependency Inspector",
-        caption: "Deep traversal of nested dependencies and blast radius visualization.",
+        url: "/screenshots/circle/circle-home.png",
+        title: "Campus Hub & Events Feed",
+        caption: "Personalized student greeting, upcoming hackathons, and society event discovery.",
       },
       {
-        url: "/screenshots/graph-3.jpeg",
-        title: "Alerts & Remediation Details",
-        caption: "Instant CVE description, affected versions, and one-click patch review.",
+        url: "/screenshots/circle/circle-notes.png",
+        title: "Semester Notes & PYQ Repository",
+        caption: "Curated academic syllabus units, reference PDFs, and Cloudinary document retrieval.",
       },
     ],
     workflow: [
-      { step: "01", title: "Repo Authorization", desc: "Connect GitHub repositories with webhook listeners." },
-      { step: "02", title: "Dependency Extraction", desc: "Parse package manifests and build transitive dependency trees." },
-      { step: "03", title: "Graph Querying", desc: "Execute TigerGraph GSQL queries against NIST CVE datasets." },
-      { step: "04", title: "Alert & Remediate", desc: "Push mobile notification with patch version suggestion." },
+      {
+        step: "01",
+        title: "ERP Token Negotiation",
+        desc: "Reverse-engineered AKGEC ERP handshake securely authenticating student sessions with AES encryption.",
+      },
+      {
+        step: "02",
+        title: "Live Attendance & Margin Calc",
+        desc: "Computes subject-wise percentage and tells students exactly how many classes they can safely skip.",
+      },
+      {
+        step: "03",
+        title: "Semester Notes Repository",
+        desc: "Fast Cloudinary CDN retrieval of lecture notes, study PDFs, and previous years' question papers.",
+      },
+      {
+        step: "04",
+        title: "Campus Societies & Events",
+        desc: "Live notice boards for technical clubs, cultural events, hackathons, and recruitment registrations.",
+      },
+      {
+        step: "05",
+        title: "AI Campus Assistant (Circle Bot)",
+        desc: "Contextual ML chatbot answering department FAQs, syllabus queries, and procedural college rules.",
+      },
     ],
     architecture: {
       layers: [
-        { name: "Flutter Client", desc: "Interactive graph exploration and alert manager." },
-        { name: "Backend API", desc: "Webhooks listener and dependency extractor." },
-        { name: "TigerGraph DB", desc: "High-performance graph query engine for CVE paths." },
-        { name: "FCM Push Service", desc: "Real-time mobile delivery of high-severity CVEs." },
+        {
+          name: "Mobile Client (Flutter & GetX)",
+          desc: "Reactive state management, adaptive Material UI, shared_preferences offline caching, and custom typography.",
+        },
+        {
+          name: "Backend REST API (Node.js & Express)",
+          desc: "JWT authentication, bcryptjs password hashing, AES credential encryption, and role-based permissions.",
+        },
+        {
+          name: "Database (MongoDB & Mongoose)",
+          desc: "Schemas for Users, Academic Notes, Societies, Events, and role-based access tiers.",
+        },
+        {
+          name: "Cloud Media & ERP Integration",
+          desc: "Cloudinary multi-part document streaming via multer; reverse-engineered college ERP token negotiation.",
+        },
+        {
+          name: "AI Query Service",
+          desc: "Microservice proxy to an ML question-answering model for campus queries and contextual fact retrieval.",
+        },
       ],
-      summary: "Scalable graph analytics combined with cross-platform mobile interface.",
+      summary:
+        "High-performance client-server architecture unifying real-time college ERP token scraping, cloud document delivery, and AI microservices.",
     },
     aiMlLayer: {
-      title: "Vulnerability Prioritization",
+      title: "Campus Assistant & Analytics",
       capabilities: [
-        { name: "Exploit Probability Scoring", desc: "Predicts active exploit probability using open threat intelligence." },
-        { name: "Blast Radius Calculation", desc: "Quantifies downstream impact if a single library is compromised." },
+        {
+          name: "Circle Bot (Campus Q&A Engine)",
+          desc: "Conversational bot trained on department rules, syllabus breakdowns, and administrative procedures.",
+        },
+        {
+          name: "Predictive Bunk & Margin Calculator",
+          desc: "Calculates the exact margin of classes students can miss while staying strictly compliant with university mandates.",
+        },
       ],
     },
     keyFeatures: [
-      { title: "TigerGraph Query Engine", desc: "Sub-second traversal of multi-layer dependency graphs." },
-      { title: "Push Notification Alerts", desc: "Instant Firebase notifications for critical CVE disclosures." },
-      { title: "Automated Fix PRs", desc: "Direct GitHub API integration for one-tap remediation." },
+      {
+        title: "Live ERP Attendance & Safe-Bunk Calculator",
+        desc: "Direct ERP API sync computing subject-wise records and margin classes above/below 75%.",
+      },
+      {
+        title: "Academic Resource Repository (Notes & PYQs)",
+        desc: "Semester, branch, and subject categorized lecture PDFs powered by Cloudinary CDN.",
+      },
+      {
+        title: "Campus Societies & Clubs Directory",
+        desc: "Discovery portal for college societies with recruitment schedules and coordinator announcements.",
+      },
+      {
+        title: "College Events & Notice Board",
+        desc: "Centralized feed of college fests, technical hackathons, workshops, and registration links.",
+      },
+      {
+        title: "AI-Powered Circle Bot",
+        desc: "Conversational assistant for campus questions, department FAQs, and academic procedures.",
+      },
+      {
+        title: "Role-Based Access Control & Admin Suite",
+        desc: "Tiered access for Students, Society Coordinators, and Admins to approve uploads and manage pages.",
+      },
     ],
     skillsDemonstrated: [
-      "Flutter & Dart",
-      "TigerGraph & GSQL",
-      "Firebase Cloud Messaging",
-      "GitHub REST & GraphQL API",
-      "Cybersecurity CVE Modeling",
+      "Flutter & Dart (GetX Architecture)",
+      "Node.js & Express.js REST APIs",
+      "MongoDB & Mongoose Schemas",
+      "Reverse-Engineered ERP API Handshake",
+      "AES Credential Encryption",
+      "Cloudinary Document Pipeline",
+      "AI Chatbot Microservice Integration",
     ],
   },
+
   {
     id: "kechi",
     codeNumber: "03",
@@ -404,8 +482,9 @@ export const SHOWCASE_PROJECTS: ProjectShowcaseData[] = [
       border: "#FAD8CE",
     },
     mockupCover: "/screenshots/kechi/kechi-home.png",
+    logo: "/screenshots/kechi/kechi-logo.jpg",
     heroSummary:
-      "A complete full-stack print-on-demand e-commerce ecosystem allowing users to design, order, and track custom wall art—integrating dynamic paper sizing, automated Cloudinary image processing, Razorpay payments, and Shadowfax 3PL logistics with automated AWB generation.",
+      "Turn your digital posters into gallery-grade prints with reactive format pricing (A5, A4, A3), intelligent NCR regional delivery validation, and real-time Shadowfax courier tracking.",
     oneLiner:
       "Kechi transforms digital memories and curated posters into gallery-grade prints with real-time reactive pricing, NCR regional validation, and 7-stage order lifecycle tracking.",
     problem: {
@@ -565,5 +644,111 @@ export const SHOWCASE_PROJECTS: ProjectShowcaseData[] = [
       "Firebase Auth & Custom FCM Push Channels",
       "E-Commerce Order State Machines",
     ],
-  },,
+  },
+  {
+    id: "graphguard",
+    codeNumber: "04",
+    categoryTag: "CYBERSECURITY // GRAPH THREAT MAPPING",
+    name: "GraphGuard",
+    tagline: "GitHub Repo Vulnerability Scanner & Security Graph",
+    badge: "Top 5 — Devcation Delhi 2026",
+    role: "Full Stack Mobile & Graph Architecture",
+    team: "3 Members",
+    domain: ["Cybersecurity", "Graph Databases", "Cloud Infrastructure", "Flutter"],
+    tagChips: [
+      "TigerGraph GSQL",
+      "Transitive Vulnerabilities",
+      "FCM Push Alerts",
+      "Automated PR Fixes",
+      "Flutter & Dart",
+    ],
+    theme: {
+      primary: "#4338CA",
+      primaryDark: "#1E1B4B",
+      accent: "#4F46E5",
+      cardBg: "#FFFFFF",
+      lightBg: "#F5F7FF",
+      textDark: "#1E1B4B",
+      badgeBg: "#EEF2FF",
+      badgeText: "#3730A3",
+      border: "#E0E7FF",
+    },
+    mockupCover: "/screenshots/graph-1.jpeg",
+    heroSummary:
+      "A deep dependency-graph analyzer that maps GitHub repo attack surfaces and surfaces critical transitive vulnerabilities in real-time.",
+    oneLiner:
+      "GraphGuard leverages TigerGraph and Flutter to visualize vulnerability propagation trees and notify developers with push alerts.",
+    problem: {
+      title: "Hidden Transitive Vulnerabilities",
+      points: [
+        "Deep dependency trees mask malicious packages and zero-days.",
+        "Static CLI scans fail to show vulnerability propagation paths.",
+        "Developers lack immediate mobile notifications for critical CVE alerts.",
+      ],
+      summary:
+        "Modern applications pull thousands of packages where one vulnerable child dependency compromises the entire repository.",
+    },
+    solution: {
+      title: "Real-Time Graph-Based Threat Mapping",
+      points: [
+        "Visualizes dependency trees via TigerGraph graph queries.",
+        "FCM push notifications the moment a newly disclosed CVE affects a tracked repository.",
+        "Automated PR generation with patched dependency recommendations.",
+      ],
+      summary:
+        "Converts flat CVE tables into intuitive graph relationships.",
+    },
+    screenshots: [
+      {
+        url: "/screenshots/graph-1.jpeg",
+        title: "Vulnerability Scan Dashboard",
+        caption: "Real-time threat level breakdown and package risk hierarchy.",
+      },
+      {
+        url: "/screenshots/graph-2.jpeg",
+        title: "Graph Dependency Inspector",
+        caption: "Deep traversal of nested dependencies and blast radius visualization.",
+      },
+      {
+        url: "/screenshots/graph-3.jpeg",
+        title: "Alerts & Remediation Details",
+        caption: "Instant CVE description, affected versions, and one-click patch review.",
+      },
+    ],
+    workflow: [
+      { step: "01", title: "Repo Authorization", desc: "Connect GitHub repositories with webhook listeners." },
+      { step: "02", title: "Dependency Extraction", desc: "Parse package manifests and build transitive dependency trees." },
+      { step: "03", title: "Graph Querying", desc: "Execute TigerGraph GSQL queries against NIST CVE datasets." },
+      { step: "04", title: "Alert & Remediate", desc: "Push mobile notification with patch version suggestion." },
+    ],
+    architecture: {
+      layers: [
+        { name: "Flutter Client", desc: "Interactive graph exploration and alert manager." },
+        { name: "Backend API", desc: "Webhooks listener and dependency extractor." },
+        { name: "TigerGraph DB", desc: "High-performance graph query engine for CVE paths." },
+        { name: "FCM Push Service", desc: "Real-time mobile delivery of high-severity CVEs." },
+      ],
+      summary: "Scalable graph analytics combined with cross-platform mobile interface.",
+    },
+    aiMlLayer: {
+      title: "Vulnerability Prioritization",
+      capabilities: [
+        { name: "Exploit Probability Scoring", desc: "Predicts active exploit probability using open threat intelligence." },
+        { name: "Blast Radius Calculation", desc: "Quantifies downstream impact if a single library is compromised." },
+      ],
+    },
+    keyFeatures: [
+      { title: "TigerGraph Query Engine", desc: "Sub-second traversal of multi-layer dependency graphs." },
+      { title: "Push Notification Alerts", desc: "Instant Firebase notifications for critical CVE disclosures." },
+      { title: "Automated Fix PRs", desc: "Direct GitHub API integration for one-tap remediation." },
+    ],
+    skillsDemonstrated: [
+      "Flutter & Dart",
+      "TigerGraph & GSQL",
+      "Firebase Cloud Messaging",
+      "GitHub REST & GraphQL API",
+      "Cybersecurity CVE Modeling",
+    ],
+  },
+,
 ];

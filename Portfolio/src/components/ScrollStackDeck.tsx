@@ -21,7 +21,7 @@ export function ScrollStackDeck({ onSelectProject }: ScrollStackDeckProps) {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [viewportHeight, setViewportHeight] = useState(900);
 
-  const total = SHOWCASE_PROJECTS.length; // 3 projects
+  const total = SHOWCASE_PROJECTS.length; // 4 projects
 
   // Track viewport height
   useEffect(() => {
@@ -67,55 +67,54 @@ export function ScrollStackDeck({ onSelectProject }: ScrollStackDeckProps) {
   }, []);
 
   /**
-   * Scroll Progress Phases (0.00 to 1.00):
-   * Phase 1 (0.00 - 0.15): Card 0 resting and in full view.
-   * Phase 2 (0.15 - 0.50): Card 1 slides up from bottom and settles on top of Card 0.
-   * Phase 3 (0.50 - 0.65): Card 1 resting on top of Card 0.
-   * Phase 4 (0.65 - 0.95): Card 2 slides up from bottom and settles on top of Card 1.
-   * Phase 5 (0.95 - 1.00): Card 2 resting on top.
-   *
-   * On reverse scroll (scroll up):
-   * Moves backwards through these exact math phases, smoothly unstacking cards down!
+   * Scroll Progress Phases for 4 Cards (0.00 to 1.00):
+   * Phase 1: Card 0 resting.
+   * Phase 2 (0.10 - 0.35): Card 1 (Circle) slides up and settles on Card 0.
+   * Phase 3 (0.40 - 0.65): Card 2 (Kechi) slides up and settles on Card 1.
+   * Phase 4 (0.70 - 0.95): Card 3 (GraphGuard) slides up and settles on Card 2.
    */
 
-  // Transition 1 (Card 1 onto Card 0): 0.15 -> 0.50
-  const t1 = smoothStep((scrollProgress - 0.15) / 0.35);
+  // Transition 1 (Card 1 Circle onto Card 0 BioTrace): 0.10 -> 0.35
+  const t1 = smoothStep((scrollProgress - 0.10) / 0.25);
 
-  // Transition 2 (Card 2 onto Card 1): 0.65 -> 0.95
-  const t2 = smoothStep((scrollProgress - 0.65) / 0.30);
+  // Transition 2 (Card 2 Kechi onto Card 1 Circle): 0.40 -> 0.65
+  const t2 = smoothStep((scrollProgress - 0.40) / 0.25);
 
-  // Card 0 (Base / BioTrace)
-  // When Card 1 arrives (t1), Card 0 shifts to translateY: -16px, scale: 0.96
-  // When Card 2 arrives (t2), Card 0 shifts to translateY: -32px, scale: 0.92
-  const card0TranslateY = -16 * t1 - 16 * t2;
-  const card0Scale = 1 - 0.04 * t1 - 0.04 * t2;
-  const card0Opacity = 1 - 0.12 * t1 - 0.12 * t2;
+  // Transition 3 (Card 3 GraphGuard onto Card 2 Kechi): 0.70 -> 0.95
+  const t3 = smoothStep((scrollProgress - 0.70) / 0.25);
 
-  // Card 1 (GraphGuard)
-  // Starts below viewport (translateY = viewportHeight * 0.9)
-  // When t1 goes from 0 -> 1, translateY moves to 0
-  // When Card 2 arrives (t2), Card 1 shifts to translateY: -16px, scale: 0.96
+  // Card 0 (BioTrace)
+  const card0TranslateY = -16 * t1 - 16 * t2 - 16 * t3;
+  const card0Scale = 1 - 0.04 * t1 - 0.04 * t2 - 0.04 * t3;
+  const card0Opacity = 1 - 0.12 * t1 - 0.12 * t2 - 0.12 * t3;
+
+  // Card 1 (Circle)
   const card1SlideIn = (1 - t1) * (viewportHeight * 0.95);
-  const card1TranslateY = card1SlideIn - 16 * t2;
-  const card1Scale = 1 - 0.04 * t2;
-  const card1Opacity = t1 < 0.02 ? 0 : 1 - 0.12 * t2;
+  const card1TranslateY = card1SlideIn - 16 * t2 - 16 * t3;
+  const card1Scale = 1 - 0.04 * t2 - 0.04 * t3;
+  const card1Opacity = t1 < 0.02 ? 0 : 1 - 0.12 * t2 - 0.12 * t3;
 
   // Card 2 (Kechi)
-  // Starts below viewport, slides in during t2
   const card2SlideIn = (1 - t2) * (viewportHeight * 0.95);
-  const card2TranslateY = card2SlideIn;
-  const card2Scale = 1;
-  const card2Opacity = t2 < 0.02 ? 0 : 1;
+  const card2TranslateY = card2SlideIn - 16 * t3;
+  const card2Scale = 1 - 0.04 * t3;
+  const card2Opacity = t2 < 0.02 ? 0 : 1 - 0.12 * t3;
 
-  // Determine which card is currently active on top
-  const activeIndex = t2 >= 0.5 ? 2 : t1 >= 0.5 ? 1 : 0;
+  // Card 3 (GraphGuard)
+  const card3SlideIn = (1 - t3) * (viewportHeight * 0.95);
+  const card3TranslateY = card3SlideIn;
+  const card3Scale = 1;
+  const card3Opacity = t3 < 0.02 ? 0 : 1;
+
+  // Determine active top card index
+  const activeIndex = t3 >= 0.5 ? 3 : t2 >= 0.5 ? 2 : t1 >= 0.5 ? 1 : 0;
 
   return (
     <div
       ref={containerRef}
-      // 300vh provides a comfortable, smooth scroll distance
+      // 400vh provides a comfortable, smooth scroll distance for 4 stacked projects
       className="relative w-full"
-      style={{ height: "300vh" }}
+      style={{ height: "400vh" }}
     >
       {/* ── Sticky Viewport (100vh pinned) ── */}
       <div className="sticky top-0 h-screen w-full flex flex-col justify-between py-8 px-4 sm:px-8 md:px-14 overflow-hidden bg-[#FAF7F9]">
@@ -165,7 +164,7 @@ export function ScrollStackDeck({ onSelectProject }: ScrollStackDeckProps) {
         </div>
 
         {/* ── Center Stage: Stacked Cards Container ── */}
-        <div className="relative z-20 w-full max-w-[1080px] mx-auto h-[520px] md:h-[480px] my-auto">
+        <div className="relative z-20 w-full max-w-[1080px] mx-auto h-[540px] md:h-[490px] my-auto">
           {/* Card 0 (BioTrace) */}
           <MinimalStackCard
             project={SHOWCASE_PROJECTS[0]}
@@ -179,7 +178,7 @@ export function ScrollStackDeck({ onSelectProject }: ScrollStackDeckProps) {
             onClick={() => onSelectProject?.(SHOWCASE_PROJECTS[0])}
           />
 
-          {/* Card 1 (GraphGuard) */}
+          {/* Card 1 (Circle) */}
           <MinimalStackCard
             project={SHOWCASE_PROJECTS[1]}
             index={1}
@@ -192,7 +191,7 @@ export function ScrollStackDeck({ onSelectProject }: ScrollStackDeckProps) {
             onClick={() => onSelectProject?.(SHOWCASE_PROJECTS[1])}
           />
 
-          {/* Card 2 (Postly) */}
+          {/* Card 2 (Kechi) */}
           <MinimalStackCard
             project={SHOWCASE_PROJECTS[2]}
             index={2}
@@ -204,12 +203,25 @@ export function ScrollStackDeck({ onSelectProject }: ScrollStackDeckProps) {
             isTop={activeIndex === 2}
             onClick={() => onSelectProject?.(SHOWCASE_PROJECTS[2])}
           />
+
+          {/* Card 3 (GraphGuard) */}
+          <MinimalStackCard
+            project={SHOWCASE_PROJECTS[3]}
+            index={3}
+            total={total}
+            translateY={card3TranslateY}
+            scale={card3Scale}
+            opacity={card3Opacity}
+            zIndex={40}
+            isTop={activeIndex === 3}
+            onClick={() => onSelectProject?.(SHOWCASE_PROJECTS[3])}
+          />
         </div>
 
         {/* ── Bottom Status Bar ── */}
         <div className="relative z-40 w-full max-w-[1080px] mx-auto flex items-center justify-between text-xs text-neutral-500 pt-2 border-t border-neutral-200/50">
           <span className="font-mono text-[11px]">
-            Active: <strong className="text-neutral-900">{SHOWCASE_PROJECTS[activeIndex].name}</strong> ({activeIndex + 1}/{total})
+            Active: <strong className="text-neutral-900">{SHOWCASE_PROJECTS[activeIndex]?.name || ""}</strong> ({activeIndex + 1}/{total})
           </span>
           <span className="font-mono text-[11px] hidden sm:inline">
             Scroll down for next stack · Scroll up to peel back

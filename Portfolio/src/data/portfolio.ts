@@ -26,6 +26,19 @@ export const ABOUT = {
 
 export const PROJECTS: Project[] = [
   {
+    name: "Circle",
+    desc: "Full-stack campus utility & student ecosystem with live ERP attendance and Cloudinary notes.",
+    tech: "Flutter · Node.js · MongoDB · ERP API",
+    highlight: "Campus Student Platform",
+    color: "#7C3AED",
+    screenshots: [
+      "/screenshots/circle/circle-attendance.png",
+      "/screenshots/circle/circle-home.png",
+      "/screenshots/circle/circle-notes.png",
+    ] as string[],
+  },
+
+  {
     name: "Kechi",
     desc: "Custom Print-on-Demand Studio & E-Commerce platform with Shadowfax logistics and Razorpay.",
     tech: "Flutter · Node.js · MongoDB · Razorpay",

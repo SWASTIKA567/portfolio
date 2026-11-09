@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ScrollStackDeck } from "@/components/ScrollStackDeck";
 import { BioTraceShowcaseModal } from "@/components/BioTraceShowcaseModal";
+import { CircleShowcaseModal } from "@/components/CircleShowcaseModal";
 import { KechiShowcaseModal } from "@/components/KechiShowcaseModal";
 import type { ProjectShowcaseData } from "@/data/projectsData";
 
@@ -24,6 +25,12 @@ export function Slide3({ onOpenShowcase }: Slide3Props) {
       {/* BioTrace Dedicated Showcase Modal */}
       <BioTraceShowcaseModal
         isOpen={selectedProject?.id === "biotrace"}
+        onClose={() => setSelectedProject(null)}
+      />
+
+      {/* Circle Dedicated Showcase Modal */}
+      <CircleShowcaseModal
+        isOpen={selectedProject?.id === "circle"}
         onClose={() => setSelectedProject(null)}
       />
 

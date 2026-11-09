@@ -8,13 +8,13 @@ type Props = {
 
 // 7 Phone Screens list (User can add/change images later)
 const PHONE_SCREENS = [
-  { id: 1, image: "/screenshots/kechi/kechi-home.png", alt: "Screen 1" },
-  { id: 2, image: "/screenshots/graph-1.jpeg", alt: "Screen 2" },
-  { id: 3, image: "/screenshots/kechi/kechi-detail.png", alt: "Screen 3" },
-  { id: 4, image: "/screenshots/gamezone-1.jpeg", alt: "Screen 4" },
-  { id: 5, image: "/screenshots/graph-2.jpeg", alt: "Screen 5" },
-  { id: 6, image: "/screenshots/kechi/kechi-cart.png", alt: "Screen 6" },
-  { id: 7, image: "/screenshots/gamezone-2.jpeg", alt: "Screen 7" },
+  { id: 1, image: "/screenshots/kechi/kechi-home.png", alt: "Kechi Home" },
+  { id: 2, image: "/screenshots/circle/circle-attendance.png", alt: "Circle Attendance" },
+  { id: 3, image: "/screenshots/kechi/kechi-detail.png", alt: "Kechi Detail" },
+  { id: 4, image: "/screenshots/circle/circle-home.png", alt: "Circle Home" },
+  { id: 5, image: "/screenshots/graph-1.jpeg", alt: "GraphGuard Threat Scan" },
+  { id: 6, image: "/screenshots/circle/circle-notes.png", alt: "Circle Notes" },
+  { id: 7, image: "/screenshots/kechi/kechi-cart.png", alt: "Kechi Cart" },
 ];
 
 export function ProjectsScreen({ isOpen, onClose }: Props) {
