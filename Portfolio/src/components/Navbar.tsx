@@ -63,14 +63,14 @@ export function Navbar() {
         </button>
 
         {/* Nav links (vertical) */}
-        <ul className="flex flex-col items-center gap-8">
+        <ul className="flex flex-col items-center gap-10 lg:gap-11 my-auto">
           {navItems.map(({ label, id }) => {
             const isActive = active === id;
             return (
               <li key={id} className="relative group">
                 <button
                   onClick={() => scrollTo(id)}
-                  className={`block whitespace-nowrap text-[10px] font-bold uppercase tracking-[0.25em] transition-all duration-300 cursor-pointer ${
+                  className={`block whitespace-nowrap text-[11px] font-bold uppercase tracking-[0.25em] transition-all duration-300 cursor-pointer ${
                     isActive
                       ? "text-pink-600 scale-110"
                       : "text-neutral-500 hover:text-pink-500 hover:scale-105"
@@ -82,7 +82,7 @@ export function Navbar() {
                 </button>
                 {/* Active indicator dot with glow */}
                 {isActive && (
-                  <span className="block w-1.5 h-1.5 rounded-full bg-pink-500 mx-auto mt-1.5 shadow-sm shadow-pink-500/80 animate-pulse" />
+                  <span className="block w-1.5 h-1.5 rounded-full bg-pink-500 mx-auto mt-2 shadow-sm shadow-pink-500/80 animate-pulse" />
                 )}
               </li>
             );

@@ -50,9 +50,7 @@ export default function BioTraceCard({
         {/* ✦ CHANGED — left column */}
         <div className="flex flex-col">
           <div className="flex items-center justify-between text-[12px] text-[#7a8a80]">
-            <span className="rounded-full border border-[#e1e8e3] px-3 py-1 font-medium text-[#14301f]">
-              Build with Bharat · Hackathon
-            </span>
+           
             <span className="tabular-nums tracking-widest">
               {index} / {total}
             </span>

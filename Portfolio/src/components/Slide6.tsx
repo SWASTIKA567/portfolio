@@ -234,7 +234,7 @@ export function Slide6() {
                       maxLength={80}
                       value={form.name}
                       onChange={(e) => setForm({ ...form, name: e.target.value })}
-                      placeholder="Jane Doe"
+                      placeholder="Swastika Singh"
                       className="w-full bg-neutral-50/80 border border-neutral-200/80 focus:border-pink-400 rounded-xl px-4 py-3 text-sm text-neutral-900 outline-none transition-all duration-200 focus:bg-white focus:ring-3 focus:ring-pink-400/20"
                       required
                     />

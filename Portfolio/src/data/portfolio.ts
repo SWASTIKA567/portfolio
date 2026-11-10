@@ -108,9 +108,9 @@ export const ACHIEVEMENTS = [
 ];
 
 export const CONTACT = {
-  email: "swastika.singh@example.com",
-  linkedin: "linkedin.com/in/swastika-singh",
-  github: "github.com/swastika-singh",
+  email: "swastikasingh1055@gmail.com",
+  linkedin: "linkedin.com/in/swastika",
+  github: "github.com/swastika567",
   closing:
     "Passionate about creating intuitive and impactful mobile applications that solve real-world problems.",
 };

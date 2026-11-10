@@ -13,7 +13,6 @@ import {
   FileSpreadsheet,
   CheckCircle2,
   ArrowDown,
-  Activity,
 } from "lucide-react";
 import { PremiumPhoneFrame } from "@/components/PremiumPhoneFrame";
 
@@ -88,7 +87,7 @@ export function BioTraceShowcaseModal({
                 />
                 <span className="text-lg sm:text-xl font-bold tracking-tight text-white flex items-center gap-2">
                   BioTrace
-              
+
                 </span>
               </div>
 
@@ -139,59 +138,6 @@ export function BioTraceShowcaseModal({
                   </p>
                 </div>
               </div>
-            </div>
-
-            {/* Bottom Hero Peeking Mockup (BioTrace Results Screen) */}
-            <div className="relative mt-8 sm:mt-12 flex justify-center w-full">
-              <div className="relative w-full max-w-[280px] sm:max-w-[310px] -mb-32 sm:-mb-40 z-20">
-                <PremiumPhoneFrame
-                  imageSrc="/screenshots/biotrace/biotrace-results.png"
-                  alt="BioTrace eDNA Results Screen"
-                  variant="silver"
-                  width={275}
-                  height={560}
-                  className="shadow-2xl shadow-black/90 mx-auto"
-                />
-
-                {/* Left Floating Badge: eDNA Analysis */}
-                <div className="absolute -left-6 sm:-left-12 top-28 bg-[#0D1A10]/95 border border-emerald-500/25 backdrop-blur-xl px-3.5 py-2 rounded-2xl shadow-xl hidden sm:flex items-center gap-2.5 text-xs text-white">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                  <span className="font-mono uppercase font-bold tracking-wider text-[11px] text-emerald-200">
-                    eDNA REAL-TIME PIPELINE
-                  </span>
-                </div>
-
-                {/* Right Floating Badge: Taxonomic Match */}
-                <div className="absolute -right-6 sm:-right-14 bottom-44 bg-[#0D1A10]/95 border border-emerald-500/25 backdrop-blur-xl px-3.5 py-2 rounded-2xl shadow-xl hidden sm:flex items-center gap-2.5 text-xs text-white">
-                  <Dna className="w-3.5 h-3.5 text-emerald-400" />
-                  <span className="font-mono uppercase font-bold tracking-wider text-[11px] text-emerald-200">
-                    TAXONOMIC CONFIDENCE 98.4%
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* Bottom Process Strip */}
-            <div className="pt-36 sm:pt-44 flex flex-wrap items-center justify-between text-xs font-mono font-bold tracking-widest text-neutral-400 border-t border-white/10 gap-4 relative z-10">
-              <span className="flex items-center gap-2 text-emerald-300">
-                <Dna className="w-4 h-4 text-emerald-400" /> INGEST eDNA
-              </span>
-              <span className="hidden sm:inline text-neutral-600">→</span>
-              <span className="flex items-center gap-2 text-emerald-300">
-                <Cpu className="w-4 h-4 text-emerald-400" /> BLAST PIPELINE
-              </span>
-              <span className="hidden sm:inline text-neutral-600">→</span>
-              <span className="flex items-center gap-2 text-emerald-300">
-                <FileSpreadsheet className="w-4 h-4 text-emerald-400" /> TAXONOMIC MATCH
-              </span>
-              <span className="hidden sm:inline text-neutral-600">→</span>
-              <span className="flex items-center gap-2 text-emerald-300">
-                <Activity className="w-4 h-4 text-emerald-400" /> SPECIES PROFILE
-              </span>
-              <span className="hidden sm:inline text-neutral-600">→</span>
-              <span className="flex items-center gap-2 text-emerald-300">
-                <Share2 className="w-4 h-4 text-emerald-400" /> FIELD REPORT
-              </span>
             </div>
           </section>
 
@@ -386,8 +332,8 @@ export function BioTraceShowcaseModal({
                   {/* Back Left Phone (Tilted Left) */}
                   <div className="absolute left-0 sm:left-4 top-8 z-10 transition-transform hover:scale-105 duration-300">
                     <PremiumPhoneFrame
-                      imageSrc="/screenshots/biotrace/biotrace-project-detail.png"
-                      alt="BioTrace Species Detail View"
+                      imageSrc="/screenshots/biotrace/biotrace-results.png"
+                      alt="Researcher Workspace"
                       width={230}
                       height={470}
                       rotate={-8}
