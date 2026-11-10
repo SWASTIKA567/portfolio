@@ -87,7 +87,7 @@ export default function BioTraceCard({
 
           <div className="mt-auto flex items-center justify-between pt-10">
             <span className="bt-title inline-flex items-center gap-1.5 border-b border-[#0f1a14] pb-1 text-[14px] font-semibold text-[#0f1a14]">
-              Explore case study
+              Explore
               <ArrowUpRight className="h-4 w-4 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </span>
             <span className="hidden text-[12px] text-[#9aa89f] sm:block">Tap card to view details</span>
