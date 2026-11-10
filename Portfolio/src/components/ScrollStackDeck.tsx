@@ -4,7 +4,6 @@ import {
   type ProjectShowcaseData,
 } from "@/data/projectsData";
 import { MinimalStackCard } from "@/components/MinimalStackCard";
-import { ArrowDown } from "lucide-react";
 
 interface ScrollStackDeckProps {
   onSelectProject?: (project: ProjectShowcaseData) => void;
@@ -138,28 +137,21 @@ export function ScrollStackDeck({ onSelectProject }: ScrollStackDeckProps) {
             </h2>
           </div>
 
-          {/* Interactive Stack Indicators & Scroll Hint */}
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2">
-              {SHOWCASE_PROJECTS.map((proj, i) => (
-                <div
-                  key={proj.id}
-                  className={`transition-all duration-300 rounded-full ${
-                    i === activeIndex
-                      ? "w-7 h-2 bg-neutral-900"
-                      : i < activeIndex
-                      ? "w-2 h-2 bg-neutral-400"
-                      : "w-2 h-2 bg-neutral-200"
-                  }`}
-                  title={proj.name}
-                />
-              ))}
-            </div>
-
-            <div className="hidden sm:flex items-center gap-1.5 text-[11px] font-mono text-neutral-500 bg-white/70 border border-neutral-200/80 px-3 py-1 rounded-full shadow-xs">
-              <ArrowDown className="w-3 h-3 text-pink-500 animate-bounce" />
-              <span>Scroll to stack / unstack</span>
-            </div>
+          {/* Interactive Stack Indicators */}
+          <div className="flex items-center gap-2">
+            {SHOWCASE_PROJECTS.map((proj, i) => (
+              <div
+                key={proj.id}
+                className={`transition-all duration-300 rounded-full ${
+                  i === activeIndex
+                    ? "w-7 h-2 bg-neutral-900"
+                    : i < activeIndex
+                    ? "w-2 h-2 bg-neutral-400"
+                    : "w-2 h-2 bg-neutral-200"
+                }`}
+                title={proj.name}
+              />
+            ))}
           </div>
         </div>
 

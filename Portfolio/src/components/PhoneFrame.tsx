@@ -105,8 +105,8 @@ export function PhoneFrame({
     setTouchStart(null);
   };
 
-  const W = 270;
-  const H = 579; // ✦ CHANGED — 9 : 19.3 ratio, same as the preview
+  const W = 320; // ✦ CHANGED — larger phone
+  const H = 686; // ✦ CHANGED — keeps the 9 : 19.3 ratio
   const showSlider = total > 0 && started;
   const displayIndex = total > 0 ? (showSlider ? current : 0) : 0;
 

@@ -76,10 +76,17 @@ export function BioTraceShowcaseModal({
           <section className="bg-[#090C0A] text-white px-6 sm:px-12 lg:px-20 pt-8 pb-16 lg:pb-20 relative overflow-hidden flex flex-col justify-between min-h-[92vh]">
             {/* Top Navigation Row */}
             <div className="flex items-center justify-between pb-8 border-b border-white/10 w-full">
-              <div className="flex items-center gap-2.5">
-                <Leaf className="w-5 h-5 text-white" />
-                <span className="text-lg sm:text-xl font-bold tracking-tight text-white">
+              <div className="flex items-center gap-3">
+                <img
+                  src="/screenshots/biotrace/biotrace-logo.png"
+                  alt="BioTrace Frog Logo"
+                  className="w-8 h-8 rounded-full object-cover shadow-md border border-emerald-400/40 bg-white"
+                />
+                <span className="text-lg sm:text-xl font-bold tracking-tight text-white flex items-center gap-2">
                   BioTrace
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-emerald-300 bg-emerald-500/20 px-2 py-0.5 rounded-full border border-emerald-400/30">
+                    Platform
+                  </span>
                 </span>
               </div>
 
@@ -722,8 +729,12 @@ export function BioTraceShowcaseModal({
               </div>
 
               <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-emerald-100/60">
-                <div className="flex items-center gap-2">
-                  <Leaf className="w-4 h-4 text-emerald-400" />
+                <div className="flex items-center gap-2.5">
+                  <img
+                    src="/screenshots/biotrace/biotrace-logo.png"
+                    alt="BioTrace Frog Logo"
+                    className="w-6 h-6 rounded-full object-cover shadow-xs border border-emerald-400/40 bg-white"
+                  />
                   <span className="font-bold text-white">BioTrace</span>
                 </div>
 

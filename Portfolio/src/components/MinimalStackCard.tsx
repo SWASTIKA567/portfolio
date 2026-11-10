@@ -1,6 +1,6 @@
 import React from "react";
 import type { ProjectShowcaseData } from "@/data/projectsData";
-import { ArrowUpRight, Trophy } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { PremiumPhoneFrame } from "@/components/PremiumPhoneFrame";
 
 interface MinimalStackCardProps {
@@ -60,36 +60,8 @@ export function MinimalStackCard({
         {/* ── Left Column: Clean Specs & Bold Big Typography (md:col-span-7) ── */}
         <div className="md:col-span-7 flex flex-col justify-between h-full">
           <div>
-            {/* Top Index & Badge Row */}
-            <div className="flex items-center gap-2.5 mb-3 flex-wrap">
-              <span
-                className="text-xs font-mono font-bold tracking-widest px-2.5 py-1 rounded-md"
-                style={{
-                  backgroundColor: project.theme.badgeBg,
-                  color: project.theme.badgeText,
-                }}
-              >
-                [ {project.codeNumber} ]
-              </span>
-
-              <span
-                className="text-xs font-semibold px-3 py-1 rounded-full flex items-center gap-1.5 shadow-xs"
-                style={{
-                  backgroundColor: project.theme.badgeBg,
-                  color: project.theme.badgeText,
-                }}
-              >
-                <Trophy className="w-3.5 h-3.5" />
-                {project.badge}
-              </span>
-
-              <span className="text-xs text-neutral-400 font-mono hidden sm:inline">
-                0{index + 1} / 0{total}
-              </span>
-            </div>
-
-            {/* Big Bold Title */}
-            <h3 className="text-4xl sm:text-5xl lg:text-[54px] font-black text-neutral-900 tracking-tight leading-none mb-2.5 font-sans">
+            {/* Project Heading with font style used in starting (script) */}
+            <h3 className="script text-5xl sm:text-6xl lg:text-[72px] text-neutral-900 leading-none mb-3 drop-shadow-xs select-none">
               {project.name}
             </h3>
 
@@ -137,10 +109,6 @@ export function MinimalStackCard({
                 style={{ color: project.theme.primary }}
               />
             </button>
-
-            <span className="text-xs font-mono text-neutral-400 hidden sm:inline">
-              Tap card to view details
-            </span>
           </div>
         </div>
 
@@ -159,7 +127,7 @@ export function MinimalStackCard({
                 <img
                   src={project.logo}
                   alt={`${project.name} Logo`}
-                  className="w-full h-full object-cover rounded-[36px] sm:rounded-[42px] select-none pointer-events-none shadow-inner"
+                  className="w-full h-full object-cover rounded-[36px] sm:rounded-[42px] select-none pointer-events-none shadow-inner bg-white"
                 />
 
                 {/* Subtle Specular Glare Sheen */}
@@ -170,15 +138,6 @@ export function MinimalStackCard({
                       "linear-gradient(135deg, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0.05) 40%, transparent 60%, rgba(255,255,255,0.1) 100%)",
                   }}
                 />
-              </div>
-
-              {/* Subtle Pill Underneath */}
-              <div className="mt-3.5 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-neutral-100 border border-neutral-200/80 text-[11px] font-mono font-bold text-neutral-600 shadow-xs">
-                <span
-                  className="w-2 h-2 rounded-full"
-                  style={{ backgroundColor: project.theme.primary }}
-                />
-                <span>APP LOGO</span>
               </div>
             </div>
           ) : (

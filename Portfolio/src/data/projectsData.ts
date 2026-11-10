@@ -96,8 +96,9 @@ export const SHOWCASE_PROJECTS: ProjectShowcaseData[] = [
       border: "#E2EFE5",
     },
     mockupCover: "/screenshots/biotrace/biotrace-results.png",
+    logo: "/screenshots/biotrace/biotrace-logo.png",
     heroSummary:
-      "A cloud-based biodiversity intelligence platform designed to help researchers analyze environmental DNA (eDNA) data and monitor biodiversity over time—connecting field sampling, laboratory sequencing, taxonomic classification, and longitudinal collaboration.",
+      "AI-powered eDNA biodiversity monitoring platform connecting field sampling, laboratory sequencing, taxonomic classification, and longitudinal collaboration.",
     oneLiner:
       "BioTrace is an AI-powered eDNA biodiversity monitoring platform that enables researchers to upload environmental DNA datasets, obtain taxonomic insights, visualize biodiversity, track ecological changes over time, and collaborate on location-based research projects.",
     problem: {
@@ -264,7 +265,7 @@ export const SHOWCASE_PROJECTS: ProjectShowcaseData[] = [
       "Cloud Workflow Orchestration",
     ],
   },
-    {
+  {
     id: "circle",
     codeNumber: "02",
     categoryTag: "CAMPUS UTILITY // STUDENT ECOSYSTEM",
@@ -750,5 +751,4 @@ export const SHOWCASE_PROJECTS: ProjectShowcaseData[] = [
       "Cybersecurity CVE Modeling",
     ],
   },
-,
 ];
