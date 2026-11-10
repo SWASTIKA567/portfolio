@@ -91,9 +91,7 @@ export function CircleShowcaseModal({ isOpen, onClose }: CircleShowcaseModalProp
                 />
                 <span className="text-lg sm:text-xl font-bold tracking-tight text-white flex items-center gap-2">
                   Circle
-                  <span className="text-[10px] font-mono uppercase tracking-widest text-[#A78BFA] bg-[#7C3AED]/20 px-2.5 py-0.5 rounded-full border border-[#7C3AED]/30">
-                    Campus Platform
-                  </span>
+                 
                 </span>
               </div>
 
@@ -125,14 +123,14 @@ export function CircleShowcaseModal({ isOpen, onClose }: CircleShowcaseModalProp
                 <span>STUDENT LIFESTYLE HUB</span>
               </div>
 
-              {/* Giant Title: Pure White Title */}
-              <h1 className="text-[76px] sm:text-[110px] lg:text-[148px] font-black tracking-tighter leading-none mb-10 select-none text-white">
+              {/* Giant Title: Pure White Title with cursive script font */}
+              <h1 className="script text-[84px] sm:text-[124px] lg:text-[156px] leading-none mb-8 select-none text-white">
                 Circle
               </h1>
 
               {/* Two-Column Editorial Copy */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16 items-start pt-4 border-t border-white/10">
-                <p className="text-2xl sm:text-3xl font-serif leading-snug tracking-tight text-neutral-100">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16 items-start pt-6 border-t border-white/10">
+                <p className="font-heading text-2xl sm:text-3xl leading-snug tracking-tight text-neutral-100">
                   A full-stack campus utility designed to streamline academic resources, live attendance tracking, society updates, and campus queries.
                 </p>
                 <div className="space-y-4">
@@ -631,7 +629,7 @@ export function CircleShowcaseModal({ isOpen, onClose }: CircleShowcaseModalProp
                   </div>
                   <p className="text-neutral-400 text-sm max-w-xl font-light">
                     Designed and built end-to-end by{" "}
-                    <strong className="text-white font-medium">Swastika Singh</strong> as a production-grade campus ecosystem for college students.
+                    <strong className="font-signature text-2xl text-purple-200">Swastika Singh</strong> as a production-grade campus ecosystem for college students.
                   </p>
                 </div>
 

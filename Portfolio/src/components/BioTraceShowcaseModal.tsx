@@ -13,6 +13,7 @@ import {
   FileSpreadsheet,
   CheckCircle2,
   ArrowDown,
+  Activity,
 } from "lucide-react";
 import { PremiumPhoneFrame } from "@/components/PremiumPhoneFrame";
 
@@ -49,9 +50,12 @@ export function BioTraceShowcaseModal({
   }, [onClose]);
 
   const scrollToOpportunity = () => {
-    const el = document.getElementById("showcase-opportunity");
+    const el =
+      document.getElementById("showcase-opportunity") ||
+      document.getElementById("showcase-workspace");
     if (el) el.scrollIntoView({ behavior: "smooth" });
   };
+  const scrollToWorkspace = scrollToOpportunity;
 
   if (!isOpen) return null;
 
@@ -84,9 +88,7 @@ export function BioTraceShowcaseModal({
                 />
                 <span className="text-lg sm:text-xl font-bold tracking-tight text-white flex items-center gap-2">
                   BioTrace
-                  <span className="text-[10px] font-mono uppercase tracking-widest text-emerald-300 bg-emerald-500/20 px-2 py-0.5 rounded-full border border-emerald-400/30">
-                    Platform
-                  </span>
+              
                 </span>
               </div>
 
@@ -111,62 +113,84 @@ export function BioTraceShowcaseModal({
             </div>
 
             {/* Middle Main Content */}
-            <div className="py-12 lg:py-16">
+            <div className="py-12 lg:py-20">
               {/* Category Subheadings */}
-              <div className="flex items-center justify-between text-xs sm:text-sm font-mono font-bold uppercase tracking-[0.22em] text-[#F6A5A5] mb-4">
-                <span>BUILD WITH BHARAT</span>
-                <span>HACKATHON PROJECT</span>
-              </div>
+             
 
-              {/* Giant Two-Tone Title: "Bio" (White) + "Trace" (Coral Pink) */}
-              <h1 className="text-[76px] sm:text-[110px] lg:text-[148px] font-black tracking-tighter leading-none mb-10 select-none">
+              {/* Giant Two-Tone Title: "Bio" (White) + "Trace" (Coral Pink) with cursive script */}
+              <h1 className="script text-[84px] sm:text-[124px] lg:text-[156px] leading-none mb-8 select-none">
                 <span className="text-white">Bio</span>
                 <span className="text-[#F6A5A5]">Trace</span>
               </h1>
 
               {/* Two-Column Copy */}
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start pt-4 border-t border-white/10">
-                {/* Left Serif Statement */}
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start pt-6 border-t border-white/10">
+                {/* Left Statement with Rosehot / font-heading */}
                 <div className="lg:col-span-7">
-                  <h2
-                    className="text-2xl sm:text-3xl lg:text-4xl text-white/95 font-normal leading-snug"
-                    style={{ fontFamily: "Georgia, Cambria, 'Times New Roman', serif" }}
-                  >
+                  <h2 className="font-heading text-2xl sm:text-3xl lg:text-4xl text-white/95 leading-snug">
                     Biodiversity intelligence, powered by environmental DNA.
                   </h2>
                 </div>
 
                 {/* Right Sans Paragraph */}
                 <div className="lg:col-span-5">
-                  <p className="text-sm sm:text-base text-neutral-400 font-sans leading-relaxed font-normal">
+                  <p className="text-sm sm:text-base text-neutral-300 font-sans leading-relaxed font-normal">
                     A mobile-first platform for researchers to analyze eDNA, understand species presence, monitor ecological change, and collaborate across shared ecosystems.
                   </p>
                 </div>
               </div>
             </div>
 
-            {/* Bottom Row: 01 DETECT / Phone Top Peeking / 02 UNDERSTAND */}
-            <div className="relative pt-6 border-t border-white/10 flex items-center justify-between">
-              <span className="text-xs sm:text-sm font-mono font-bold uppercase tracking-widest text-[#F6A5A5]">
-                01 DETECT
-              </span>
+            {/* Bottom Hero Peeking Mockup (BioTrace Results Screen) */}
+            <div className="relative mt-8 sm:mt-12 flex justify-center w-full">
+              <div className="relative w-full max-w-[280px] sm:max-w-[310px] -mb-32 sm:-mb-40 z-20">
+                <PremiumPhoneFrame
+                  imageSrc="/screenshots/biotrace/biotrace-results.png"
+                  alt="BioTrace eDNA Results Screen"
+                  variant="silver"
+                  width={275}
+                  height={560}
+                  className="shadow-2xl shadow-black/90 mx-auto"
+                />
 
-              {/* Center Premium Phone Top Peeking */}
-              <div className="w-[200px] sm:w-[230px] h-[55px] overflow-hidden mx-auto relative flex items-start justify-center">
-                <div className="translate-y-[-10px]">
-                  <PremiumPhoneFrame
-                    imageSrc="/screenshots/biotrace/biotrace-results.png"
-                    alt="eDNA Species Portal"
-                    width={200}
-                    height={420}
-                    showButtons={false}
-                    glare={false}
-                  />
+                {/* Left Floating Badge: eDNA Analysis */}
+                <div className="absolute -left-6 sm:-left-12 top-28 bg-[#0D1A10]/95 border border-emerald-500/25 backdrop-blur-xl px-3.5 py-2 rounded-2xl shadow-xl hidden sm:flex items-center gap-2.5 text-xs text-white">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                  <span className="font-mono uppercase font-bold tracking-wider text-[11px] text-emerald-200">
+                    eDNA REAL-TIME PIPELINE
+                  </span>
+                </div>
+
+                {/* Right Floating Badge: Taxonomic Match */}
+                <div className="absolute -right-6 sm:-right-14 bottom-44 bg-[#0D1A10]/95 border border-emerald-500/25 backdrop-blur-xl px-3.5 py-2 rounded-2xl shadow-xl hidden sm:flex items-center gap-2.5 text-xs text-white">
+                  <Dna className="w-3.5 h-3.5 text-emerald-400" />
+                  <span className="font-mono uppercase font-bold tracking-wider text-[11px] text-emerald-200">
+                    TAXONOMIC CONFIDENCE 98.4%
+                  </span>
                 </div>
               </div>
+            </div>
 
-              <span className="text-xs sm:text-sm font-mono font-bold uppercase tracking-widest text-[#F6A5A5]">
-                02 UNDERSTAND
+            {/* Bottom Process Strip */}
+            <div className="pt-36 sm:pt-44 flex flex-wrap items-center justify-between text-xs font-mono font-bold tracking-widest text-neutral-400 border-t border-white/10 gap-4 relative z-10">
+              <span className="flex items-center gap-2 text-emerald-300">
+                <Dna className="w-4 h-4 text-emerald-400" /> INGEST eDNA
+              </span>
+              <span className="hidden sm:inline text-neutral-600">→</span>
+              <span className="flex items-center gap-2 text-emerald-300">
+                <Cpu className="w-4 h-4 text-emerald-400" /> BLAST PIPELINE
+              </span>
+              <span className="hidden sm:inline text-neutral-600">→</span>
+              <span className="flex items-center gap-2 text-emerald-300">
+                <FileSpreadsheet className="w-4 h-4 text-emerald-400" /> TAXONOMIC MATCH
+              </span>
+              <span className="hidden sm:inline text-neutral-600">→</span>
+              <span className="flex items-center gap-2 text-emerald-300">
+                <Activity className="w-4 h-4 text-emerald-400" /> SPECIES PROFILE
+              </span>
+              <span className="hidden sm:inline text-neutral-600">→</span>
+              <span className="flex items-center gap-2 text-emerald-300">
+                <Share2 className="w-4 h-4 text-emerald-400" /> FIELD REPORT
               </span>
             </div>
           </section>
@@ -362,8 +386,8 @@ export function BioTraceShowcaseModal({
                   {/* Back Left Phone (Tilted Left) */}
                   <div className="absolute left-0 sm:left-4 top-8 z-10 transition-transform hover:scale-105 duration-300">
                     <PremiumPhoneFrame
-                      imageSrc="/screenshots/biotrace/biotrace-results.png"
-                      alt="Researcher Workspace"
+                      imageSrc="/screenshots/biotrace/biotrace-project-detail.png"
+                      alt="BioTrace Species Detail View"
                       width={230}
                       height={470}
                       rotate={-8}
@@ -700,7 +724,7 @@ export function BioTraceShowcaseModal({
                   <span className="text-[10px] font-mono font-bold text-emerald-400 uppercase tracking-widest block mb-1">
                     CONTRIBUTION
                   </span>
-                  <h3 className="text-xl font-bold text-white mb-1">Swastika Singh</h3>
+                  <h3 className="font-signature text-3xl text-white mb-1">Swastika Singh</h3>
                   <p className="text-xs text-emerald-100/80 leading-snug">
                     Mobile Application Development
                   </p>
@@ -742,9 +766,7 @@ export function BioTraceShowcaseModal({
                   AI-powered eDNA biodiversity monitoring and research collaboration.
                 </p>
 
-                <span className="font-mono text-[10px] tracking-wider text-emerald-300 font-bold">
-                  BUILD WITH BHARAT HACKATHON PROJECT
-                </span>
+              
               </div>
             </div>
           </section>

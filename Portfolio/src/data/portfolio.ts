@@ -17,8 +17,8 @@ export const ABOUT = {
     "Dr. APJ Abdul Kalam Technical University | 2024 - Now",
   ],
   contact: {
-    email: "swastika.singh@example.com",
-    phone: "+91 98765 43210",
+    email: "swastikasingh1055@gmail.com",
+    phone: "+91 9453271859",
   },
   languages: ["Hindi — mother tongue", "English — fluent"],
   tools: ["Flutter", "Firebase", "Figma", "VS Code"],

@@ -74,9 +74,7 @@ export function Slide2() {
         {/* Content */}
         <ScrollReveal animation="3d-rise" className="w-full">
           <div className="w-full">
-            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.3em] text-pink-500">
-              Portfolio · 2026
-            </p>
+           
             <h2 className="script text-6xl md:text-8xl leading-none text-neutral-900 mb-4">
               about me
             </h2>
@@ -153,10 +151,9 @@ export function Slide2() {
           <div className="w-full max-w-2xl py-20">
             <ScrollReveal animation="3d-rise">
               <section id="about">
-                <div className="inline-flex items-center gap-2 mb-4 px-3.5 py-1 rounded-full bg-pink-100/60 border border-pink-200 text-pink-700 text-xs font-bold uppercase tracking-[0.25em]">
-                  <Award className="w-3.5 h-3.5" />
-                  Portfolio · 2026
-                </div>
+                
+               
+                
 
                 <h2 className="script text-6xl md:text-8xl leading-none text-neutral-900 mb-6 drop-shadow-xs">
                   about me

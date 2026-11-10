@@ -117,12 +117,8 @@ export function Slide6() {
         {/* Header */}
         <ScrollReveal animation="3d-rise">
           <div style={{ textAlign: "center", marginBottom: 40 }}>
-            <span className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-700 text-xs font-semibold tracking-wider shadow-xs">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 relative">
-                <span className="absolute inset-[-2px] rounded-full bg-emerald-500 animate-ping" />
-              </span>
-              Available for opportunities
-            </span>
+           
+              
 
             <p className="script" style={{ fontSize: 36, color: "#d4569a", margin: "18px 0 0" }}>
               Let's create something

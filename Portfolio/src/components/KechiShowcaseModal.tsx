@@ -129,15 +129,15 @@ export function KechiShowcaseModal({ isOpen, onClose }: KechiShowcaseModalProps)
                 <span>PRINT-ON-DEMAND STUDIO</span>
               </div>
 
-              {/* Giant Two-Tone Title: "Ke" (White) + "chi" (Orange #F24E1E) */}
-              <h1 className="text-[76px] sm:text-[110px] lg:text-[148px] font-black tracking-tighter leading-none mb-10 select-none">
+              {/* Giant Two-Tone Title: "Ke" (White) + "chi" (Orange #F24E1E) with cursive script */}
+              <h1 className="script text-[84px] sm:text-[124px] lg:text-[156px] leading-none mb-8 select-none">
                 <span className="text-white">Ke</span>
                 <span className="text-[#F24E1E]">chi</span>
               </h1>
 
               {/* Two-Column Editorial Copy */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16 items-start pt-4 border-t border-white/10">
-                <p className="text-2xl sm:text-3xl font-serif leading-snug tracking-tight text-neutral-100">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16 items-start pt-6 border-t border-white/10">
+                <p className="font-heading text-2xl sm:text-3xl leading-snug tracking-tight text-neutral-100">
                   Turn your digital posters into premium prints—custom sized, regionally validated, and delivered seamlessly.
                 </p>
                 <div className="space-y-4">
@@ -753,7 +753,7 @@ export function KechiShowcaseModal({ isOpen, onClose }: KechiShowcaseModalProps)
                   </div>
                   <p className="text-neutral-400 text-sm max-w-xl font-light">
                     Designed and built end-to-end by{" "}
-                    <strong className="text-white font-medium">Swastika Singh</strong> as a production-grade full-stack mobile e-commerce platform.
+                    <strong className="font-signature text-2xl text-rose-200">Swastika Singh</strong> as a production-grade full-stack mobile e-commerce platform.
                   </p>
                 </div>
 

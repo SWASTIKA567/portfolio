@@ -286,37 +286,14 @@ export function Vinyl3D() {
           </h2>
         </div>
 
-        {/* "App Developer" — Depth: translateZ(70px) */}
-        <div
-          className="absolute z-20 pointer-events-none select-none transition-transform duration-200"
-          style={{
-            top: "62%",
-            left: "62%",
-            transform: "translateZ(70px)",
-            transformStyle: "preserve-3d",
-            willChange: "transform",
-          }}
-        >
-          <span
-            className="text-neutral-900 font-script inline-block"
-            style={{
-              fontSize: "clamp(32px, 4.4vw, 70px)",
-              whiteSpace: "nowrap",
-              filter: "drop-shadow(0 8px 14px rgba(212,86,154,0.15))",
-            }}
-          >
-            App Developer
-          </span>
-        </div>
+        
 
         {/* Subtle interactive helper badge that floats at bottom */}
         <div
           className="absolute bottom-2 left-1/2 -translate-x-1/2 pointer-events-none opacity-60 hover:opacity-100 transition-opacity"
           style={{ transform: "translateX(-50%) translateZ(35px)" }}
         >
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/70 backdrop-blur-sm text-[10px] uppercase font-bold tracking-wider text-pink-600 border border-pink-100/60 shadow-sm">
-            <span>✦</span> Drag or tilt record in 3D <span>✦</span>
-          </span>
+         
         </div>
       </div>
 

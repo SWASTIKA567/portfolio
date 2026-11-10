@@ -67,7 +67,7 @@ export const SHOWCASE_PROJECTS: ProjectShowcaseData[] = [
     categoryTag: "AI // BIODIVERSITY & eDNA MONITORING",
     name: "BioTrace",
     tagline: "AI-Powered eDNA Biodiversity Monitoring & Research Collaboration Platform",
-    badge: "Build with Bharat — Hackathon Project",
+   
     role: "Mobile App Development · Backend & Pipeline Integration",
     team: "4 Members",
     domain: [
