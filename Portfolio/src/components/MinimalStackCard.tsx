@@ -49,11 +49,7 @@ export function MinimalStackCard({
       }}
       className="absolute top-0 left-0 right-0 w-full h-[540px] md:h-[490px] rounded-[32px] bg-white border border-neutral-200/80 cursor-pointer select-none overflow-hidden transition-shadow duration-300 hover:shadow-2xl flex flex-col group/card"
     >
-      {/* Top minimal color accent line */}
-      <div
-        className="w-full h-2 flex-shrink-0"
-        style={{ backgroundColor: project.theme.primary }}
-      />
+      
 
       {/* Card Content Grid */}
       <div className="w-full flex-1 p-6 sm:p-8 md:p-10 grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-center bg-white overflow-hidden">
@@ -93,7 +89,7 @@ export function MinimalStackCard({
           </div>
 
           {/* Bottom Action Area */}
-          <div className="pt-4 border-t border-neutral-100 flex items-center justify-between">
+           <div className="pt-3 flex items-center justify-between">
             <button
               onClick={(e) => {
                 e.stopPropagation();
@@ -102,7 +98,8 @@ export function MinimalStackCard({
               className="inline-flex items-center gap-2 text-sm font-bold tracking-wider uppercase text-neutral-900 hover:text-neutral-600 transition-colors cursor-pointer group"
             >
               <span className="border-b-2 border-neutral-900 pb-0.5 group-hover:border-neutral-500 transition-colors">
-                Explore Case Study
+                Explore 
+                
               </span>
               <ArrowUpRight
                 className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"

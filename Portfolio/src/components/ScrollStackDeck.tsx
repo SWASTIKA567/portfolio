@@ -127,10 +127,8 @@ export function ScrollStackDeck({ onSelectProject }: ScrollStackDeckProps) {
         <div className="relative z-40 w-full max-w-[1080px] mx-auto flex items-end justify-between border-b border-pink-200/50 pb-4">
           <div>
             <div className="flex items-center gap-2 mb-1">
-              <span className="w-2 h-2 rounded-full bg-pink-500 animate-pulse" />
-              <span className="text-xs font-mono font-bold tracking-widest uppercase text-pink-600">
-                Selected Work // 01 — 0{total}
-              </span>
+             
+            
             </div>
             <h2 className="script text-4xl sm:text-5xl text-neutral-900 leading-none">
               Featured Projects
@@ -215,9 +213,7 @@ export function ScrollStackDeck({ onSelectProject }: ScrollStackDeckProps) {
           <span className="font-mono text-[11px]">
             Active: <strong className="text-neutral-900">{SHOWCASE_PROJECTS[activeIndex]?.name || ""}</strong> ({activeIndex + 1}/{total})
           </span>
-          <span className="font-mono text-[11px] hidden sm:inline">
-            Scroll down for next stack · Scroll up to peel back
-          </span>
+          
         </div>
       </div>
     </div>
