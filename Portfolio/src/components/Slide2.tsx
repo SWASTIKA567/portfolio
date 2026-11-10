@@ -4,7 +4,6 @@ const portrait = "/screenshots/kechi/kechi-home.png";
 import { ABOUT } from "@/data/portfolio";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { Tilt3D } from "@/components/Tilt3D";
-import { GraduationCap, Award, Disc, ArrowRight } from "lucide-react";
 import { ProjectsScreen } from "@/components/ProjectsScreen";
 
 export function Slide2() {
@@ -80,29 +79,14 @@ export function Slide2() {
             </h2>
             <p className="text-[17px] leading-relaxed text-neutral-700">{ABOUT.intro}</p>
 
-            <div className="mt-8 space-y-4">
+            <ul className="mt-6 space-y-2.5">
               {ABOUT.education.map((item, idx) => (
-                <div
-                  key={idx}
-                  className="flex items-start gap-3 p-3.5 bg-white/80 rounded-xl border border-pink-100/70 shadow-sm"
-                >
-                  <GraduationCap className="w-5 h-5 text-pink-500 flex-shrink-0 mt-0.5" />
-                  <span className="text-sm font-medium text-neutral-800">{item}</span>
-                </div>
+                <li key={idx} className="flex items-center gap-2.5 text-sm font-medium text-neutral-800">
+                  <span className="w-1.5 h-1.5 rounded-full bg-pink-500 flex-shrink-0" />
+                  <span>{item}</span>
+                </li>
               ))}
-            </div>
-
-            {/* My Projects Button (Mobile) */}
-            <div className="mt-8 flex justify-center">
-              <button
-                onClick={() => setIsProjectsOpen(true)}
-                className="group inline-flex items-center gap-3 px-7 py-3.5 rounded-full bg-neutral-900 hover:bg-black text-white font-bold text-xs tracking-wider uppercase shadow-[0_10px_25px_-5px_rgba(236,72,153,0.35)] active:scale-95 transition-all duration-300 cursor-pointer border border-pink-500/40 hover:border-pink-400"
-              >
-                <Disc className="w-4 h-4 text-pink-400 group-hover:rotate-180 transition-transform duration-700" />
-                <span>My Projects</span>
-                <ArrowRight className="w-3.5 h-3.5 text-pink-400 group-hover:translate-x-1 transition-transform" />
-              </button>
-            </div>
+            </ul>
           </div>
         </ScrollReveal>
       </div>
@@ -163,41 +147,14 @@ export function Slide2() {
                   {ABOUT.intro}
                 </p>
 
-                {/* 3D Interactive Education & Milestones Cards */}
-                <div className="mt-8 space-y-4">
+                <ul className="mt-8 space-y-3">
                   {ABOUT.education.map((item, idx) => (
-                    <Tilt3D
-                      key={idx}
-                      maxTilt={8}
-                      scale={1.02}
-                      glare={false}
-                      className="w-full"
-                    >
-                      <div className="flex items-center gap-4 p-4 rounded-2xl bg-white/80 hover:bg-white backdrop-blur-sm border border-pink-100 hover:border-pink-300 shadow-sm hover:shadow-lg hover:shadow-pink-900/5 transition-all duration-300 group">
-                        <div className="p-2.5 rounded-xl bg-pink-50 group-hover:bg-pink-100 text-pink-600 transition-colors duration-300">
-                          <GraduationCap className="w-5 h-5" />
-                        </div>
-                        <div>
-                          <span className="text-base font-semibold text-neutral-800 group-hover:text-pink-600 transition-colors duration-300">
-                            {item}
-                          </span>
-                        </div>
-                      </div>
-                    </Tilt3D>
+                    <li key={idx} className="flex items-center gap-3 text-base font-medium text-neutral-800">
+                      <span className="w-2 h-2 rounded-full bg-pink-500 flex-shrink-0 shadow-xs shadow-pink-500/50" />
+                      <span>{item}</span>
+                    </li>
                   ))}
-                </div>
-
-                {/* My Projects Button (Desktop) */}
-                <div className="mt-10 pt-2">
-                  <button
-                    onClick={() => setIsProjectsOpen(true)}
-                    className="group inline-flex items-center gap-3.5 px-8 py-4 rounded-full bg-neutral-900 hover:bg-black text-white font-bold text-sm tracking-wider uppercase shadow-[0_12px_30px_-5px_rgba(236,72,153,0.35)] hover:shadow-[0_18px_36px_-5px_rgba(236,72,153,0.5)] hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer border border-pink-500/40 hover:border-pink-400"
-                  >
-                    <Disc className="w-4 h-4 text-pink-400 group-hover:rotate-180 transition-transform duration-700" />
-                    <span>My Projects</span>
-                    <ArrowRight className="w-4 h-4 text-pink-400 group-hover:translate-x-1.5 transition-transform duration-300" />
-                  </button>
-                </div>
+                </ul>
               </section>
             </ScrollReveal>
           </div>
